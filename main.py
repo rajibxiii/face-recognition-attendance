@@ -3,10 +3,12 @@ from tkinter import ttk
 from PIL import  Image , ImageTk
 
 class FaceRecoSys:
+
     def __init__(self,root):
         self.root = root
         self.root.geometry('1590x790+0+0')
         self.root.title('Student attendance system')
+
         # 1st Image
         img1 = Image.open(r"D:\Face Recognition Student Attendance System\cse299-frsas\images\color3.jpg")
         img1 = img1.resize((500,130), Image.ANTIALIAS)
@@ -36,6 +38,3 @@ if __name__ == "__main__":
     root = Tk()
     obj = FaceRecoSys(root)
     root.mainloop()
-
-
-    # this is a change
