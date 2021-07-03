@@ -9,8 +9,6 @@ class faceRecognitionSystem:
         self.root.title("Face Recognition Student Attendance System")
 
 
-
-
 if __name__ == "__main__":
     root = Tk()
     obj = faceRecognitionSystem(root)
