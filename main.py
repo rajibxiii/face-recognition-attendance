@@ -1,5 +1,10 @@
+<<<<<<< HEAD
 
 from tkinter import *
+=======
+from tkinter import *
+from tkinter import ttk
+>>>>>>> parent of 02d7647 (Problems with directories solved and some formatted properly)
 from PIL import  Image , ImageTk
 
 class FaceRecoSys:
