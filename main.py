@@ -3,7 +3,7 @@ from tkinter import ttk
 from PIL import Image, ImageTk
 
 
-class FaceRecoSys:
+class FaceRecSys:
 
     def __init__(self, root):
         self.root = root
@@ -16,8 +16,8 @@ class FaceRecoSys:
         img1 = img1.resize((500, 130), Image.ANTIALIAS)
         self.PhoImg = ImageTk.PhotoImage(img1)
 
-        FirLab = Label(self.root, image=self.PhoImg)
-        FirLab.place(x=0, y=0, width=500, height=130)
+        FirstLabel = Label(self.root, image=self.PhoImg)
+        FirstLabel.place(x=0, y=0, width=500, height=130)
 
         # 2nd Image
         img2 = Image.open(
@@ -25,8 +25,8 @@ class FaceRecoSys:
         img2 = img2.resize((500, 130), Image.ANTIALIAS)
         self.PhoImg2 = ImageTk.PhotoImage(img2)
 
-        FirLab = Label(self.root, image=self.PhoImg2)
-        FirLab.place(x=500, y=0, width=500, height=130)
+        FirstLabel = Label(self.root, image=self.PhoImg2)
+        FirstLabel.place(x=500, y=0, width=500, height=130)
 
         # 3rd Image
         img3 = Image.open(
@@ -34,8 +34,8 @@ class FaceRecoSys:
         img3 = img3.resize((500, 130), Image.ANTIALIAS)
         self.PhoImg3 = ImageTk.PhotoImage(img3)
 
-        FirLab = Label(self.root, image=self.PhoImg3)
-        FirLab.place(x=1000, y=0, width=500, height=130)
+        FirstLabel = Label(self.root, image=self.PhoImg3)
+        FirstLabel.place(x=1000, y=0, width=500, height=130)
 
         # Background Image
         imgBg = Image.open(
@@ -46,14 +46,14 @@ class FaceRecoSys:
         BgImg = Label(self.root, image=self.PhoImgBg)
         BgImg.place(x=0, y=130, width=1530, height=710)
 
-        TitlLbl = Label(BgImg, text="Student Attendance System",
+        TitleLable = Label(BgImg, text="Student Attendance System",
                         font=("times new Roman", 30, 'bold',),
                         bg='white', fg='black')
 
-        TitlLbl.place(x=0, y=0, width=1530, height=50)
+        TitleLable.place(x=0, y=0, width=1530, height=50)
 
 
 if __name__ == "__main__":
     root = Tk()
-    obj = FaceRecoSys(root)
+    obj = FaceRecSys(root)
     root.mainloop()
