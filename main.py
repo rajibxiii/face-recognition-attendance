@@ -29,7 +29,7 @@ class FaceRecSys:
 
         # Making  buttons for 'Student Details', 'Face Detector', 'Train Data', 'Attendance', 'Photos', 'Exit'
 
-        # Student detail button (img4)
+        # Student detail button
         studenButton = Image.open(r"images\StudentButton.jpg")
         studenButton = studenButton.resize((130, 130), Image.ANTIALIAS)
         self.PhoImgStdBtn = ImageTk.PhotoImage(studenButton)
@@ -42,7 +42,7 @@ class FaceRecSys:
                       bg='darkblue', fg='white')
         Btn1.place(x=200, y=320, width=129, height=30)
 
-        # Face Detect Button (img5)
+        # Face Detect Button
         faceDetectButton = Image.open(r"images\facedetect.PNG")
         faceDetectButton = faceDetectButton.resize((130, 130), Image.ANTIALIAS)
         self.PhoImgFacDetBtn = ImageTk.PhotoImage(faceDetectButton)
@@ -55,7 +55,7 @@ class FaceRecSys:
                       bg='darkblue', fg='white')
         Btn2.place(x=450, y=320, width=129, height=30)
 
-        # Attendance Button (img5)
+        # Attendance Button
         AttendanceButton = Image.open(r"images\attendance1.PNG")
         AttendanceButton = AttendanceButton.resize((130, 130), Image.ANTIALIAS)
         self.PhoImgAttendBtn = ImageTk.PhotoImage(AttendanceButton)
@@ -68,7 +68,7 @@ class FaceRecSys:
                       bg='darkblue', fg='white')
         Btn3.place(x=700, y=320, width=129, height=30)
 
-        # Help desk button (image 6)
+        # Help desk button
 
         HelpDskButton = Image.open(r"images\helpdesk.PNG")
         HelpDskButton = HelpDskButton.resize((130, 130), Image.ANTIALIAS)
