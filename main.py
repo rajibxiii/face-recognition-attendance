@@ -37,9 +37,9 @@ class FaceRecSys:
         Btn1 = Button(BgImg, image=self.PhoImgStdBtn, cursor='hand2')
         Btn1.place(x=200, y=220, width=130, height=130)
 
-        Btn1 = Button(BgImg, text='Student detail', cursor='hand2',
+        Btn1 = Button(BgImg, text='STUDENT DETAILS', cursor='hand2',
                       font=("Calibri", 12, 'bold',),
-                      bg='darkblue', fg='white')
+                      bg='black', fg='white')
         Btn1.place(x=200, y=320, width=129, height=30)
 
         # Face Detect Button
@@ -50,9 +50,9 @@ class FaceRecSys:
         Btn2 = Button(BgImg, image=self.PhoImgFacDetBtn, cursor='hand2')
         Btn2.place(x=450, y=220, width=130, height=130)
 
-        Btn2 = Button(BgImg, text='Face detect', cursor='hand2',
+        Btn2 = Button(BgImg, text='DETECT FACE', cursor='hand2',
                       font=("Calibri", 12, 'bold',),
-                      bg='darkblue', fg='white')
+                      bg='black', fg='white')
         Btn2.place(x=450, y=320, width=129, height=30)
 
         # Attendance Button
@@ -63,9 +63,9 @@ class FaceRecSys:
         Btn3 = Button(BgImg, image=self.PhoImgAttendBtn, cursor='hand2')
         Btn3.place(x=700, y=220, width=130, height=130)
 
-        Btn3 = Button(BgImg, text='Attendance', cursor='hand2',
+        Btn3 = Button(BgImg, text='ATTENDANCE', cursor='hand2',
                       font=("Calibri", 12, 'bold',),
-                      bg='darkblue', fg='white')
+                      bg='black', fg='white')
         Btn3.place(x=700, y=320, width=129, height=30)
 
         # Help desk button
@@ -77,9 +77,9 @@ class FaceRecSys:
         Btn4 = Button(BgImg, image=self.PhoImgHelpdskBtn, cursor='hand2')
         Btn4.place(x=950, y=220, width=130, height=130)
 
-        Btn4 = Button(BgImg, text='Help desk', cursor='hand2',
+        Btn4 = Button(BgImg, text='HELP DESK', cursor='hand2',
                       font=("Calibri", 12, 'bold',),
-                      bg='darkblue', fg='white')
+                      bg='black', fg='white')
         Btn4.place(x=950, y=320, width=129, height=30)
 
 
