@@ -42,18 +42,8 @@ class FaceRecSys:
                       bg='black', fg='white')
         Btn1.place(x=200, y=320, width=129, height=30)
 
-        # Face Detect Button (img5)
-        faceDetectButton = Image.open(r"images\facedetect.PNG")
-        faceDetectButton = faceDetectButton.resize((130, 130), Image.ANTIALIAS)
-        self.PhoImgFacDetBtn = ImageTk.PhotoImage(faceDetectButton)
 
-        Btn2 = Button(BgImg, image=self.PhoImgFacDetBtn, cursor='hand2')
-        Btn2.place(x=450, y=220, width=130, height=130)
 
-        Btn2 = Button(BgImg, text='DETECT FACE', cursor='hand2',
-                      font=("Calibri", 12, 'bold',),
-                      bg='black', fg='white')
-        Btn2.place(x=450, y=320, width=129, height=30)
 
 
 if __name__ == "__main__":
