@@ -37,7 +37,7 @@ class FaceRecSys:
         Btn1 = Button(BgImg, image=self.PhoImgStdBtn, cursor='hand2')
         Btn1.place(x=200, y=220, width=130, height=130)
 
-        Btn1 = Button(BgImg, text='STUDENT DETAILS', cursor='hand2',
+        Btn1 = Button(BgImg, text='Student details', cursor='hand2',
                       font=("Calibri", 12, 'bold',),
                       bg='black', fg='white')
         Btn1.place(x=200, y=320, width=129, height=30)
@@ -50,54 +50,51 @@ class FaceRecSys:
         Btn2 = Button(BgImg, image=self.PhoImgFacDetBtn, cursor='hand2')
         Btn2.place(x=450, y=220, width=130, height=130)
 
-        Btn2 = Button(BgImg, text='DETECT FACE', cursor='hand2',
+        Btn2 = Button(BgImg, text='Detect face', cursor='hand2',
                       font=("Calibri", 12, 'bold',),
                       bg='black', fg='white')
         Btn2.place(x=450, y=320, width=129, height=30)
 
         # Attendance Button
-        attendanceButton = Image.open(r"images\attendance1.PNG")
-        attendanceButton = attendanceButton.resize((130, 130), Image.ANTIALIAS)
-        self.PhoImgAttendBtn = ImageTk.PhotoImage(attendanceButton)
+        AttendanceButton = Image.open(r"images\attendance1.PNG")
+        AttendanceButton = AttendanceButton.resize((130, 130), Image.ANTIALIAS)
+        self.PhoImgAttendBtn = ImageTk.PhotoImage(AttendanceButton)
 
         Btn3 = Button(BgImg, image=self.PhoImgAttendBtn, cursor='hand2')
         Btn3.place(x=700, y=220, width=130, height=130)
 
-        Btn3 = Button(BgImg, text='ATTENDANCE', cursor='hand2',
+        Btn3 = Button(BgImg, text='Attendance', cursor='hand2',
                       font=("Calibri", 12, 'bold',),
                       bg='black', fg='white')
         Btn3.place(x=700, y=320, width=129, height=30)
 
         # Help desk button
 
-        helpDskButton = Image.open(r"images\helpdesk.PNG")
-        helpDskButton = helpDskButton.resize((130, 130), Image.ANTIALIAS)
-        self.PhoImgHelpdskBtn = ImageTk.PhotoImage(helpDskButton)
+        HelpDskButton = Image.open(r"images\helpdesk.PNG")
+        HelpDskButton = HelpDskButton.resize((130, 130), Image.ANTIALIAS)
+        self.PhoImgHelpdskBtn = ImageTk.PhotoImage(HelpDskButton)
 
         Btn4 = Button(BgImg, image=self.PhoImgHelpdskBtn, cursor='hand2')
         Btn4.place(x=950, y=220, width=130, height=130)
 
-        Btn4 = Button(BgImg, text='HELP DESK', cursor='hand2',
+        Btn4 = Button(BgImg, text='Help desk', cursor='hand2',
                       font=("Calibri", 12, 'bold',),
                       bg='black', fg='white')
         Btn4.place(x=950, y=320, width=129, height=30)
 
         #Train data Button
 
-        trainFaceButton = Image.open(r"images\train data.PNG")
-        trainFaceButton = trainFaceButton.resize((130, 130), Image.ANTIALIAS)
-        self.PhoImgTrainFacBtn = ImageTk.PhotoImage(trainFaceButton)
+        TrainFacButton = Image.open(r"images\train data.PNG")
+        TrainFacButton = TrainFacButton.resize((130, 130), Image.ANTIALIAS)
+        self.PhoImgTrainFacBtn = ImageTk.PhotoImage(TrainFacButton)
 
         Btn5 = Button(BgImg, image=self.PhoImgTrainFacBtn, cursor='hand2')
         Btn5.place(x=1200, y=220, width=130, height=130)
 
-        Btn5 = Button(BgImg, text='TRAIN DATA', cursor='hand2',
+        Btn5 = Button(BgImg, text='Train data', cursor='hand2',
                       font=("Calibri", 12, 'bold',),
                       bg='black', fg='white')
         Btn5.place(x=1200, y=320, width=129, height=30)
-
-
-
 
 if __name__ == "__main__":
     root = Tk()  # root is needed to call by toolkit (tk)
