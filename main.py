@@ -2,7 +2,6 @@ from tkinter import *
 # from tkinter import ttk
 from PIL import Image, ImageTk
 
-
 class FaceRecSys:
 
     def __init__(self, root):
@@ -16,12 +15,12 @@ class FaceRecSys:
         imgBg = Image.open(
             r"images\colorBg.png")
         imgBg = imgBg.resize((1530, 790), Image.ANTIALIAS)
-        self.PhoImgBg = ImageTk.PhotoImage(imgBg)
+        self.PhoImgBg = ImageTk.PhotoImage(imgBg) #set image
 
-        BgImg = Label(self.root, image=self.PhoImgBg)
-        BgImg.place(x=0, y=0, width=1530, height=790)
+        BgImg = Label(self.root, image=self.PhoImgBg) # shows in window
+        BgImg.place(x=0, y=0, width=1530, height=790) # place image
 
-        titleLabel = Label(text="Student Attendance System",
+        titleLabel = Label(text="STUDENT ATTENDANCE SYSTEM",
                            font=("Calibri Light", 30,),
                            bg='#E8F0F2', fg='black')
 
@@ -121,7 +120,12 @@ class FaceRecSys:
         Btn7.place(x=1000, y=610, width=130, height=30)
 
 
+
+############################## Funtion Buttons ###############################
+
 if __name__ == "__main__":
     root = Tk()  # root is needed to call by toolkit (tk)
     obj = FaceRecSys(root)
     root.mainloop()
+
+
