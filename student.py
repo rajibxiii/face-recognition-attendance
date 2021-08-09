@@ -172,17 +172,17 @@ class Student:
         button_frame = Frame(student_information_frame, bd=3, relief=RIDGE, bg='white')
         button_frame.place(x=0, y=208, width=715, height=70)
 
-        save_btn = Button(button_frame, text='Save', width=15, font=('Calibri', 13,"bold"), bg='blue', fg='white')
+        save_btn = Button(button_frame, text='Save', width=19, font=('Calibri', 13,"bold"), bg='blue', fg='white')
         save_btn.grid(row=0, column=0)
 
-        update_btn = Button(button_frame, text='Save', width=15, font=('Calibri', 13,"bold"), bg='blue', fg='white')
-        update_btn.grid(row=0, column=0)
+        update_btn = Button(button_frame, text='Update', width=19, font=('Calibri', 13,"bold"), bg='blue', fg='white')
+        update_btn.grid(row=0, column=1)
 
-        delete_btn = Button(button_frame, text='Save', width=15, font=('Calibri', 13,"bold"), bg='blue', fg='white')
-        delete_btn.grid(row=0, column=0)
+        delete_btn = Button(button_frame, text='Delete', width=19, font=('Calibri', 13,"bold"), bg='blue', fg='white')
+        delete_btn.grid(row=0, column=2)
 
-        reset_btn = Button(button_frame, text='Save', width=15, font=('Calibri', 13,"bold"), bg='blue', fg='white')
-        reset_btn.grid(row=0, column=0)
+        reset_btn = Button(button_frame, text='Reset', width=19, font=('Calibri', 13,"bold"), bg='blue', fg='white')
+        reset_btn.grid(row=0, column=3)
 
 
         # right label Frame
