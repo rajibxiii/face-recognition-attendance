@@ -232,6 +232,57 @@ class Student:
         showAll_btn.grid(row=0, column=4, padx=4)
 
 
+
+        ######## Table Frame #########
+        table_frame = Frame(right_frame, bd=2, relief=RIDGE, bg='white')
+        table_frame.place(x=5, y=155, width=710, height=383)
+
+        scroll_x=ttk.Scrollbar(table_frame, orient=HORIZONTAL)
+        scroll_y=ttk.Scrollbar(table_frame, orient=VERTICAL)
+        
+        self.student_table = ttk.Treeview(table_frame,column=("dep", "course", "year", "sem", "id", "name", "div", "dob", "email",  "phone", "address", "faculty", "photo"), xscrollcommand=scroll_x.set, yscrollcommand=scroll_y.set)
+
+        scroll_x.pack(side=BOTTOM, fill=X)
+        scroll_y.pack(side=RIGHT, fill=Y)
+        scroll_x.config(command=self.student_table.xview)
+        scroll_y.config(command=self.student_table.yview)
+
+        self.student_table.heading("dep",text="Department")
+        self.student_table.heading("course",text="Course")
+        self.student_table.heading("year",text="Year")
+        self.student_table.heading("sem",text="Semester")
+        self.student_table.heading("id",text="ID")
+        self.student_table.heading("name",text="Name")
+        self.student_table.heading("div",text="Division")
+        self.student_table.heading("dob",text="DOB")
+        self.student_table.heading("email",text="Email")
+        self.student_table.heading("phone",text="Phone")
+        self.student_table.heading("address",text="Address")
+        self.student_table.heading("faculty",text="Faculty")
+        self.student_table.heading("photo",text="PhotoSampleStatus")
+        self.student_table["show"] = "headings"
+        
+        self.student_table.column("dep", width=100)
+        self.student_table.column("course", width=100)
+        self.student_table.column("year", width=100)
+        self.student_table.column("sem", width=100)
+        self.student_table.column("id", width=100)
+        self.student_table.column("name", width=100)
+        self.student_table.column("div", width=100)
+        self.student_table.column("dob", width=100)
+        self.student_table.column("email", width=100)
+        self.student_table.column("phone", width=100)
+        self.student_table.column("address", width=100)
+        self.student_table.column("faculty", width=100)
+        self.student_table.column("photo", width=150)
+        
+        self.student_table.pack(fill=BOTH, expand=1)
+
+
+
+
+
+
 if __name__ == "__main__":
     root = Tk()  # root is needed to call by toolkit (tk)
     obj = Student(root)
