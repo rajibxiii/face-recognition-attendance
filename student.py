@@ -209,8 +209,17 @@ class Student:
                                  text="Student Detals", font=("Calibri", 12))
         right_frame.place(x=760, y=10, width=730, height=565)
 
+        img_right = Image.open(r"images\colorBg.png")
+        img_right = img_right.resize((710, 130), Image.ANTIALIAS)
+        self.PhoImgRight = ImageTk.PhotoImage(img_right)
 
+        right_frame_lable = Label(right_frame, image=self.PhoImgRight)
+        right_frame_lable.place(x=5, y=0, width=710, height=80)
 
+        # Search System in right side Student detail
+        search_frame = LabelFrame(right_frame, bd=3, bg='white',relief=RIDGE,
+                                  text='Search',font=("Calibri", 12))
+        search_frame.place(x=5,y=80,width=710,height=70)
 
 
 
