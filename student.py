@@ -32,7 +32,8 @@ class Student:
 
 
         # left label Frame
-        left_frame= LabelFrame (main_frame, bd=3, bg="white", relief=RIDGE, text="Student Detals", font=("Calibri", 12))
+        left_frame= LabelFrame (main_frame, bd=3, bg="white",
+                                relief=RIDGE, text="Student Detals", font=("Calibri", 12))
         left_frame.place(x=15, y=10, width=740, height=565)
 
 
@@ -45,7 +46,8 @@ class Student:
 
 
         # current course information (student details left side)
-        current_course_frame = LabelFrame( left_frame, bd=3, bg="white", relief=RIDGE, text="Curent Course Information",
+        current_course_frame = LabelFrame( left_frame, bd=3, bg="white",
+                                           relief=RIDGE, text="Curent Course Information",
                                 font=("Calibri", 12))
         current_course_frame .place(x=5, y=80, width=720, height=150)
 
@@ -87,11 +89,12 @@ class Student:
 
         # semester labeling and combobox making
 
-        semester_label = Label(current_course_frame, text="Semester", font=('Calibri', 13,), bg='white')
+        semester_label = Label(current_course_frame, text="Semester",
+                               font=('Calibri', 13,), bg='white')
         semester_label.grid(row=1, column=2, padx=10, sticky=W)
 
-        semester_combo_box = ttk.Combobox(current_course_frame, font=('Calibri', 13,), state='readonly',
-                                        width=20)
+        semester_combo_box = ttk.Combobox(current_course_frame,
+                                          font=('Calibri', 13,), state='readonly',width=20)
         semester_combo_box['value'] = (
             "select semester", 'summer','fall','spring' )
         semester_combo_box.current(0)
@@ -99,12 +102,13 @@ class Student:
 
 
         # University student information
-        student_information_frame = LabelFrame(left_frame, bd=3, bg="white", relief=RIDGE, text="Student Information",
-                                          font=("Calibri", 12))
+        student_information_frame = LabelFrame(left_frame, bd=3, bg="white",
+                                               relief=RIDGE, text="Student Information",font=("Calibri", 12))
         student_information_frame.place(x=5, y=235, width=723, height=303)
 
         #student Id label and entry field
-        studentId_label = Label(student_information_frame, text="Student ID", font=('Calibri', 13,), bg='white')
+        studentId_label = Label(student_information_frame, text="Student ID",
+                                font=('Calibri', 13,), bg='white')
         studentId_label.grid(row=0, column=0, padx=10, sticky=W)
 
         studentId_entry_field = ttk.Entry(student_information_frame,width=20,font=('Calibri', 13,))
@@ -135,8 +139,8 @@ class Student:
         student_gender_entry_field.grid(row=1, column=3, padx=10, pady=5, sticky=W)
 
         # student Date of birth label and entry field
-        student_birthdate_label = Label(student_information_frame, text="Birth Date", font=('Calibri', 13,),
-                                      bg='white')
+        student_birthdate_label = Label(student_information_frame,
+                                        text="Birth Date", font=('Calibri', 13,), bg='white')
         student_birthdate_label .grid(row=2, column=0, padx=10, pady=5, sticky=W)
 
         student_section_entry_field = ttk.Entry(student_information_frame, width=20,
@@ -186,7 +190,8 @@ class Student:
 
 
         # radio buttons
-        radio_button1=ttk.Radiobutton(student_information_frame,text='take photo sample',value='Yes')
+        radio_button1=ttk.Radiobutton(student_information_frame,
+                                      text='take photo sample',value='Yes')
         radio_button1.grid(row=6,column=0)
 
         radio_button2 = ttk.Radiobutton(student_information_frame, text='no photo sample', value='No')
@@ -200,7 +205,8 @@ class Student:
 
 
         # right label Frame
-        right_frame= LabelFrame (main_frame, bd=3, bg="white", relief=RIDGE, text="Student Detals", font=("Calibri", 12))
+        right_frame= LabelFrame (main_frame, bd=3, bg="white", relief=RIDGE,
+                                 text="Student Detals", font=("Calibri", 12))
         right_frame.place(x=760, y=10, width=730, height=565)
 
 
