@@ -32,8 +32,8 @@ class Student:
 
 
         # left label Frame
-        left_frame= LabelFrame (main_frame, bd=2, bg="white", relief=RIDGE, text="Student Detals", font=("Calibri", 12))
-        left_frame.place(x=15, y=10, width=730, height=560)
+        left_frame= LabelFrame (main_frame, bd=3, bg="white", relief=RIDGE, text="Student Detals", font=("Calibri", 12))
+        left_frame.place(x=15, y=10, width=740, height=565)
 
 
         img_left = Image.open(r"images\colorBg.png")
@@ -45,7 +45,7 @@ class Student:
 
 
         # current course information (student details left side)
-        current_course_frame = LabelFrame( left_frame, bd=2, bg="white", relief=RIDGE, text="Curent Course Information",
+        current_course_frame = LabelFrame( left_frame, bd=3, bg="white", relief=RIDGE, text="Curent Course Information",
                                 font=("Calibri", 12))
         current_course_frame .place(x=5, y=80, width=720, height=150)
 
@@ -67,7 +67,7 @@ class Student:
         course_combo_box = ttk.Combobox(current_course_frame, font=('Calibri', 13,), state='readonly',
                                         width=20)
         course_combo_box['value'] = (
-        "select course", 'CSE','EEE','SE' )
+        "select course", 'CSE 299','CSE 327', 'CSE 373' )
         course_combo_box.current(0)
         course_combo_box.grid(row=0, column=3, padx=2, pady=10, sticky=W)
 
@@ -99,9 +99,9 @@ class Student:
 
 
         # University student information
-        student_information_frame = LabelFrame(left_frame, bd=2, bg="white", relief=RIDGE, text="Student Information",
+        student_information_frame = LabelFrame(left_frame, bd=3, bg="white", relief=RIDGE, text="Student Information",
                                           font=("Calibri", 12))
-        student_information_frame.place(x=5, y=235, width=720, height=300)
+        student_information_frame.place(x=5, y=235, width=723, height=303)
 
         #student Id label and entry field
         studentId_label = Label(student_information_frame, text="Student ID", font=('Calibri', 13,), bg='white')
@@ -174,7 +174,7 @@ class Student:
         student_address_entry_field.grid(row=3, column=3, padx=10, pady=5, sticky=W)
 
         # student instructor label and entry field
-        student_instructor_label = Label(student_information_frame, text="instructor Name",
+        student_instructor_label = Label(student_information_frame, text="Instructor Name",
                                       font=('Calibri', 13,),
                                       bg='white')
         student_instructor_label.grid(row=4, column=0, padx=10, pady=5, sticky=W)
@@ -194,14 +194,14 @@ class Student:
 
 
         #button frame for student details left side part
-        button_frame = Frame(student_information_frame,bd=2,relief=RIDGE,bg='white')
-        button_frame.place(x=0,y=200,width=715,height=70)
+        button_frame = Frame(student_information_frame,bd=3,relief=RIDGE,bg='white')
+        button_frame.place(x=0,y=208,width=715,height=70)
 
 
 
         # right label Frame
-        right_frame= LabelFrame (main_frame, bd=2, bg="white", relief=RIDGE, text="Student Detals", font=("Calibri", 12))
-        right_frame.place(x=755, y=10, width=730, height=560)
+        right_frame= LabelFrame (main_frame, bd=3, bg="white", relief=RIDGE, text="Student Detals", font=("Calibri", 12))
+        right_frame.place(x=760, y=10, width=730, height=565)
 
 
 
