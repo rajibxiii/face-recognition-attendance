@@ -217,11 +217,19 @@ class Student:
         semester_label = Label(current_course_frame, text="Semester", font=('Calibri', 13,), bg='white')
         semester_label.grid(row=1, column=2, padx=10, sticky=W)
 
-        seacrh_combo_box = ttk.Combobox(search_frame, font=('Calibri', 13,), state='readonly', width=15)
-        seacrh_combo_box["values"] = ("Select", 'NSU ID', 'Phone Number')
-        seacrh_combo_box.current(0)
-        seacrh_combo_box.grid(row=0, column=1, padx=2, pady=10, sticky=W)
+        search_combo_box = ttk.Combobox(search_frame, font=('Calibri', 13,), state='readonly', width=15)
+        search_combo_box["values"] = ("Select", 'NSU ID', 'Phone Number')
+        search_combo_box.current(0)
+        search_combo_box.grid(row=0, column=1, padx=2, pady=10, sticky=W)
 
+        search_entry_field = ttk.Entry(search_frame, width=15,font=('Calibri', 13,))
+        search_entry_field.grid(row=0, column=2, padx=10, pady=5, sticky=W)
+
+        search_btn = Button(search_frame, text='Search', width=13, font=('Calibri', 12,"bold"), bg='blue', fg='white')
+        search_btn.grid(row=0, column=3, padx=4)
+
+        showAll_btn = Button(search_frame, text='Show All', width=13, font=('Calibri', 12,"bold"), bg='blue', fg='white')
+        showAll_btn.grid(row=0, column=4, padx=4)
 
 
 if __name__ == "__main__":
