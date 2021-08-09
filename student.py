@@ -1,5 +1,5 @@
 from tkinter import*
-# from tkinter import ttk
+from tkinter import ttk
 from PIL import Image, ImageTk
 
 
@@ -32,12 +32,25 @@ class Student:
 
 
         # left label Frame
-        left_frame= LabelFrame (main_frame, bd=2, bg="white", relief=RIDGE, text="Student Detals", font=("Calibri", 12, "bold"))
+        left_frame= LabelFrame (main_frame, bd=2, bg="white", relief=RIDGE, text="STUDENT DETAILS", font=("Calibri", 12, "bold"))
         left_frame.place(x=15, y=10, width=730, height=560)
 
+        # current Course
+        currentCourse_frame= LabelFrame (left_frame, bd=2, bg="white", relief=RIDGE, text="CURRENT COURSE INFORMATION", font=("Calibri", 12, "bold"))
+        currentCourse_frame.place(x=5, y=5, width=716, height=200)
+
+        dep_label=Label(currentCourse_frame, bg="white", relief=RIDGE, text="Department", font=("Calibri", 12))
+        dep_label.grid(row=0, column=0)
+
+        dep_combo = ttk.Combobox(currentCourse_frame, font=("Calibri", 12), width=17)
+        dep_combo["values"]=("Select Department", "ECE", "EEE", "CEE", "ETE", "Architecture", "Mathematics and Physics", "")
+        dep_combo.grid(row=0, column=1)
+
         # right label Frame
-        right_frame= LabelFrame (main_frame, bd=2, bg="white", relief=RIDGE, text="Student Detals", font=("Calibri", 12, "bold"))
+        right_frame= LabelFrame (main_frame, bd=2, bg="white", relief=RIDGE, text="Student Detals", font=("Calibri", 12))
         right_frame.place(x=755, y=10, width=730, height=560)
+
+
 
 
 
