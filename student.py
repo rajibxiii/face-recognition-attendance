@@ -161,16 +161,16 @@ class Student:
 
 
         # radio buttons
-        radio_button1 = ttk.Radiobutton(student_information_frame, text='take photo sample', value='Yes')
+        radio_button1 = ttk.Radiobutton(student_information_frame, text='Take Photo Sample', value='Yes')
         radio_button1.grid(row=6, column=0)
 
-        radio_button2 = ttk.Radiobutton(student_information_frame, text='no photo sample', value='No')
+        radio_button2 = ttk.Radiobutton(student_information_frame, text='No Photo Sample', value='No')
         radio_button2.grid(row=6, column=1)
 
 
         # bbutton frame for student details left side part
-        button_frame = Frame(student_information_frame, bd=3, relief=RIDGE, bg='white')
-        button_frame.place(x=0, y=208, width=715, height=70)
+        button_frame = Frame(student_information_frame, bd=2, relief=RIDGE, bg='white')
+        button_frame.place(x=0, y=208, width=715, height=35)
 
         save_btn = Button(button_frame, text='Save', width=19, font=('Calibri', 13,"bold"), bg='blue', fg='white')
         save_btn.grid(row=0, column=0)
@@ -183,6 +183,16 @@ class Student:
 
         reset_btn = Button(button_frame, text='Reset', width=19, font=('Calibri', 13,"bold"), bg='blue', fg='white')
         reset_btn.grid(row=0, column=3)
+
+        # bbutton frame 2
+        button_frame1 = Frame(student_information_frame, bd=2, relief=RIDGE, bg='white')
+        button_frame1.place(x=0, y=242, width=715, height=35)
+
+        take_photo_btn = Button(button_frame1, text='Take Photo Sample', width=39, font=('Calibri', 13,"bold"), bg='blue', fg='white')
+        take_photo_btn.grid(row=0, column=0)
+
+        update_photo_btn = Button(button_frame1, text='Update Photo Sample', width=39, font=('Calibri', 13,"bold"), bg='blue', fg='white')
+        update_photo_btn.grid(row=0, column=1)
 
 
         # right label Frame
