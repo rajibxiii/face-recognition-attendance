@@ -9,7 +9,7 @@ class Student:
         self.root.geometry('1530x790+0+0')
         self.root.title('Face Recognition Student Attendance System')
         root.resizable(0, 0)
-        root.attributes('-alpha', 0.95)
+        # root.attributes('-alpha', 0.95)
 
         # Background Image
         imgBg = Image.open(r"images\colorBg.png")
@@ -280,7 +280,6 @@ class Student:
         self.student_table.column("photo", width=150)
         
         self.student_table.pack(fill=BOTH, expand=1)
-
 
 
 

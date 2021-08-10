@@ -1,6 +1,7 @@
 from tkinter import *
 # from tkinter import ttk
 from PIL import Image, ImageTk
+from student import Student
 
 class FaceRecSys:
 
@@ -9,7 +10,7 @@ class FaceRecSys:
         self.root.geometry('1530x790+0+0')
         self.root.title('Face Recognition Student Attendance System')
         root.resizable(0, 0)
-        root.attributes('-alpha', 0.95)
+        # root.attributes('-alpha', 0.95)
 
         # Background Image
         imgBg = Image.open(
@@ -33,12 +34,10 @@ class FaceRecSys:
         studenButton = studenButton.resize((130, 130), Image.ANTIALIAS)
         self.PhoImgStdBtn = ImageTk.PhotoImage(studenButton)
 
-        Btn1 = Button(BgImg, image=self.PhoImgStdBtn, cursor='hand2')
+        Btn1 = Button(BgImg, image=self.PhoImgStdBtn,command=self.student_details,cursor='hand2')
         Btn1.place(x=250, y=270, width=130, height=130)
 
-        Btn1 = Button(BgImg, text='STUDENT DETAILS', cursor='hand2',
-                      font=("Calibri", 12, 'bold',),
-                      bg='black', fg='white')
+        Btn1 = Button(BgImg, text='STUDENT DETAILS',command=self.student_details,cursor='hand2',font=("Calibri", 12, 'bold',),bg='black', fg='white')
         Btn1.place(x=250, y=370, width=130, height=30)
 
         # Face Detect Button
@@ -119,9 +118,16 @@ class FaceRecSys:
                       bg='black', fg='white')
         Btn7.place(x=1000, y=610, width=130, height=30)
 
+    # Making Function for student details Button activate from main window
+
+    def student_details(self):
+        self.student_details_window=Toplevel(self.root)
+        self.app = Student (self.student_details_window)
 
 
-############################## Funtion Buttons ###############################
+
+
+
 
 if __name__ == "__main__":
     root = Tk()  # root is needed to call by toolkit (tk)
