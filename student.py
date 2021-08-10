@@ -1,6 +1,7 @@
 from tkinter import*
 from tkinter import ttk
 from PIL import Image, ImageTk
+from tkinter import messagebox
 
 
 class Student:
@@ -25,17 +26,6 @@ class Student:
         self.var_phone= StringVar()
         self.var_address = StringVar()
         self.var_faculty = StringVar()
-
-
-
-
-
-
-
-
-
-
-
 
         # Background Image
         imgBg = Image.open(r"images\colorBg.png")
@@ -187,10 +177,12 @@ class Student:
 
 
         # radio buttons
-        radio_button1 = ttk.Radiobutton(student_information_frame, text='Take Photo Sample', value='Yes')
+        self.var_radio_btn1=StringVar()
+        radio_button1 = ttk.Radiobutton(student_information_frame,textvariable=self.var_radio_btn1 ,text='Take Photo Sample', value='Yes')
         radio_button1.grid(row=6, column=0)
 
-        radio_button2 = ttk.Radiobutton(student_information_frame, text='No Photo Sample', value='No')
+        self.var_radio_btn2 = StringVar()
+        radio_button2 = ttk.Radiobutton(student_information_frame,textvariable=self.var_radio_btn2 ,text='No Photo Sample', value='No')
         radio_button2.grid(row=6, column=1)
 
 
@@ -198,7 +190,7 @@ class Student:
         button_frame = Frame(student_information_frame, bd=2, relief=RIDGE, bg='white')
         button_frame.place(x=0, y=208, width=715, height=35)
 
-        save_btn = Button(button_frame, text='Save', width=19, font=('Calibri', 13,"bold"), bg='blue', fg='white')
+        save_btn = Button(button_frame,text='Save',command=self.add_data ,width=19, font=('Calibri', 13,"bold"), bg='blue', fg='white')
         save_btn.grid(row=0, column=0)
 
         update_btn = Button(button_frame, text='Update', width=19, font=('Calibri', 13,"bold"), bg='blue', fg='white')
@@ -309,12 +301,12 @@ class Student:
 
     # function for add student data
 
-    # def add_data(selfs):
-
-
-
-
-
+    def add_data(self):
+        if self.var_dep.get() == "select department" or self.var_name.get() == "" or self.var_id.get()=="":
+            messagebox.showerror('Error',"All fields are required",parent=self.root)
+        else:
+            pass
+        
 
 
 
