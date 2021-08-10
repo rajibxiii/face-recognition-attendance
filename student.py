@@ -152,8 +152,8 @@ class Student:
         student_address_entry_field.grid(row=3, column=3, padx=10, pady=5, sticky=W)
 
 
-        # student instructor label and entry field
-        student_instructor_label = Label(student_information_frame, text="Instructor Name", font=('Calibri', 13,), bg='white')
+        # student Faculty label and entry field
+        student_instructor_label = Label(student_information_frame, text="Faculty Name", font=('Calibri', 13,), bg='white')
         student_instructor_label.grid(row=4, column=0, padx=10, pady=5, sticky=W)
 
         student_instructor_entry_field = ttk.Entry(student_information_frame, width=20, font=('Calibri', 13,))
@@ -178,7 +178,7 @@ class Student:
         update_btn = Button(button_frame, text='Update', width=19, font=('Calibri', 13,"bold"), bg='blue', fg='white')
         update_btn.grid(row=0, column=1)
 
-        delete_btn = Button(button_frame, text='Delete', width=19, font=('Calibri', 13,"bold"), bg='blue', fg='white')
+        delete_btn = Button(button_frame, text='Delete', width=19, font=('Calibri', 13,"bold"), bg='red', fg='white')
         delete_btn.grid(row=0, column=2)
 
         reset_btn = Button(button_frame, text='Reset', width=19, font=('Calibri', 13,"bold"), bg='blue', fg='white')
@@ -240,7 +240,8 @@ class Student:
         scroll_x=ttk.Scrollbar(table_frame, orient=HORIZONTAL)
         scroll_y=ttk.Scrollbar(table_frame, orient=VERTICAL)
         
-        self.student_table = ttk.Treeview(table_frame,column=("dep", "course", "year", "sem", "id", "name", "div", "dob", "email",  "phone", "address", "faculty", "photo"), xscrollcommand=scroll_x.set, yscrollcommand=scroll_y.set)
+        self.student_table = ttk.Treeview(table_frame,column=("dep", "course", "year", "sem","id", "name", "sec", "dob", "email",  "phone", "address",
+                                                              "faculty", "photo"), xscrollcommand=scroll_x.set, yscrollcommand=scroll_y.set)
 
         scroll_x.pack(side=BOTTOM, fill=X)
         scroll_y.pack(side=RIGHT, fill=Y)
@@ -253,7 +254,7 @@ class Student:
         self.student_table.heading("sem",text="Semester")
         self.student_table.heading("id",text="ID")
         self.student_table.heading("name",text="Name")
-        self.student_table.heading("div",text="Division")
+        self.student_table.heading("sec",text="Section")
         self.student_table.heading("dob",text="DOB")
         self.student_table.heading("email",text="Email")
         self.student_table.heading("phone",text="Phone")
@@ -268,7 +269,7 @@ class Student:
         self.student_table.column("sem", width=100)
         self.student_table.column("id", width=100)
         self.student_table.column("name", width=100)
-        self.student_table.column("div", width=100)
+        self.student_table.column("sec", width=100)
         self.student_table.column("dob", width=100)
         self.student_table.column("email", width=100)
         self.student_table.column("phone", width=100)
