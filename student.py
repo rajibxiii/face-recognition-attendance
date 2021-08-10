@@ -11,6 +11,32 @@ class Student:
         root.resizable(0, 0)
         # root.attributes('-alpha', 0.95)
 
+        # Variables for entry field
+        self.var_dep = StringVar()
+        self.var_course = StringVar()
+        self.var_year = StringVar()
+        self.var_semester = StringVar()
+        self.var_id = StringVar()
+        self.var_name = StringVar()
+        self.var_section = StringVar()
+        self.var_gender = StringVar()
+        self.var_dob = StringVar()
+        self.var_email = StringVar()
+        self.var_phone= StringVar()
+        self.var_address = StringVar()
+        self.var_faculty = StringVar()
+
+
+
+
+
+
+
+
+
+
+
+
         # Background Image
         imgBg = Image.open(r"images\colorBg.png")
         imgBg = imgBg.resize((1530, 790), Image.ANTIALIAS)
@@ -47,17 +73,17 @@ class Student:
         depart_label = Label(current_course_frame, text="Department", font=('Calibri', 13), bg='white')
         depart_label.grid(row=0, column=0, padx=10)
 
-        depart_combo_box = ttk.Combobox(current_course_frame, font=('Calibri', 13), state='readonly', width=20)
+        depart_combo_box = ttk.Combobox(current_course_frame,textvariable=self.var_dep ,font=('Calibri', 13), state='readonly', width=20)
         depart_combo_box['value'] = ("select department", 'ECE', 'EEE', 'ETE', 'CEE', 'BBA', 'Economics', 'Marketing', 'Law')
         depart_combo_box.current(0)
         depart_combo_box.grid(row=0, column=1, padx=2, pady=10, sticky=W)
 
 
         # Course labeling and combobox making
-        course_label = Label(current_course_frame, text="Course", font=('Calibri', 13,), bg='white')
+        course_label = Label(current_course_frame ,text="Course", font=('Calibri', 13,), bg='white')
         course_label.grid(row=0, column=2, padx=10, sticky=W)
 
-        course_combo_box = ttk.Combobox(current_course_frame, font=('Calibri', 13,), state='readonly', width=20)
+        course_combo_box = ttk.Combobox(current_course_frame,textvariable=self.var_course ,font=('Calibri', 13,), state='readonly', width=20)
         course_combo_box['value'] = ("select course", 'CSE 299', 'CSE 327', 'CSE 373')
         course_combo_box.current(0)
         course_combo_box.grid(row=0, column=3, padx=2, pady=10, sticky=W)
@@ -67,7 +93,7 @@ class Student:
         year_label = Label(current_course_frame, text="Year", font=('Calibri', 13,), bg='white')
         year_label.grid(row=1, column=0, padx=10, sticky=W)
 
-        year_combo_box = ttk.Combobox(current_course_frame, font=('Calibri', 13,), state='readonly', width=20)
+        year_combo_box = ttk.Combobox(current_course_frame,textvariable=self.var_year ,font=('Calibri', 13,), state='readonly', width=20)
         year_combo_box['value'] = ("select year", 2020, 2021, 2022, 2023, 2024)
         year_combo_box.current(0)
         year_combo_box.grid(row=1, column=1, padx=2, pady=10, sticky=W)
@@ -77,7 +103,7 @@ class Student:
         semester_label = Label(current_course_frame, text="Semester", font=('Calibri', 13,), bg='white')
         semester_label.grid(row=1, column=2, padx=10, sticky=W)
 
-        semester_combo_box = ttk.Combobox(current_course_frame, font=('Calibri', 13,), state='readonly', width=20)
+        semester_combo_box = ttk.Combobox(current_course_frame,textvariable=self.var_semester ,font=('Calibri', 13,), state='readonly', width=20)
         semester_combo_box['value'] = ("select semester", 'summer', 'fall', 'spring')
         semester_combo_box.current(0)
         semester_combo_box.grid(row=1, column=3, padx=2, pady=10, sticky=W)
@@ -92,7 +118,7 @@ class Student:
         studentId_label = Label(student_information_frame, text="Student ID", font=('Calibri', 13,), bg='white')
         studentId_label.grid(row=0, column=0, padx=10, sticky=W)
 
-        studentId_entry_field = ttk.Entry(student_information_frame, width=20, font=('Calibri', 13,))
+        studentId_entry_field = ttk.Entry(student_information_frame,textvariable=self.var_id, width=20, font=('Calibri', 13,))
         studentId_entry_field.grid(row=0, column=1, padx=10, pady=5, sticky=W)
 
 
@@ -100,7 +126,7 @@ class Student:
         student_name_label = Label(student_information_frame, text="Student Name", font=('Calibri', 13,),bg='white')
         student_name_label.grid(row=0, column=2, padx=10, pady=5, sticky=W)
 
-        student_name_entry_field = ttk.Entry(student_information_frame, width=20, font=('Calibri', 13,))
+        student_name_entry_field = ttk.Entry(student_information_frame,textvariable=self.var_name, width=20, font=('Calibri', 13,))
         student_name_entry_field.grid(row=0, column=3, padx=10, pady=5, sticky=W)
 
 
@@ -108,7 +134,7 @@ class Student:
         student_section_label = Label(student_information_frame, text="Section", font=('Calibri', 13,),bg='white')
         student_section_label.grid(row=1, column=0, padx=10, pady=5, sticky=W)
 
-        student_section_entry_field = ttk.Entry(student_information_frame, width=20, font=('Calibri', 13,))
+        student_section_entry_field = ttk.Entry(student_information_frame,textvariable=self.var_section ,width=20, font=('Calibri', 13,))
         student_section_entry_field.grid(row=1, column=1, padx=10, pady=5, sticky=W)
 
 
@@ -116,7 +142,7 @@ class Student:
         student_gender_label = Label(student_information_frame, text="Gender", font=('Calibri', 13,),bg='white')
         student_gender_label.grid(row=1, column=2, padx=10, pady=5, sticky=W)
 
-        student_gender_entry_field = ttk.Entry(student_information_frame, width=20, font=('Calibri', 13,))
+        student_gender_entry_field = ttk.Entry(student_information_frame,textvariable=self.var_gender,width=20, font=('Calibri', 13,))
         student_gender_entry_field.grid(row=1, column=3, padx=10, pady=5, sticky=W)
 
 
@@ -124,7 +150,7 @@ class Student:
         student_birthdate_label = Label(student_information_frame,text="Birth Date", font=('Calibri', 13,), bg='white')
         student_birthdate_label .grid(row=2, column=0, padx=10, pady=5, sticky=W)
 
-        student_section_entry_field = ttk.Entry(student_information_frame, width=20,font=('Calibri', 13,))
+        student_section_entry_field = ttk.Entry(student_information_frame,textvariable=self.var_dob, width=20,font=('Calibri', 13,))
         student_section_entry_field.grid(row=2, column=1, padx=10, pady=5, sticky=W)
 
 
@@ -132,7 +158,7 @@ class Student:
         student_email_label = Label(student_information_frame, text="Email",font=('Calibri', 13,),bg='white')
         student_email_label.grid(row=2, column=2, padx=10, pady=5, sticky=W)
 
-        student_email_entry_field = ttk.Entry(student_information_frame, width=20,font=('Calibri', 13,))
+        student_email_entry_field = ttk.Entry(student_information_frame,textvariable=self.var_email ,width=20,font=('Calibri', 13,))
         student_email_entry_field.grid(row=2, column=3, padx=10, pady=5, sticky=W)
 
 
@@ -140,7 +166,7 @@ class Student:
         student_phoneno_label = Label(student_information_frame, text="Phone No",font=('Calibri', 13,),bg='white')
         student_phoneno_label.grid(row=3, column=0, padx=10, pady=5, sticky=W)
 
-        student_phoneno_entry_field = ttk.Entry(student_information_frame, width=20,font=('Calibri', 13,))
+        student_phoneno_entry_field = ttk.Entry(student_information_frame,textvariable=self.var_phone ,width=20,font=('Calibri', 13,))
         student_phoneno_entry_field.grid(row=3, column=1, padx=10, pady=5, sticky=W)
 
 
@@ -148,7 +174,7 @@ class Student:
         student_address_label = Label(student_information_frame, text="Address", font=('Calibri', 13,),bg='white')
         student_address_label.grid(row=3, column=2, padx=10, pady=5, sticky=W)
 
-        student_address_entry_field = ttk.Entry(student_information_frame, width=20,font=('Calibri', 13,))
+        student_address_entry_field = ttk.Entry(student_information_frame,textvariable=self.var_address ,width=20,font=('Calibri', 13,))
         student_address_entry_field.grid(row=3, column=3, padx=10, pady=5, sticky=W)
 
 
@@ -156,7 +182,7 @@ class Student:
         student_instructor_label = Label(student_information_frame, text="Faculty Name", font=('Calibri', 13,), bg='white')
         student_instructor_label.grid(row=4, column=0, padx=10, pady=5, sticky=W)
 
-        student_instructor_entry_field = ttk.Entry(student_information_frame, width=20, font=('Calibri', 13,))
+        student_instructor_entry_field = ttk.Entry(student_information_frame,textvariable=self.var_faculty ,width=20, font=('Calibri', 13,))
         student_instructor_entry_field.grid(row=4, column=1, padx=10, pady=5, sticky=W)
 
 
@@ -280,6 +306,17 @@ class Student:
         self.student_table.column("photo", width=150)
         
         self.student_table.pack(fill=BOTH, expand=1)
+
+    # function for add student data
+
+    # def add_data(selfs):
+
+
+
+
+
+
+
 
 
 
