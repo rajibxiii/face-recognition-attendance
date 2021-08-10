@@ -248,6 +248,7 @@ class Student:
         scroll_x.config(command=self.student_table.xview)
         scroll_y.config(command=self.student_table.yview)
 
+        ######## give table dataname #########
         self.student_table.heading("dep",text="Department")
         self.student_table.heading("course",text="Course")
         self.student_table.heading("year",text="Year")
@@ -262,7 +263,8 @@ class Student:
         self.student_table.heading("faculty",text="Faculty")
         self.student_table.heading("photo",text="PhotoSampleStatus")
         self.student_table["show"] = "headings"
-        
+
+        ######## labeling and fixed size to student details right box ########
         self.student_table.column("dep", width=100)
         self.student_table.column("course", width=100)
         self.student_table.column("year", width=100)
