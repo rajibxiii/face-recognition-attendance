@@ -318,7 +318,8 @@ class Student:
 
                 # cursor()=> this is an inbuilt function to execute mysql query
                 make_cursor=connection.cursor()
-                make_cursor.execute("insert into student values(%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)",(
+                query="insert into student values(%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)"
+                make_cursor.execute(query,(
                                   self.var_dep.get(),
                                   self.var_course.get(),
                                   self.var_year.get(),
