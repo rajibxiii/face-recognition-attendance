@@ -36,7 +36,7 @@ class Student:
         BgImg = Label(self.root, image=self.PhoImgBg)  # shows in window
         BgImg.place(x=0, y=0, width=1530, height=790)  # place image
 
-        titleLabel = Label(text="STUDENT MANAGEMENT",font=("Calibri Light", 30,),bg='#E8F0F2', fg='black')
+        titleLabel = Label(BgImg,text="STUDENT MANAGEMENT",font=("Calibri Light", 30,),bg='#E8F0F2', fg='black')
         titleLabel.place(x=0, y=120, width=1530, height=50)
 
         main_frame = Frame(BgImg, bd=2, bg="white")
