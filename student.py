@@ -2,8 +2,7 @@ from tkinter import*
 from tkinter import ttk
 from PIL import Image, ImageTk
 from tkinter import messagebox
-
-
+import mysql.connector
 class Student:
     def __init__(self, root):
         self.root = root
@@ -26,6 +25,8 @@ class Student:
         self.var_phone= StringVar()
         self.var_address = StringVar()
         self.var_faculty = StringVar()
+        self.var_radio_btn1 = StringVar()
+
 
         # Background Image
         imgBg = Image.open(r"images\colorBg.png")
@@ -84,7 +85,7 @@ class Student:
         year_label.grid(row=1, column=0, padx=10, sticky=W)
 
         year_combo_box = ttk.Combobox(current_course_frame,textvariable=self.var_year ,font=('Calibri', 13,), state='readonly', width=20)
-        year_combo_box['value'] = ("select year", 2020, 2021, 2022, 2023, 2024)
+        year_combo_box['value'] = ("select year",2015,2016,2017,2018,2019,2020, 2021, 2022, 2023, 2024)
         year_combo_box.current(0)
         year_combo_box.grid(row=1, column=1, padx=2, pady=10, sticky=W)
 
@@ -124,7 +125,7 @@ class Student:
         student_section_label = Label(student_information_frame, text="Section", font=('Calibri', 13,),bg='white')
         student_section_label.grid(row=1, column=0, padx=10, pady=5, sticky=W)
 
-        student_section_entry_field = ttk.Entry(student_information_frame,textvariable=self.var_section ,width=20, font=('Calibri', 13,))
+        student_section_entry_field = ttk.Entry(student_information_frame,textvariable=self.var_section, width=20, font=('Calibri', 13,))
         student_section_entry_field.grid(row=1, column=1, padx=10, pady=5, sticky=W)
 
 
@@ -177,12 +178,12 @@ class Student:
 
 
         # radio buttons
-        self.var_radio_btn1=StringVar()
-        radio_button1 = ttk.Radiobutton(student_information_frame,textvariable=self.var_radio_btn1 ,text='Take Photo Sample', value='Yes')
+
+        radio_button1 = ttk.Radiobutton(student_information_frame,variable=self.var_radio_btn1 ,text='Take Photo Sample', value='Yes')
         radio_button1.grid(row=6, column=0)
 
-        self.var_radio_btn2 = StringVar()
-        radio_button2 = ttk.Radiobutton(student_information_frame,textvariable=self.var_radio_btn2 ,text='No Photo Sample', value='No')
+
+        radio_button2 = ttk.Radiobutton(student_information_frame,variable=self.var_radio_btn1 ,text='No Photo Sample', value='No')
         radio_button2.grid(row=6, column=1)
 
 
@@ -258,7 +259,7 @@ class Student:
         scroll_x=ttk.Scrollbar(table_frame, orient=HORIZONTAL)
         scroll_y=ttk.Scrollbar(table_frame, orient=VERTICAL)
         
-        self.student_table = ttk.Treeview(table_frame,column=("dep", "course", "year", "sem","id", "name", "sec", "dob", "email",  "phone", "address",
+        self.student_table = ttk.Treeview(table_frame,column=("dep", "course", "year", "sem","id", "name", "sec", "gender","dob","email",  "phone", "address",
                                                               "faculty", "photo"), xscrollcommand=scroll_x.set, yscrollcommand=scroll_y.set)
 
         scroll_x.pack(side=BOTTOM, fill=X)
@@ -274,6 +275,7 @@ class Student:
         self.student_table.heading("id",text="ID")
         self.student_table.heading("name",text="Name")
         self.student_table.heading("sec",text="Section")
+        self.student_table.heading("gender", text="Gender")
         self.student_table.heading("dob",text="DOB")
         self.student_table.heading("email",text="Email")
         self.student_table.heading("phone",text="Phone")
@@ -290,6 +292,7 @@ class Student:
         self.student_table.column("id", width=100)
         self.student_table.column("name", width=100)
         self.student_table.column("sec", width=100)
+        self.student_table.column("gender", width=100)
         self.student_table.column("dob", width=100)
         self.student_table.column("email", width=100)
         self.student_table.column("phone", width=100)
@@ -305,10 +308,33 @@ class Student:
         if self.var_dep.get() == "select department" or self.var_name.get() == "" or self.var_id.get()=="":
             messagebox.showerror('Error',"All fields are required",parent=self.root)
         else:
-            pass
-        
+            try:
+                connection = mysql.connector.connect(host="localhost",username="root",password="sourav@123",database="face_recognition")
+                my_cursor=connection.cursor()
+                my_cursor.execute("insert into student values(%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)",(
 
+                                                                        self.var_dep.get(),
+                                                                        self.var_course.get(),
+                                                                        self.var_year.get(),
+                                                                        self.var_semester.get(),
+                                                                        self.var_id.get(),
+                                                                        self.var_name.get(),
+                                                                        self.var_section.get(),
+                                                                        self.var_gender.get(),
+                                                                        self.var_dob.get(),
+                                                                        self.var_email.get(),
+                                                                        self.var_phone.get(),
+                                                                        self.var_address.get(),
+                                                                        self.var_faculty.get(),
+                                                                        self.var_radio_btn1.get()
+                                                                    ))
 
+                connection.commit()
+                connection.close()
+                messagebox.showinfo('Success',"Student details added successfully",parent=self.root)
+
+            except Exception as ex:
+                messagebox.showerror("Error",f'Due to : {str(ex)}',parent=self.root)
 
 
 
