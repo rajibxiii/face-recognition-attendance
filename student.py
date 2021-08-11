@@ -3,6 +3,8 @@ from tkinter import ttk
 from PIL import Image, ImageTk
 from tkinter import messagebox
 import mysql.connector
+
+
 class Student:
     def __init__(self, root):
         self.root = root
@@ -290,9 +292,9 @@ class Student:
         self.student_table.column("year", width=100)
         self.student_table.column("sem", width=100)
         self.student_table.column("id", width=100)
-        self.student_table.column("name", width=100)
-        self.student_table.column("sec", width=100)
-        self.student_table.column("gender", width=100)
+        self.student_table.column("name", width=150)
+        self.student_table.column("sec", width=75)
+        self.student_table.column("gender", width=75)
         self.student_table.column("dob", width=100)
         self.student_table.column("email", width=100)
         self.student_table.column("phone", width=100)
@@ -301,40 +303,70 @@ class Student:
         self.student_table.column("photo", width=150)
         
         self.student_table.pack(fill=BOTH, expand=1)
+        self.FetchStudentData()
+
+
 
     # function for add student data
-
     def add_data(self):
         if self.var_dep.get() == "select department" or self.var_name.get() == "" or self.var_id.get()=="":
             messagebox.showerror('Error',"All fields are required",parent=self.root)
         else:
             try:
-                connection = mysql.connector.connect(host="localhost",username="root",password="sourav@123",database="face_recognition")
-                my_cursor=connection.cursor()
-                my_cursor.execute("insert into student values(%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)",(
+                connection = mysql.connector.connect(host="localhost",username="root",
+                                                     password="sourav@123",database="face_recognition")
 
-                                                                        self.var_dep.get(),
-                                                                        self.var_course.get(),
-                                                                        self.var_year.get(),
-                                                                        self.var_semester.get(),
-                                                                        self.var_id.get(),
-                                                                        self.var_name.get(),
-                                                                        self.var_section.get(),
-                                                                        self.var_gender.get(),
-                                                                        self.var_dob.get(),
-                                                                        self.var_email.get(),
-                                                                        self.var_phone.get(),
-                                                                        self.var_address.get(),
-                                                                        self.var_faculty.get(),
-                                                                        self.var_radio_btn1.get()
-                                                                    ))
+                # cursor()=> this is an inbuilt function to execute mysql query
+                make_cursor=connection.cursor()
+                make_cursor.execute("insert into student values(%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)",(
+                                  self.var_dep.get(),
+                                  self.var_course.get(),
+                                  self.var_year.get(),
+                                  self.var_semester.get(),
+                                  self.var_id.get(),
+                                  self.var_name.get(),
+                                  self.var_section.get(),
+                                  self.var_gender.get(),
+                                  self.var_dob.get(),
+                                  self.var_email.get(),
+                                  self.var_phone.get(),
+                                  self.var_address.get(),
+                                  self.var_faculty.get(),
+                                  self.var_radio_btn1.get()
+                                  ))
+
 
                 connection.commit()
+                self.FetchStudentData()
                 connection.close()
                 messagebox.showinfo('Success',"Student details added successfully",parent=self.root)
 
             except Exception as ex:
                 messagebox.showerror("Error",f'Due to : {str(ex)}',parent=self.root)
+
+
+
+        # fetch student data from mySql database (function)
+
+    def FetchStudentData(self):
+
+        connection = mysql.connector.connect(host='localhost', username='root', password="sourav@123",
+                                             database="face_recognition")
+
+        # cursor()=> this is an inbuilt function and used here to execute mysql query
+        query = "select * from student"
+        cursor = connection.cursor()
+        cursor.execute(query)
+        # all student data is fetch in fetch_std_data variable
+        std_data = cursor.fetchall()
+
+        if len(std_data) != 0:
+            self.student_table.delete(*self.student_table.get_children())
+            for data in std_data:
+                self.student_table.insert("", END, values=data)
+
+            connection.commit()  # connection.commit() is used so that data can add continously
+        connection.close()
 
 
 

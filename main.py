@@ -8,7 +8,7 @@ class FaceRecSys:
     def __init__(self, root):
         self.root = root
         self.root.geometry('1530x790+0+0')
-        self.root.title('Face Recognition Student Attendance System')
+        self.root.title('Automated student attendance system based on face recognition')
         root.resizable(0, 0)
         # root.attributes('-alpha', 0.95)
 
@@ -118,8 +118,9 @@ class FaceRecSys:
                       bg='black', fg='white')
         Btn7.place(x=1000, y=610, width=130, height=30)
 
-    # Making Function for student details Button activate from main window
 
+
+    # Making Function for student details Button activate from main window
     def student_details(self):
         self.student_details_window=Toplevel(self.root)
         self.app = Student (self.student_details_window)
