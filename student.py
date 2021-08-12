@@ -6,6 +6,8 @@ import mysql.connector
 from fetchstudentdata import fetchdata
 
 
+
+
 class Student:
     def __init__(self, root):
         self.root = root
@@ -626,6 +628,7 @@ class Student:
 
         self.student_table.pack(fill=BOTH, expand=1)
         fetchdata.FetchStudentData(self)
+        self.student_table.bind('<ButtonRelease>',self.FetchCursorDataInEntry)
 
     # function for add student data
 
@@ -676,6 +679,52 @@ class Student:
                 )
             except Exception as ex:
                 messagebox.showerror("Error" , f' Due to : {str(ex)}' , parent=self.root)
+
+
+
+    """
+         FetchCursorDataInEntry ( get the cursor data )this function will work when we click in student data cursor 
+         and that time student data will fetch to student details entry fields and show related
+         student data . this purpose is ,so tht we can use update function.....
+    """
+    def FetchCursorDataInEntry(self,event=""):
+        focus_on_cursor = self.student_table.focus()
+        get_content = self.student_table.item(focus_on_cursor)
+        get_data=get_content['values']
+
+        #data set to entry field
+        self.var_dep.set(get_data[0]),
+        self.var_course.set(get_data[1]),
+        self.var_year.set(get_data[2]),
+        self.var_semester.set(get_data[3]),
+        self.var_id.set(get_data[4]),
+        self.var_name.set(get_data[5]),
+        self.var_section.set(get_data[6]),
+        self.var_gender.set(get_data[7]),
+        self.var_dob.set(get_data[8]),
+        self.var_email.set(get_data[9]),
+        self.var_phone.set(get_data[10]),
+        self.var_address.set(get_data[11]),
+        self.var_faculty.set(get_data[12]),
+        self.var_radio_btn1.set(get_data[13])
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

@@ -18,7 +18,7 @@ class fetchdata:
         std_data = cursor.fetchall()
 
         if len(std_data) != 0:
-            self.student_table.delete(*self.student_table.get_children())
+            # self.student_table.delete(*self.student_table.get_children())
             for data in std_data:
                 self.student_table.insert("", END, values=data)
 
