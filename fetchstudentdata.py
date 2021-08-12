@@ -6,7 +6,9 @@ class fetchdata:
 
     # fetch student data from mySql database (function)
     def FetchStudentData(self):
-        connection = mysql.connector.connect(host='localhost', username='root', password="sourav@123",
+        connection = mysql.connector.connect(host='localhost',
+                                             username='root',
+                                             password="sourav@123",
                                              database="face_recognition")
         # cursor()=> this is an inbuilt function and used here to execute mysql query
         query = "select * from student"
