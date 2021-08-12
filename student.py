@@ -214,10 +214,7 @@ class Student:
         studentId_label = Label(
             student_information_frame,
             text="Student ID",
-            font=(
-                "Calibri",
-                13,
-            ),
+            font=("Calibri", 13),
             bg="white",
         )
         studentId_label.grid(row=0, column=0, padx=10, sticky=W)
@@ -226,10 +223,7 @@ class Student:
             student_information_frame,
             textvariable=self.var_id,
             width=20,
-            font=(
-                "Calibri",
-                13,
-            ),
+            font=("Calibri", 13)
         )
         studentId_entry_field.grid(row=0, column=1, padx=10, pady=5, sticky=W)
 
@@ -237,10 +231,7 @@ class Student:
         student_name_label = Label(
             student_information_frame,
             text="Student Name",
-            font=(
-                "Calibri",
-                13,
-            ),
+            font=("Calibri", 13),
             bg="white",
         )
         student_name_label.grid(row=0, column=2, padx=10, pady=5, sticky=W)
@@ -306,10 +297,7 @@ class Student:
         student_birthdate_label = Label(
             student_information_frame,
             text="Birth Date",
-            font=(
-                "Calibri",
-                13,
-            ),
+            font=("Calibri", 13),
             bg="white",
         )
         student_birthdate_label.grid(row=2, column=0, padx=10, pady=5, sticky=W)
@@ -318,10 +306,7 @@ class Student:
             student_information_frame,
             textvariable=self.var_dob,
             width=20,
-            font=(
-                "Calibri",
-                13,
-            ),
+            font=("Calibri", 13),
         )
         student_section_entry_field.grid(row=2, column=1, padx=10, pady=5, sticky=W)
 
@@ -329,10 +314,7 @@ class Student:
         student_email_label = Label(
             student_information_frame,
             text="Email",
-            font=(
-                "Calibri",
-                13,
-            ),
+            font=("Calibri", 13),
             bg="white",
         )
         student_email_label.grid(row=2, column=2, padx=10, pady=5, sticky=W)
@@ -341,10 +323,7 @@ class Student:
             student_information_frame,
             textvariable=self.var_email,
             width=20,
-            font=(
-                "Calibri",
-                13,
-            ),
+            font=("Calibri", 13)
         )
         student_email_entry_field.grid(row=2, column=3, padx=10, pady=5, sticky=W)
 
@@ -352,10 +331,7 @@ class Student:
         student_phoneno_label = Label(
             student_information_frame,
             text="Phone No",
-            font=(
-                "Calibri",
-                13,
-            ),
+            font=("Calibri", 13),
             bg="white",
         )
         student_phoneno_label.grid(row=3, column=0, padx=10, pady=5, sticky=W)
@@ -364,10 +340,7 @@ class Student:
             student_information_frame,
             textvariable=self.var_phone,
             width=20,
-            font=(
-                "Calibri",
-                13,
-            ),
+            font=("Calibri", 13)
         )
         student_phoneno_entry_field.grid(row=3, column=1, padx=10, pady=5, sticky=W)
 
@@ -375,10 +348,7 @@ class Student:
         student_address_label = Label(
             student_information_frame,
             text="Address",
-            font=(
-                "Calibri",
-                13,
-            ),
+            font=("Calibri", 13),
             bg="white",
         )
         student_address_label.grid(row=3, column=2, padx=10, pady=5, sticky=W)
@@ -387,10 +357,7 @@ class Student:
             student_information_frame,
             textvariable=self.var_address,
             width=20,
-            font=(
-                "Calibri",
-                13,
-            ),
+            font=("Calibri", 13),
         )
         student_address_entry_field.grid(row=3, column=3, padx=10, pady=5, sticky=W)
 
@@ -398,10 +365,7 @@ class Student:
         student_instructor_label = Label(
             student_information_frame,
             text="Faculty Name",
-            font=(
-                "Calibri",
-                13,
-            ),
+            font=("Calibri", 13),
             bg="white",
         )
         student_instructor_label.grid(row=4, column=0, padx=10, pady=5, sticky=W)
@@ -410,10 +374,7 @@ class Student:
             student_information_frame,
             textvariable=self.var_faculty,
             width=20,
-            font=(
-                "Calibri",
-                13,
-            ),
+            font=("Calibri", 13)
         )
         student_instructor_entry_field.grid(row=4, column=1, padx=10, pady=5, sticky=W)
 
@@ -486,21 +447,21 @@ class Student:
 
         take_photo_btn = Button(
             button_frame1,
-            text="Take Photo Sample",
-            width=39,
-            font=("Calibri", 13, "bold"),
-            bg="blue",
-            fg="white",
+            text = "Take Photo Sample",
+            width = 39,
+            font = ("Calibri", 13, "bold"),
+            bg = "blue",
+            fg = "white",
         )
         take_photo_btn.grid(row=0, column=0)
 
         update_photo_btn = Button(
             button_frame1,
-            text="Update Photo Sample",
-            width=39,
-            font=("Calibri", 13, "bold"),
-            bg="blue",
-            fg="white",
+            text = "Update Photo Sample",
+            width = 39,
+            font = ("Calibri", 13, "bold"),
+            bg = "blue",
+            fg = "white",
         )
         update_photo_btn.grid(row=0, column=1)
 
@@ -508,28 +469,28 @@ class Student:
         right_frame = LabelFrame(
             main_frame,
             bd=3,
-            bg="white",
+            bg='white',
             relief=RIDGE,
-            text="Student Detals",
-            font=("Calibri", 12),
+            text='Student Detals',
+            font=('Calibri', 12),
         )
-        right_frame.place(x=760, y=10, width=730, height=565)
+        right_frame.place(x = 760, y = 10, width = 730, height = 565)
 
         img_right = Image.open(r"images\colorBg.png")
         img_right = img_right.resize((710, 130), Image.ANTIALIAS)
         self.PhoImgRight = ImageTk.PhotoImage(img_right)
 
         right_frame_lable = Label(right_frame, image=self.PhoImgRight)
-        right_frame_lable.place(x=5, y=0, width=710, height=80)
+        right_frame_lable.place(x = 5, y = 0, width = 710, height = 80)
 
         # Search System in right side Student detail
         search_frame = LabelFrame(
             right_frame,
-            bd=3,
-            bg="white",
-            relief=RIDGE,
-            text="Search",
-            font=("Calibri", 12),
+            bd = 3,
+            bg = 'white',
+            relief = RIDGE,
+            text = 'Search',
+            font = ('Calibri', 12)
         )
         search_frame.place(x=5, y=80, width=710, height=70)
 
@@ -537,11 +498,11 @@ class Student:
             search_frame,
             text="Search with: ",
             font=(
-                "Calibri",
+                'Calibri',
                 15,
             ),
-            bg="red",
-            fg="white",
+            bg = 'red',
+            fg = 'white',
         )
         search_label.grid(row=0, column=0, padx=10, pady=5, sticky=W)
 
@@ -554,7 +515,7 @@ class Student:
             ),
             bg="white",
         )
-        semester_label.grid(row=1, column=2, padx=10, sticky=W)
+        semester_label.grid(row = 1, column = 2, padx = 10, sticky = W)
 
         search_combo_box = ttk.Combobox(
             search_frame,
@@ -565,27 +526,24 @@ class Student:
             state="readonly",
             width=15,
         )
-        search_combo_box["values"] = ("Select", "NSU ID", "Phone Number")
+        search_combo_box["values"] = ('Select', 'NSU ID', 'Phone Number')
         search_combo_box.current(0)
-        search_combo_box.grid(row=0, column=1, padx=2, pady=10, sticky=W)
+        search_combo_box.grid(row = 0, column = 1, padx = 2, pady = 10, sticky = W)
 
         search_entry_field = ttk.Entry(
             search_frame,
-            width=15,
-            font=(
-                "Calibri",
-                13,
-            ),
+            width = 15,
+            font = ("Calibri",13,)
         )
-        search_entry_field.grid(row=0, column=2, padx=10, pady=5, sticky=W)
+        search_entry_field.grid(row = 0, column = 2, padx = 10, pady = 5, sticky = W )
 
         search_btn = Button(
             search_frame,
-            text="Search",
-            width=13,
-            font=("Calibri", 12, "bold"),
-            bg="blue",
-            fg="white",
+            text = 'Search',
+            width = 13,
+            font = ("Calibri", 12, "bold"),
+            bg = "blue",
+            fg = "white",
         )
         search_btn.grid(row=0, column=3, padx=4)
 
@@ -593,9 +551,9 @@ class Student:
             search_frame,
             text="Show All",
             width=13,
-            font=("Calibri", 12, "bold"),
-            bg="blue",
-            fg="white",
+            font=('Calibri', 12, 'bold'),
+            bg='blue',
+            fg='white',
         )
         showAll_btn.grid(row=0, column=4, padx=4)
 
@@ -640,14 +598,14 @@ class Student:
         self.student_table.heading("sem", text="Semester")
         self.student_table.heading("id", text="ID")
         self.student_table.heading("name", text="Name")
-        self.student_table.heading("sec", text="Section")
+        self.student_table.heading("sec" , text="Section")
         self.student_table.heading("gender", text="Gender")
-        self.student_table.heading("dob", text="DOB")
-        self.student_table.heading("email", text="Email")
-        self.student_table.heading("phone", text="Phone")
-        self.student_table.heading("address", text="Address")
-        self.student_table.heading("faculty", text="Faculty")
-        self.student_table.heading("photo", text="PhotoSampleStatus")
+        self.student_table.heading("dob" , text="DOB")
+        self.student_table.heading("email" , text="Email")
+        self.student_table.heading("phone" , text="Phone")
+        self.student_table.heading("address" , text="Address")
+        self.student_table.heading("faculty" , text="Faculty")
+        self.student_table.heading("photo" , text="PhotoSampleStatus")
         self.student_table["show"] = "headings"
 
         ######## labeling and fixed size to student details right box ########
@@ -690,8 +648,7 @@ class Student:
                 # cursor()=> this is an inbuilt function to execute mysql query
                 make_cursor = connection.cursor()
                 query = "insert into student values(%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)"
-                make_cursor.execute(
-                    query,
+                make_cursor.execute( query ,
                     (
                         self.var_dep.get(),
                         self.var_course.get(),
@@ -707,7 +664,7 @@ class Student:
                         self.var_address.get(),
                         self.var_faculty.get(),
                         self.var_radio_btn1.get(),
-                    ),
+                    )
                 )
 
                 connection.commit()
@@ -715,10 +672,10 @@ class Student:
                 connection.close()
                 messagebox.showinfo(
                     "Success", "Student details added successfully", parent=self.root
-                )
 
+                )
             except Exception as ex:
-                messagebox.showerror("Error", f"Due to : {str(ex)}", parent=self.root)
+                messagebox.showerror("Error" , f' Due to : {str(ex)}' , parent=self.root)
 
 
 
