@@ -719,8 +719,8 @@ class Student:
             except Exception as ex:
                 messagebox.showerror("Error", f"Due to : {str(ex)}", parent=self.root)
 
-        # fetch student data from mySql database (function)
 
+     # fetch student data from mySql database (function)
     def FetchStudentData(self):
 
         connection = mysql.connector.connect(
