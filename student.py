@@ -259,16 +259,60 @@ class Student:
         )
         student_section_label.grid(row=1, column=0, padx=10, pady=5, sticky=W)
 
-        student_section_entry_field = ttk.Entry(
+        section_combo_box = ttk.Combobox(
             student_information_frame,
             textvariable=self.var_section,
-            width=20,
-            font=(
-                "Calibri",
-                13,
-            ),
+            font=("Calibri", 13),
+            state="readonly",
+            width=18,
         )
-        student_section_entry_field.grid(row=1, column=1, padx=10, pady=5, sticky=W)
+
+        section_combo_box["value"] = (
+            "1",
+            "2",
+            "3",
+            "4",
+            "5",
+            "6",
+            "7",
+            "8",
+            "9",
+            "10",
+            "11",
+            "12",
+            "13",
+            "14",
+            "15",
+            "16",
+            "17",
+            "18",
+            "19",
+            "20",
+            "21",
+            "22",
+            "23",
+            "24",
+            "25",
+            "26",
+            "27",
+            "28",
+            "29",
+            "30",
+            "31",
+            "32",
+            "33",
+            "34",
+            "35",
+            "36",
+            "37",
+            "38",
+            "39",
+            "40"
+        )
+
+        section_combo_box.current(0)
+        section_combo_box.grid(row=1, column=1, padx=10, pady=5, sticky=W)
+
 
         # student Gender label and entry field
         student_gender_label = Label(
@@ -282,16 +326,24 @@ class Student:
         )
         student_gender_label.grid(row=1, column=2, padx=10, pady=5, sticky=W)
 
-        student_gender_entry_field = ttk.Entry(
+        gender_combo_box = ttk.Combobox(
             student_information_frame,
             textvariable=self.var_gender,
-            width=20,
-            font=(
-                "Calibri",
-                13,
-            ),
+            font=("Calibri", 13),
+            state="readonly",
+            width=18,
         )
-        student_gender_entry_field.grid(row=1, column=3, padx=10, pady=5, sticky=W)
+
+        gender_combo_box["value"] = (
+            "Male",
+            "Female",
+            "Third Gender",
+            "Other"
+        )
+
+        gender_combo_box.current(0)
+        gender_combo_box.grid(row=1, column=3, padx=10, pady=5, sticky=W)
+
 
         # student Date of birth label and entry field
         student_birthdate_label = Label(
@@ -302,13 +354,17 @@ class Student:
         )
         student_birthdate_label.grid(row=2, column=0, padx=10, pady=5, sticky=W)
 
-        student_section_entry_field = ttk.Entry(
+        student_birthdate_entry_field = ttk.Entry(
             student_information_frame,
             textvariable=self.var_dob,
             width=20,
-            font=("Calibri", 13),
+            font=(
+                "Calibri",
+                13,
+            ),
         )
-        student_section_entry_field.grid(row=2, column=1, padx=10, pady=5, sticky=W)
+        student_birthdate_entry_field.grid(row=2, column=1, padx=10, pady=5, sticky=W)
+
 
         # student email label and entry field
         student_email_label = Label(
@@ -414,6 +470,7 @@ class Student:
         update_btn = Button(
             button_frame,
             text="Update",
+            command=self.update_data,
             width=19,
             font=("Calibri", 13, "bold"),
             bg="#3F0D12",
@@ -710,7 +767,54 @@ class Student:
         self.var_radio_btn1.set(get_data[13])
 
 
+    # Updating funtions
+    def update_data(self):
+        if (
+            self.var_dep.get() == "select department"
+            or self.var_name.get() == ""
+            or self.var_id.get() == ""
+        ):
+            messagebox.showerror("Error", "All fields are required", parent=self.root)
+        
+        else:
+            try:
+                Update = messagebox.askyesno("Update", "Do you want to update this student details?", parent=self.root)
+                if Update>0:
+                    connection = mysql.connector.connect(
+                        host="localhost",
+                        username="cse299",
+                        password="p2JaZ6@k",
+                        database="face_recognition",
+                    )
+                    make_cursor = connection.cursor()
+                    make_cursor.execute("update student set Department=%s, Course=%s, Year=%s, Semester=%s, Name=%s, Section=%s, Gender=%s, DOB=%s, Email=%s, Phone=%s, Address=%s, Faculty=%s, PhotoSample=%s where Student_ID=%s",(
+                        self.var_dep.get(),
+                        self.var_course.get(),
+                        self.var_year.get(),
+                        self.var_semester.get(),
+                        self.var_name.get(),
+                        self.var_section.get(),
+                        self.var_gender.get(),
+                        self.var_dob.get(),
+                        self.var_email.get(),
+                        self.var_phone.get(),
+                        self.var_address.get(),
+                        self.var_faculty.get(),
+                        self.var_radio_btn1.get(),
+                        self.var_id.get()
+                    ))
+                
+                else:
+                    if not Update:
+                        return
+                
+                messagebox.showinfo("Success", "Student details have been successfully updated", parent=self.root)
+                connection.commit()
+                fetchdata.FetchStudentData(self)
+                connection.close()
 
+            except Exception as es:
+                messagebox.showerror("Error", f"Reason: {str(es)}", parent=self.root)
 
 
 
