@@ -6,8 +6,6 @@ import mysql.connector
 from fetchstudentdata import fetchdata
 
 
-
-
 class Student:
     def __init__(self, root):
         self.root = root
@@ -61,7 +59,7 @@ class Student:
             bd=3,
             bg="white",
             relief=RIDGE,
-            text="Student Detals",
+            text="STUDENT DETAILS",
             font=("Calibri", 12),
         )
         left_frame.place(x=15, y=10, width=740, height=565)
@@ -79,7 +77,7 @@ class Student:
             bd=3,
             bg="white",
             relief=RIDGE,
-            text="Curent Course Information",
+            text="CURRENT COURSE INFORMATION",
             font=("Calibri", 12),
         )
         current_course_frame.place(x=5, y=80, width=720, height=150)
@@ -197,7 +195,7 @@ class Student:
             state="readonly",
             width=20,
         )
-        semester_combo_box["value"] = ("select semester", "summer", "fall", "spring")
+        semester_combo_box["value"] = ("select semester", "Summer", "Fall", "Spring")
         semester_combo_box.current(0)
         semester_combo_box.grid(row=1, column=3, padx=2, pady=10, sticky=W)
 
@@ -207,7 +205,7 @@ class Student:
             bd=3,
             bg="white",
             relief=RIDGE,
-            text="Student Information",
+            text="STUDENT INFORMATION",
             font=("Calibri", 12),
         )
         student_information_frame.place(x=5, y=235, width=723, height=303)
@@ -225,7 +223,7 @@ class Student:
             student_information_frame,
             textvariable=self.var_id,
             width=20,
-            font=("Calibri", 13)
+            font=("Calibri", 13),
         )
         studentId_entry_field.grid(row=0, column=1, padx=10, pady=5, sticky=W)
 
@@ -325,7 +323,7 @@ class Student:
             student_information_frame,
             textvariable=self.var_email,
             width=20,
-            font=("Calibri", 13)
+            font=("Calibri", 13),
         )
         student_email_entry_field.grid(row=2, column=3, padx=10, pady=5, sticky=W)
 
@@ -342,7 +340,7 @@ class Student:
             student_information_frame,
             textvariable=self.var_phone,
             width=20,
-            font=("Calibri", 13)
+            font=("Calibri", 13),
         )
         student_phoneno_entry_field.grid(row=3, column=1, padx=10, pady=5, sticky=W)
 
@@ -376,7 +374,7 @@ class Student:
             student_information_frame,
             textvariable=self.var_faculty,
             width=20,
-            font=("Calibri", 13)
+            font=("Calibri", 13),
         )
         student_instructor_entry_field.grid(row=4, column=1, padx=10, pady=5, sticky=W)
 
@@ -408,7 +406,7 @@ class Student:
             command=self.add_data,
             width=19,
             font=("Calibri", 13, "bold"),
-            bg="blue",
+            bg="#3F0D12",
             fg="white",
         )
         save_btn.grid(row=0, column=0)
@@ -418,7 +416,7 @@ class Student:
             text="Update",
             width=19,
             font=("Calibri", 13, "bold"),
-            bg="blue",
+            bg="#3F0D12",
             fg="white",
         )
         update_btn.grid(row=0, column=1)
@@ -428,7 +426,7 @@ class Student:
             text="Delete",
             width=19,
             font=("Calibri", 13, "bold"),
-            bg="red",
+            bg="#3F0D12",
             fg="white",
         )
         delete_btn.grid(row=0, column=2)
@@ -438,7 +436,7 @@ class Student:
             text="Reset",
             width=19,
             font=("Calibri", 13, "bold"),
-            bg="blue",
+            bg="#3F0D12",
             fg="white",
         )
         reset_btn.grid(row=0, column=3)
@@ -449,21 +447,21 @@ class Student:
 
         take_photo_btn = Button(
             button_frame1,
-            text = "Take Photo Sample",
-            width = 39,
-            font = ("Calibri", 13, "bold"),
-            bg = "blue",
-            fg = "white",
+            text="Take Photo Sample",
+            width=39,
+            font=("Calibri", 13, "bold"),
+            bg="#3F0D12",
+            fg="white",
         )
         take_photo_btn.grid(row=0, column=0)
 
         update_photo_btn = Button(
             button_frame1,
-            text = "Update Photo Sample",
-            width = 39,
-            font = ("Calibri", 13, "bold"),
-            bg = "blue",
-            fg = "white",
+            text="Update Photo Sample",
+            width=39,
+            font=("Calibri", 13, "bold"),
+            bg="#3F0D12",
+            fg="white",
         )
         update_photo_btn.grid(row=0, column=1)
 
@@ -471,28 +469,28 @@ class Student:
         right_frame = LabelFrame(
             main_frame,
             bd=3,
-            bg='white',
+            bg="white",
             relief=RIDGE,
-            text='Student Detals',
-            font=('Calibri', 12),
+            text="STUDENT DETAILS",
+            font=("Calibri", 12),
         )
-        right_frame.place(x = 760, y = 10, width = 730, height = 565)
+        right_frame.place(x=760, y=10, width=730, height=565)
 
         img_right = Image.open(r"images\colorBg.png")
         img_right = img_right.resize((710, 130), Image.ANTIALIAS)
         self.PhoImgRight = ImageTk.PhotoImage(img_right)
 
         right_frame_lable = Label(right_frame, image=self.PhoImgRight)
-        right_frame_lable.place(x = 5, y = 0, width = 710, height = 80)
+        right_frame_lable.place(x=5, y=0, width=710, height=80)
 
         # Search System in right side Student detail
         search_frame = LabelFrame(
             right_frame,
-            bd = 3,
-            bg = 'white',
-            relief = RIDGE,
-            text = 'Search',
-            font = ('Calibri', 12)
+            bd=3,
+            bg="white",
+            relief=RIDGE,
+            text="SEARCH",
+            font=("Calibri", 12),
         )
         search_frame.place(x=5, y=80, width=710, height=70)
 
@@ -500,11 +498,11 @@ class Student:
             search_frame,
             text="Search with: ",
             font=(
-                'Calibri',
+                "Calibri",
                 15,
             ),
-            bg = 'red',
-            fg = 'white',
+            bg="#A71D31",
+            fg="white",
         )
         search_label.grid(row=0, column=0, padx=10, pady=5, sticky=W)
 
@@ -517,7 +515,7 @@ class Student:
             ),
             bg="white",
         )
-        semester_label.grid(row = 1, column = 2, padx = 10, sticky = W)
+        semester_label.grid(row=1, column=2, padx=10, sticky=W)
 
         search_combo_box = ttk.Combobox(
             search_frame,
@@ -528,24 +526,27 @@ class Student:
             state="readonly",
             width=15,
         )
-        search_combo_box["values"] = ('Select', 'NSU ID', 'Phone Number')
+        search_combo_box["values"] = ("Select", "NSU ID", "Phone Number")
         search_combo_box.current(0)
-        search_combo_box.grid(row = 0, column = 1, padx = 2, pady = 10, sticky = W)
+        search_combo_box.grid(row=0, column=1, padx=2, pady=10, sticky=W)
 
         search_entry_field = ttk.Entry(
             search_frame,
-            width = 15,
-            font = ("Calibri",13,)
+            width=15,
+            font=(
+                "Calibri",
+                13,
+            ),
         )
-        search_entry_field.grid(row = 0, column = 2, padx = 10, pady = 5, sticky = W )
+        search_entry_field.grid(row=0, column=2, padx=10, pady=5, sticky=W)
 
         search_btn = Button(
             search_frame,
-            text = 'Search',
-            width = 13,
-            font = ("Calibri", 12, "bold"),
-            bg = "blue",
-            fg = "white",
+            text="Search",
+            width=13,
+            font=("Calibri", 12, "bold"),
+            bg="#3F0D12",
+            fg="white",
         )
         search_btn.grid(row=0, column=3, padx=4)
 
@@ -553,9 +554,9 @@ class Student:
             search_frame,
             text="Show All",
             width=13,
-            font=('Calibri', 12, 'bold'),
-            bg='blue',
-            fg='white',
+            font=("Calibri", 12, "bold"),
+            bg="#3F0D12",
+            fg="white",
         )
         showAll_btn.grid(row=0, column=4, padx=4)
 
@@ -600,14 +601,14 @@ class Student:
         self.student_table.heading("sem", text="Semester")
         self.student_table.heading("id", text="ID")
         self.student_table.heading("name", text="Name")
-        self.student_table.heading("sec" , text="Section")
+        self.student_table.heading("sec", text="Section")
         self.student_table.heading("gender", text="Gender")
-        self.student_table.heading("dob" , text="DOB")
-        self.student_table.heading("email" , text="Email")
-        self.student_table.heading("phone" , text="Phone")
-        self.student_table.heading("address" , text="Address")
-        self.student_table.heading("faculty" , text="Faculty")
-        self.student_table.heading("photo" , text="PhotoSampleStatus")
+        self.student_table.heading("dob", text="DOB")
+        self.student_table.heading("email", text="Email")
+        self.student_table.heading("phone", text="Phone")
+        self.student_table.heading("address", text="Address")
+        self.student_table.heading("faculty", text="Faculty")
+        self.student_table.heading("photo", text="PhotoSampleStatus")
         self.student_table["show"] = "headings"
 
         ######## labeling and fixed size to student details right box ########
@@ -628,7 +629,8 @@ class Student:
 
         self.student_table.pack(fill=BOTH, expand=1)
         fetchdata.FetchStudentData(self)
-        self.student_table.bind('<ButtonRelease>',self.FetchCursorDataInEntry)
+        self.student_table.bind("<ButtonRelease>", self.FetchCursorDataInEntry)
+
 
     # function for add student data
 
@@ -643,15 +645,16 @@ class Student:
             try:
                 connection = mysql.connector.connect(
                     host="localhost",
-                    username="root",
-                    password="sourav@123",
+                    username="cse299",
+                    password="p2JaZ6@k",
                     database="face_recognition",
                 )
 
                 # cursor()=> this is an inbuilt function to execute mysql query
                 make_cursor = connection.cursor()
                 query = "insert into student values(%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)"
-                make_cursor.execute( query ,
+                make_cursor.execute(
+                    query,
                     (
                         self.var_dep.get(),
                         self.var_course.get(),
@@ -667,7 +670,7 @@ class Student:
                         self.var_address.get(),
                         self.var_faculty.get(),
                         self.var_radio_btn1.get(),
-                    )
+                    ),
                 )
 
                 connection.commit()
@@ -675,24 +678,22 @@ class Student:
                 connection.close()
                 messagebox.showinfo(
                     "Success", "Student details added successfully", parent=self.root
-
                 )
             except Exception as ex:
-                messagebox.showerror("Error" , f' Due to : {str(ex)}' , parent=self.root)
-
-
+                messagebox.showerror("Error", f" Due to : {str(ex)}", parent=self.root)
 
     """
          FetchCursorDataInEntry ( get the cursor data )this function will work when we click in student data cursor 
          and that time student data will fetch to student details entry fields and show related
          student data . this purpose is ,so tht we can use update function.....
     """
-    def FetchCursorDataInEntry(self,event=""):
+
+    def FetchCursorDataInEntry(self, event=""):
         focus_on_cursor = self.student_table.focus()
         get_content = self.student_table.item(focus_on_cursor)
-        get_data=get_content['values']
+        get_data = get_content["values"]
 
-        #data set to entry field
+        # data set to entry field
         self.var_dep.set(get_data[0]),
         self.var_course.set(get_data[1]),
         self.var_year.set(get_data[2]),
@@ -707,23 +708,6 @@ class Student:
         self.var_address.set(get_data[11]),
         self.var_faculty.set(get_data[12]),
         self.var_radio_btn1.set(get_data[13])
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
