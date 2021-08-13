@@ -96,7 +96,7 @@ class Student:
             width=20,
         )
         depart_combo_box["value"] = (
-            "select department",
+            "Select Department",
             "ECE",
             "EEE",
             "ETE",
@@ -131,7 +131,7 @@ class Student:
             state="readonly",
             width=20,
         )
-        course_combo_box["value"] = ("select course", "CSE 299", "CSE 327", "CSE 373")
+        course_combo_box["value"] = ("Select Course", "CSE 299", "CSE 327", "CSE 373")
         course_combo_box.current(0)
         course_combo_box.grid(row=0, column=3, padx=2, pady=10, sticky=W)
 
@@ -158,7 +158,7 @@ class Student:
             width=20,
         )
         year_combo_box["value"] = (
-            "select year",
+            "Select Year",
             2015,
             2016,
             2017,
@@ -195,7 +195,7 @@ class Student:
             state="readonly",
             width=20,
         )
-        semester_combo_box["value"] = ("select semester", "Summer", "Fall", "Spring")
+        semester_combo_box["value"] = ("Select Semester", "Summer", "Fall", "Spring")
         semester_combo_box.current(0)
         semester_combo_box.grid(row=1, column=3, padx=2, pady=10, sticky=W)
 
@@ -492,6 +492,7 @@ class Student:
         reset_btn = Button(
             button_frame,
             text="Reset",
+            command=self.reset_data,
             width=19,
             font=("Calibri", 13, "bold"),
             bg="#3F0D12",
@@ -849,6 +850,24 @@ class Student:
                 
             except Exception as es:
                 messagebox.showerror("Error", f"Reason: {str(es)}", parent=self.root)
+
+
+    # Reset Student Data
+    def reset_data(self):
+        self.var_dep.set("Select Department"),
+        self.var_course.set("Select Course"),
+        self.var_year.set("Select Year"),
+        self.var_semester.set("Select Semester"),
+        self.var_id.set(""),
+        self.var_name.set(""),
+        self.var_section.set("Select Section"),
+        self.var_gender.set("Male"),
+        self.var_dob.set(""),
+        self.var_email.set(""),
+        self.var_phone.set(""),
+        self.var_address.set(""),
+        self.var_faculty.set(""),
+        self.var_radio_btn1.set("")
 
 
 if __name__ == "__main__":
