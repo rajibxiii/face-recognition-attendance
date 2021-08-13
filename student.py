@@ -307,12 +307,11 @@ class Student:
             "37",
             "38",
             "39",
-            "40"
+            "40",
         )
 
         section_combo_box.current(0)
         section_combo_box.grid(row=1, column=1, padx=10, pady=5, sticky=W)
-
 
         # student Gender label and entry field
         student_gender_label = Label(
@@ -334,16 +333,10 @@ class Student:
             width=18,
         )
 
-        gender_combo_box["value"] = (
-            "Male",
-            "Female",
-            "Third Gender",
-            "Other"
-        )
+        gender_combo_box["value"] = ("Male", "Female", "Third Gender", "Other")
 
         gender_combo_box.current(0)
         gender_combo_box.grid(row=1, column=3, padx=10, pady=5, sticky=W)
-
 
         # student Date of birth label and entry field
         student_birthdate_label = Label(
@@ -364,7 +357,6 @@ class Student:
             ),
         )
         student_birthdate_entry_field.grid(row=2, column=1, padx=10, pady=5, sticky=W)
-
 
         # student email label and entry field
         student_email_label = Label(
@@ -690,7 +682,6 @@ class Student:
         fetchdata.FetchStudentData(self)
         self.student_table.bind("<ButtonRelease>", self.FetchCursorDataInEntry)
 
-
     # function for add student data
 
     def add_data(self):
@@ -777,11 +768,15 @@ class Student:
             or self.var_id.get() == ""
         ):
             messagebox.showerror("Error", "All fields are required", parent=self.root)
-        
+
         else:
             try:
-                Update = messagebox.askyesno("Update", "Do you want to update this student details?", parent=self.root)
-                if Update>0:
+                Update = messagebox.askyesno(
+                    "Update",
+                    "Do you want to update this student details?",
+                    parent=self.root,
+                )
+                if Update > 0:
                     connection = mysql.connector.connect(
                         host="localhost",
                         username="cse299",
@@ -789,28 +784,35 @@ class Student:
                         database="face_recognition",
                     )
                     make_cursor = connection.cursor()
-                    make_cursor.execute("update student set Department=%s, Course=%s, Year=%s, Semester=%s, Name=%s, Section=%s, Gender=%s, DOB=%s, Email=%s, Phone=%s, Address=%s, Faculty=%s, PhotoSample=%s where Student_ID=%s",(
-                        self.var_dep.get(),
-                        self.var_course.get(),
-                        self.var_year.get(),
-                        self.var_semester.get(),
-                        self.var_name.get(),
-                        self.var_section.get(),
-                        self.var_gender.get(),
-                        self.var_dob.get(),
-                        self.var_email.get(),
-                        self.var_phone.get(),
-                        self.var_address.get(),
-                        self.var_faculty.get(),
-                        self.var_radio_btn1.get(),
-                        self.var_id.get()
-                    ))
-                
+                    make_cursor.execute(
+                        "update student set Department=%s, Course=%s, Year=%s, Semester=%s, Name=%s, Section=%s, Gender=%s, DOB=%s, Email=%s, Phone=%s, Address=%s, Faculty=%s, PhotoSample=%s where Student_ID=%s",
+                        (
+                            self.var_dep.get(),
+                            self.var_course.get(),
+                            self.var_year.get(),
+                            self.var_semester.get(),
+                            self.var_name.get(),
+                            self.var_section.get(),
+                            self.var_gender.get(),
+                            self.var_dob.get(),
+                            self.var_email.get(),
+                            self.var_phone.get(),
+                            self.var_address.get(),
+                            self.var_faculty.get(),
+                            self.var_radio_btn1.get(),
+                            self.var_id.get(),
+                        ),
+                    )
+
                 else:
                     if not Update:
                         return
-                
-                messagebox.showinfo("Success", "Student details have been successfully updated", parent=self.root)
+
+                messagebox.showinfo(
+                    "Success",
+                    "Student details have been successfully updated",
+                    parent=self.root,
+                )
                 connection.commit()
                 fetchdata.FetchStudentData(self)
                 connection.close()
@@ -821,13 +823,17 @@ class Student:
 
     # Delete Student Details Funtion
     def delete_data(self):
-        if self.var_id.get()=="":
+        if self.var_id.get() == "":
             messagebox.showerror("Error", "Student ID is required", parent=self.root)
 
         else:
             try:
-                delete=messagebox.askyesno("Data Delete Dialogue", "Do you want to delete this student?", parent=self.root)
-                if delete>0:
+                delete = messagebox.askyesno(
+                    "Data Delete Dialogue",
+                    "Do you want to delete this student?",
+                    parent=self.root,
+                )
+                if delete > 0:
                     connection = mysql.connector.connect(
                         host="localhost",
                         username="cse299",
@@ -838,7 +844,7 @@ class Student:
                     sql = "delete from student where student_id=%s"
                     val = (self.var_id.get(),)
                     make_cursor.execute(sql, val)
-                
+
                 else:
                     if not delete:
                         return
@@ -846,11 +852,12 @@ class Student:
                 connection.commit()
                 fetchdata.FetchStudentData(self)
                 connection.close()
-                messagebox.showinfo("Delete", "Student Details deleted successfully",parent=self.root)
-                
+                messagebox.showinfo(
+                    "Delete", "Student Details deleted successfully", parent=self.root
+                )
+
             except Exception as es:
                 messagebox.showerror("Error", f"Reason: {str(es)}", parent=self.root)
-
 
     # Reset Student Data
     def reset_data(self):
