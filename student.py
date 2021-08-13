@@ -481,6 +481,7 @@ class Student:
         delete_btn = Button(
             button_frame,
             text="Delete",
+            command=self.delete_data,
             width=19,
             font=("Calibri", 13, "bold"),
             bg="#3F0D12",
@@ -816,6 +817,38 @@ class Student:
             except Exception as es:
                 messagebox.showerror("Error", f"Reason: {str(es)}", parent=self.root)
 
+
+    # Delete Student Details Funtion
+    def delete_data(self):
+        if self.var_id.get()=="":
+            messagebox.showerror("Error", "Student ID is required", parent=self.root)
+
+        else:
+            try:
+                delete=messagebox.askyesno("Data Delete Dialogue", "Do you want to delete this student?", parent=self.root)
+                if delete>0:
+                    connection = mysql.connector.connect(
+                        host="localhost",
+                        username="cse299",
+                        password="p2JaZ6@k",
+                        database="face_recognition",
+                    )
+                    make_cursor = connection.cursor()
+                    sql = "delete from student where student_id=%s"
+                    val = (self.var_id.get(),)
+                    make_cursor.execute(sql, val)
+                
+                else:
+                    if not delete:
+                        return
+
+                connection.commit()
+                fetchdata.FetchStudentData(self)
+                connection.close()
+                messagebox.showinfo("Delete", "Student Details deleted successfully",parent=self.root)
+                
+            except Exception as es:
+                messagebox.showerror("Error", f"Reason: {str(es)}", parent=self.root)
 
 
 if __name__ == "__main__":
