@@ -270,47 +270,9 @@ class Student:
         )
 
         section_combo_box["value"] = (
-            "Select Section",
-            "1",
-            "2",
-            "3",
-            "4",
-            "5",
-            "6",
-            "7",
-            "8",
-            "9",
-            "10",
-            "11",
-            "12",
-            "13",
-            "14",
-            "15",
-            "16",
-            "17",
-            "18",
-            "19",
-            "20",
-            "21",
-            "22",
-            "23",
-            "24",
-            "25",
-            "26",
-            "27",
-            "28",
-            "29",
-            "30",
-            "31",
-            "32",
-            "33",
-            "34",
-            "35",
-            "36",
-            "37",
-            "38",
-            "39",
-            "40",
+            "Select Section","1","2","3","4","5","6","7","8","9","10","11","12","13","14",
+            "15","16","17","18","19","20","21","22","23","24","25","26","27","28","29","30",
+            "31","32","33","34","35","36","37","38","39","40"
         )
 
         section_combo_box.current(0)
@@ -354,10 +316,7 @@ class Student:
             student_information_frame,
             textvariable=self.var_dob,
             width=20,
-            font=(
-                "Calibri",
-                13,
-            ),
+            font=("Calibri",13)
         )
         student_birthdate_entry_field.grid(row=2, column=1, padx=10, pady=5, sticky=W)
 
@@ -552,10 +511,7 @@ class Student:
         search_label = Label(
             search_frame,
             text="Search with: ",
-            font=(
-                "Calibri",
-                15,
-            ),
+            font=("Calibri",15),
             bg="#A71D31",
             fg="white",
         )
@@ -564,20 +520,14 @@ class Student:
         semester_label = Label(
             current_course_frame,
             text="Semester",
-            font=(
-                "Calibri",
-                13,
-            ),
+            font=("Calibri",13),
             bg="white",
         )
         semester_label.grid(row=1, column=2, padx=10, sticky=W)
 
         search_combo_box = ttk.Combobox(
             search_frame,
-            font=(
-                "Calibri",
-                13,
-            ),
+            font=("Calibri",13),
             state="readonly",
             width=15,
         )
@@ -588,10 +538,7 @@ class Student:
         search_entry_field = ttk.Entry(
             search_frame,
             width=15,
-            font=(
-                "Calibri",
-                13,
-            ),
+            font=("Calibri",13),
         )
         search_entry_field.grid(row=0, column=2, padx=10, pady=5, sticky=W)
 
