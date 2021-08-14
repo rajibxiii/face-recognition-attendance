@@ -96,6 +96,7 @@ class Student:
             state="readonly",
             width=20,
         )
+
         depart_combo_box["value"] = (
             "Select Department",
             "ECE",
@@ -965,6 +966,7 @@ class Student:
             
             except Exception as es:
                 messagebox.showerror("Error", f"Reason: {str(es)}", parent=self.root)
+
 
 
 if __name__ == "__main__":
