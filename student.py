@@ -848,7 +848,7 @@ class Student:
                     database="face_recognition",
                 )
                 make_cursor = connection.cursor()
-                make_cursor.execute ("Select * from students")
+                make_cursor.execute ("Select * from student")
                 result = make_cursor.fetchall()
                 id = 0
 
@@ -901,7 +901,7 @@ class Student:
                         face = cv2.cvtColor(face, cv2.COLOR_BGR2GRAY)
                         file_path = "data/user."+str(id)+"."+str(img_id)+".jpg"
                         cv2.imwrite(file_path, face)
-                        cv2.PutText(face, str(img_id),(50,50),cv2.FONT_HERSHEY_COMPLEX,2,(0,255,0),2)
+                        cv2.putText(face, str(img_id),(50,50),cv2.FONT_HERSHEY_COMPLEX,2,(0,255,0),2)
                         cv2.imshow("Cropped Face", face)
 
                     if cv2.waitKey(1)==13 or int(img_id)==100:
