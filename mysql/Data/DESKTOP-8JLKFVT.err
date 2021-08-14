@@ -1,0 +1,27 @@
+2021-08-14T13:14:31.262083Z 0 [Warning] [MY-010915] [Server] 'NO_ZERO_DATE', 'NO_ZERO_IN_DATE' and 'ERROR_FOR_DIVISION_BY_ZERO' sql modes should be used with strict mode. They will be merged with strict mode in a future release.
+2021-08-14T13:14:31.358488Z 0 [System] [MY-010116] [Server] C:\Program Files\MySQL\MySQL Server 8.0\bin\mysqld.exe (mysqld 8.0.25) starting as process 10832
+2021-08-14T13:14:31.585312Z 1 [System] [MY-013576] [InnoDB] InnoDB initialization has started.
+2021-08-14T13:14:33.819042Z 1 [ERROR] [MY-013171] [InnoDB] Cannot boot server version 80025 on data directory built by version 80026. Downgrade is not supported
+mysqld: Can't open file: 'mysql.ibd' (errno: 0 - )
+2021-08-14T13:14:38.825567Z 1 [ERROR] [MY-010334] [Server] Failed to initialize DD Storage Engine
+2021-08-14T13:14:38.831798Z 0 [ERROR] [MY-010020] [Server] Data Dictionary initialization failed.
+2021-08-14T13:14:38.832885Z 0 [ERROR] [MY-010119] [Server] Aborting
+2021-08-14T13:14:38.847909Z 0 [System] [MY-010910] [Server] C:\Program Files\MySQL\MySQL Server 8.0\bin\mysqld.exe: Shutdown complete (mysqld 8.0.25)  MySQL Community Server - GPL.
+2021-08-14T13:18:05.095621Z 0 [Warning] [MY-010915] [Server] 'NO_ZERO_DATE', 'NO_ZERO_IN_DATE' and 'ERROR_FOR_DIVISION_BY_ZERO' sql modes should be used with strict mode. They will be merged with strict mode in a future release.
+2021-08-14T13:18:05.098549Z 0 [System] [MY-010116] [Server] C:\Program Files\MySQL\MySQL Server 8.0\bin\mysqld.exe (mysqld 8.0.25) starting as process 9984
+2021-08-14T13:18:05.509511Z 1 [System] [MY-013576] [InnoDB] InnoDB initialization has started.
+2021-08-14T13:18:07.136014Z 1 [ERROR] [MY-013171] [InnoDB] Cannot boot server version 80025 on data directory built by version 80026. Downgrade is not supported
+mysqld: Can't open file: 'mysql.ibd' (errno: 0 - )
+2021-08-14T13:18:12.150092Z 1 [ERROR] [MY-010334] [Server] Failed to initialize DD Storage Engine
+2021-08-14T13:18:12.151294Z 0 [ERROR] [MY-010020] [Server] Data Dictionary initialization failed.
+2021-08-14T13:18:12.152060Z 0 [ERROR] [MY-010119] [Server] Aborting
+2021-08-14T13:18:12.153033Z 0 [System] [MY-010910] [Server] C:\Program Files\MySQL\MySQL Server 8.0\bin\mysqld.exe: Shutdown complete (mysqld 8.0.25)  MySQL Community Server - GPL.
+2021-08-14T13:22:02.354406Z 0 [Warning] [MY-010915] [Server] 'NO_ZERO_DATE', 'NO_ZERO_IN_DATE' and 'ERROR_FOR_DIVISION_BY_ZERO' sql modes should be used with strict mode. They will be merged with strict mode in a future release.
+2021-08-14T13:22:02.355584Z 0 [System] [MY-010116] [Server] C:\Program Files\MySQL\MySQL Server 8.0\bin\mysqld.exe (mysqld 8.0.25) starting as process 7204
+2021-08-14T13:22:02.766017Z 1 [System] [MY-013576] [InnoDB] InnoDB initialization has started.
+2021-08-14T13:22:04.375190Z 1 [ERROR] [MY-013171] [InnoDB] Cannot boot server version 80025 on data directory built by version 80026. Downgrade is not supported
+mysqld: Can't open file: 'mysql.ibd' (errno: 0 - )
+2021-08-14T13:22:09.375056Z 1 [ERROR] [MY-010334] [Server] Failed to initialize DD Storage Engine
+2021-08-14T13:22:09.378157Z 0 [ERROR] [MY-010020] [Server] Data Dictionary initialization failed.
+2021-08-14T13:22:09.378910Z 0 [ERROR] [MY-010119] [Server] Aborting
+2021-08-14T13:22:09.379787Z 0 [System] [MY-010910] [Server] C:\Program Files\MySQL\MySQL Server 8.0\bin\mysqld.exe: Shutdown complete (mysqld 8.0.25)  MySQL Community Server - GPL.

@@ -94,11 +94,7 @@ class FaceRecSys:
             BgImg,
             text="ATTENDANCE",
             cursor="hand2",
-            font=(
-                "Calibri",
-                12,
-                "bold",
-            ),
+            font=("Calibri", 12,"bold"),
             bg="black",
             fg="white",
         )
@@ -116,11 +112,7 @@ class FaceRecSys:
             BgImg,
             text="HELP DESK",
             cursor="hand2",
-            font=(
-                "Calibri",
-                12,
-                "bold",
-            ),
+            font=("Calibri", 12,"bold",),
             bg="black",
             fg="white",
         )
@@ -138,11 +130,7 @@ class FaceRecSys:
             BgImg,
             text="TRAIN DATA",
             cursor="hand2",
-            font=(
-                "Calibri",
-                12,
-                "bold",
-            ),
+            font=("Calibri",12,"bold"),
             bg="black",
             fg="white",
         )
@@ -160,11 +148,7 @@ class FaceRecSys:
             BgImg,
             text="PHOTOS",
             cursor="hand2",
-            font=(
-                "Calibri",
-                12,
-                "bold",
-            ),
+            font=("Calibri",12,"bold"),
             bg="black",
             fg="white",
         )
@@ -182,11 +166,7 @@ class FaceRecSys:
             BgImg,
             text="EXIT",
             cursor="hand2",
-            font=(
-                "Calibri",
-                12,
-                "bold",
-            ),
+            font=("Calibri",12,"bold",),
             bg="black",
             fg="white",
         )
