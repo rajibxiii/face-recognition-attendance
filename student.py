@@ -98,15 +98,8 @@ class Student:
         )
 
         depart_combo_box["value"] = (
-            "Select Department",
-            "ECE",
-            "EEE",
-            "ETE",
-            "CEE",
-            "BBA",
-            "Economics",
-            "Marketing",
-            "Law",
+            "Select Department","ECE","EEE","ETE",
+            "CEE","BBA","Economics","Marketing","Law",
         )
         depart_combo_box.current(0)
         depart_combo_box.grid(row=0, column=1, padx=2, pady=10, sticky=W)
@@ -159,18 +152,8 @@ class Student:
             state="readonly",
             width=20,
         )
-        year_combo_box["value"] = (
-            "Select Year",
-            2015,
-            2016,
-            2017,
-            2018,
-            2019,
-            2020,
-            2021,
-            2022,
-            2023,
-            2024,
+        year_combo_box["value"] = ( "Select Year", 2015, 2016, 2017, 2018, 2019,
+                                    2020, 2021,2022,2023,2024,
         )
         year_combo_box.current(0)
         year_combo_box.grid(row=1, column=1, padx=2, pady=10, sticky=W)
@@ -410,15 +393,15 @@ class Student:
         button_frame = Frame(student_information_frame, bd=2, relief=RIDGE, bg="white")
         button_frame.place(x=0, y=208, width=715, height=35)
 
-        save_btn = Button(
-            button_frame,
-            text="Save",
-            command=self.add_data,
-            width=19,
-            font=("Calibri", 13, "bold"),
-            bg="#3F0D12",
-            fg="white",
+        save_btn = Button( button_frame,
+                            text="Save",
+                            command=self.add_data,
+                            width=19,
+                            font=("Calibri", 13, "bold"),
+                            bg="#3F0D12",
+                            fg="white",
         )
+
         save_btn.grid(row=0, column=0)
 
         update_btn = Button(
@@ -572,21 +555,8 @@ class Student:
 
         self.student_table = ttk.Treeview(
             table_frame,
-            column=(
-                "dep",
-                "course",
-                "year",
-                "sem",
-                "id",
-                "name",
-                "sec",
-                "gender",
-                "dob",
-                "email",
-                "phone",
-                "address",
-                "faculty",
-                "photo",
+            column=("dep","course","year","sem","id","name","sec","gender","dob",
+                    "email","phone","address","faculty","photo",
             ),
             xscrollcommand=scroll_x.set,
             yscrollcommand=scroll_y.set,
