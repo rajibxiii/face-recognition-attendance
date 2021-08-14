@@ -4,6 +4,7 @@ from PIL import Image, ImageTk
 from tkinter import messagebox
 import mysql.connector
 from fetchstudentdata import fetchdata
+import cv2
 
 
 class Student:
@@ -268,48 +269,47 @@ class Student:
         )
 
         section_combo_box["value"] = (
-                        "Select section",
-                        "1",
-                        "2",
-                        "3",
-                        "4",
-                        "5",
-                        "6",
-                        "7",
-                        "8",
-                        "9",
-                        "10",
-                        "11",
-                        "12",
-                        "13",
-                        "14",
-                        "15",
-                        "16",
-                        "17",
-                        "18",
-                        "19",
-                        "20",
-                        "21",
-                        "22",
-                        "23",
-                        "24",
-                        "25",
-                        "26",
-                        "27",
-                        "28",
-                        "29",
-                        "30",
-                        "31",
-                        "32",
-                        "33",
-                        "34",
-                        "35",
-                        "36",
-                        "37",
-                        "38",
-                        "39",
-                        "40",
-
+            "Select Section",
+            "1",
+            "2",
+            "3",
+            "4",
+            "5",
+            "6",
+            "7",
+            "8",
+            "9",
+            "10",
+            "11",
+            "12",
+            "13",
+            "14",
+            "15",
+            "16",
+            "17",
+            "18",
+            "19",
+            "20",
+            "21",
+            "22",
+            "23",
+            "24",
+            "25",
+            "26",
+            "27",
+            "28",
+            "29",
+            "30",
+            "31",
+            "32",
+            "33",
+            "34",
+            "35",
+            "36",
+            "37",
+            "38",
+            "39",
+            "40",
         )
 
         section_combo_box.current(0)
@@ -335,7 +335,7 @@ class Student:
             width=18,
         )
 
-        gender_combo_box["value"] = ("Male", "Female", "Third Gender", "Other")
+        gender_combo_box["value"] = ("Choose", "Male", "Female", "Third Gender", "Other")
 
         gender_combo_box.current(0)
         gender_combo_box.grid(row=1, column=3, padx=10, pady=5, sticky=W)
@@ -500,6 +500,7 @@ class Student:
 
         take_photo_btn = Button(
             button_frame1,
+            command = self.generate_data_set,
             text="Take Photo Sample",
             width=39,
             font=("Calibri", 13, "bold"),
@@ -612,6 +613,7 @@ class Student:
             fg="white",
         )
         showAll_btn.grid(row=0, column=4, padx=4)
+
 
         ######## Table Frame #########
         table_frame = Frame(right_frame, bd=2, relief=RIDGE, bg="white")
@@ -877,6 +879,92 @@ class Student:
         self.var_address.set(""),
         self.var_faculty.set(""),
         self.var_radio_btn1.set("")
+
+
+    # Generating Data Set
+
+    def generate_data_set(self):
+        if (
+            self.var_dep.get() == "select department"
+            or self.var_name.get() == ""
+            or self.var_id.get() == ""
+        ):
+            messagebox.showerror("Error", "All fields are required", parent=self.root)
+
+        else:
+            try:
+                connection = mysql.connector.connect(
+                    host="localhost",
+                    username="cse299",
+                    password="p2JaZ6@k",
+                    database="face_recognition",
+                )
+                make_cursor = connection.cursor()
+                make_cursor.execute ("Select * from students")
+                result = make_cursor.fetchall()
+                id = 0
+
+                for x in result:
+                    id+=1
+                make_cursor.execute(
+                        "update student set Department=%s, Course=%s, Year=%s, Semester=%s, Name=%s, Section=%s, Gender=%s, DOB=%s, Email=%s, Phone=%s, Address=%s, Faculty=%s, PhotoSample=%s where Student_ID=%s",
+                        (
+                            self.var_dep.get(),
+                            self.var_course.get(),
+                            self.var_year.get(),
+                            self.var_semester.get(),
+                            self.var_name.get(),
+                            self.var_section.get(),
+                            self.var_gender.get(),
+                            self.var_dob.get(),
+                            self.var_email.get(),
+                            self.var_phone.get(),
+                            self.var_address.get(),
+                            self.var_faculty.get(),
+                            self.var_radio_btn1.get(),
+                            self.var_id.get()==id+1
+                        ),
+                    )
+
+                connection.commit()
+                fetchdata.FetchStudentData(self)
+                self.reset_data()
+                connection.close()
+
+
+                # Loading data on Front Face from OpenCV
+                face_classifier = cv2.CascadeClassifier("haarcascade_frontalface_default.xml")
+                def crop_face (img):
+                    grayscale = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
+                    faces = face_classifier.detectMultiScale(grayscale, 1.3, 5) #Scaling dactor = 1.3, Minimum Neighbor = 5
+
+                    for (x,y,w,h) in faces:
+                        crop_face = img [y:y+h, x:x+w]
+                        return crop_face
+
+                capture = cv2.VideoCapture(0)
+                img_id = 0
+
+                while True:
+                    ret, myframe=capture.read()
+                    if crop_face (myframe) is not None:
+                        img_id+=1
+                        face = cv2.resize(crop_face(myframe),(450, 450))
+                        face = cv2.cvtColor(face, cv2.COLOR_BGR2GRAY)
+                        file_path = "data/user."+str(id)+"."+str(img_id)+".jpg"
+                        cv2.imwrite(file_path, face)
+                        cv2.PutText(face, str(img_id),(50,50),cv2.FONT_HERSHEY_COMPLEX,2,(0,255,0),2)
+                        cv2.imshow("Cropped Face", face)
+
+                    if cv2.waitKey(1)==13 or int(img_id)==100:
+                        break
+                
+                capture.release()
+                cv2.destroyAllWindows()
+                messagebox.showinfo("Result", "Generating Data Sets Completed Successfully")
+            
+            except Exception as es:
+                messagebox.showerror("Error", f"Reason: {str(es)}", parent=self.root)
 
 
 if __name__ == "__main__":
