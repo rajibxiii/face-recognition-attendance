@@ -915,6 +915,7 @@ class Student:
                 messagebox.showerror("Error", f"Reason: {str(es)}", parent=self.root)
 
 
+    
 
 if __name__ == "__main__":
     root = Tk()  # root is needed to call by toolkit (tk)

@@ -3,6 +3,7 @@ from tkinter import *
 # from tkinter import ttk
 from PIL import Image, ImageTk
 from student import Student
+import os
 
 
 class FaceRecSys:
@@ -141,20 +142,21 @@ class FaceRecSys:
         photosButton = photosButton.resize((130, 130), Image.ANTIALIAS)
         self.PhoImgPhoBtn = ImageTk.PhotoImage(photosButton)
 
-        Btn6 = Button(BgImg, image=self.PhoImgPhoBtn, cursor="hand2")
+        Btn6 = Button(BgImg, image=self.PhoImgPhoBtn, cursor="hand2", command=self.open_img)
         Btn6.place(x=700, y=510, width=130, height=130)
 
         Btn6 = Button(
             BgImg,
             text="PHOTOS",
             cursor="hand2",
+            command=self.open_img,
             font=("Calibri",12,"bold"),
             bg="black",
             fg="white",
         )
         Btn6.place(x=700, y=610, width=130, height=30)
 
-        # Developer Button
+        # Quit Button
         contactDeveloper = Image.open(r"images\exit.png")
         contactDeveloper = contactDeveloper.resize((130, 130), Image.ANTIALIAS)
         self.PhoImgContBtn = ImageTk.PhotoImage(contactDeveloper)
@@ -164,13 +166,18 @@ class FaceRecSys:
 
         Btn7 = Button(
             BgImg,
-            text="EXIT",
+            text="QUIT",
             cursor="hand2",
             font=("Calibri",12,"bold",),
             bg="black",
             fg="white",
         )
         Btn7.place(x=1000, y=610, width=130, height=30)
+
+
+    # Function for opening images
+    def open_img (self):
+        os.startfile("data")
 
     # Making Function for student details Button activate from main window
     def student_details(self):
