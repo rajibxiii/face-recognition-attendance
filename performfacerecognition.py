@@ -115,9 +115,9 @@ class Face_Recognition:
         video_cap = cv2.VideoCapture(0)
 
         while True:
-            ret, img1 = video_cap.read()
-            img1 = Recognize(img1, clf, faceCascade)
-            cv2.imshow("Welcome to Face Recognition", img1)
+            ret, img = video_cap.read()
+            img = Recognize(img, clf, faceCascade)
+            cv2.imshow("Welcome to Face Recognition", img)
 
             if cv2.waitKey(1) == 13:
                 break
