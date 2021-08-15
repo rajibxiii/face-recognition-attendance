@@ -1,9 +1,9 @@
 from tkinter import *
-
-# from tkinter import ttk
+from tkinter import ttk
 from PIL import Image, ImageTk
 from student import Student
 import os
+from traindata import Traindata
 
 
 class FaceRecSys:
@@ -124,13 +124,14 @@ class FaceRecSys:
         trainFaceButton = trainFaceButton.resize((130, 130), Image.ANTIALIAS)
         self.PhoImgTrainFacBtn = ImageTk.PhotoImage(trainFaceButton)
 
-        Btn5 = Button(BgImg, image=self.PhoImgTrainFacBtn, cursor="hand2")
+        Btn5 = Button(BgImg, image=self.PhoImgTrainFacBtn, cursor="hand2", command=self.train_dataset)
         Btn5.place(x=400, y=510, width=130, height=130)
 
         Btn5 = Button(
             BgImg,
             text="TRAIN DATA",
             cursor="hand2",
+            command=self.train_dataset,
             font=("Calibri",12,"bold"),
             bg="black",
             fg="white",
@@ -183,6 +184,11 @@ class FaceRecSys:
     def student_details(self):
         self.student_details_window = Toplevel(self.root)
         self.app = Student(self.student_details_window)
+
+
+    def train_dataset(self):
+        self.train_dataset_window = Toplevel(self.root)
+        self.app = Traindata(self.train_dataset_window)
 
 
 if __name__ == "__main__":

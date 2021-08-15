@@ -6,6 +6,7 @@ import mysql.connector
 from fetchstudentdata import fetchdata
 import cv2
 import os
+import numpy as np
 
 
 class Traindata:
@@ -42,6 +43,7 @@ class Traindata:
         Btn1 = Button(
             self.root,
             text="TRAIN DATA",
+            command=self.trainClassifier,
             cursor="hand2",
             font=(
                 "Calibri",
@@ -63,7 +65,24 @@ class Traindata:
 
         for image in path:
             img = Image.open(image).convert('L') # Converting image to greyscale
-            
+
+            imageNp = np.array(img, 'uint8')
+            id = int(os.path.split(image)[1].split('.')[1])
+
+            faces.append(imageNp)
+            ids.append(id)
+            cv2.imshow("Training", imageNp)
+            cv2.waitKey(1) == 13
+        
+        ids = np.array(ids)
+
+
+        # Training the classifier
+        clf = cv2.face.LBPHFaceRecognizer_create()
+        clf.train(faces, ids)
+        clf.write("classifier.xml")
+        cv2.destroyAllWindows()
+        messagebox.showinfo("Result", "Completed training the data set", parent=self.root)
 
 
 
