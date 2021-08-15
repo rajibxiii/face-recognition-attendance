@@ -15,7 +15,7 @@ class Traindata:
         self.root.geometry("1530x790+0+0")
         self.root.title("Face Recognition Student Attendance System")
         root.resizable(0, 0)
-        root.attributes('-alpha', 0.95)
+        # root.attributes('-alpha', 0.95)
 
 
         titleLabel = Label(
@@ -45,15 +45,12 @@ class Traindata:
             text="TRAIN DATA",
             command=self.trainClassifier,
             cursor="hand2",
-            font=(
-                "Calibri",
-                30,
-                "bold",
-            ),
+            font=("Calibri", 30,"bold"),
             bg="#3F0D12",
             fg="white",
         )
-        Btn1.place(x=0, y=380, width=1530, height=60)
+        Btn1.place(x=570, y=740, width=400, height=40)
+        # Btn1.place(x=0, y=380, width=1530, height=60)
 
     
     def trainClassifier(self):
