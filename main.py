@@ -12,7 +12,7 @@ class FaceRecSys:
         self.root.geometry("1530x790+0+0")
         self.root.title("Automated student attendance system based on face recognition")
         root.resizable(0, 0)
-        # root.attributes('-alpha', 0.95)
+        root.attributes('-alpha', 0.95)
 
         # Background Image
         imgBg = Image.open(r"images\colorBg.png")
