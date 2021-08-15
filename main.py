@@ -4,6 +4,7 @@ from PIL import Image, ImageTk
 from student import Student
 import os
 from traindata import Traindata
+from performfacerecognition import FaceRecognition
 
 
 class FaceRecSys:
@@ -66,18 +67,15 @@ class FaceRecSys:
         faceDetectButton = faceDetectButton.resize((130, 130), Image.ANTIALIAS)
         self.PhoImgFacDetBtn = ImageTk.PhotoImage(faceDetectButton)
 
-        Btn2 = Button(BgImg, image=self.PhoImgFacDetBtn, cursor="hand2")
+        Btn2 = Button(BgImg, image=self.PhoImgFacDetBtn, cursor="hand2",command=self.facedata,)
         Btn2.place(x=550, y=270, width=130, height=130)
 
         Btn2 = Button(
             BgImg,
             text="DETECT FACE",
             cursor="hand2",
-            font=(
-                "Calibri",
-                12,
-                "bold",
-            ),
+            command=self.facedata,
+            font=("Calibri",12,"bold"),
             bg="black",
             fg="white",
         )
@@ -189,6 +187,15 @@ class FaceRecSys:
     def train_dataset(self):
         self.train_dataset_window = Toplevel(self.root)
         self.app = Traindata(self.train_dataset_window)
+
+
+
+
+
+    def facedata(self):
+        self.faceRecognitionwindow = Toplevel(self.root)
+        self.app = FaceRecognition(self.faceRecognitionwindow)
+
 
 
 if __name__ == "__main__":
