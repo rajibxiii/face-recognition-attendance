@@ -1,7 +1,12 @@
 from tkinter import *
+from tkinter import ttk
 from PIL import Image,ImageTk
+from tkinter import messagebox
 import mysql.connector
 import cv2
+import os
+import numpy as np
+
 
 class Face_Recognition:
     def __init__(self, root):
@@ -26,6 +31,7 @@ class Face_Recognition:
         left_frame_lable = Label(self.root, image=self.PhoImgTop)
         left_frame_lable.place(x=0, y=55, width=1530, height=700)
 
+
         # FACE RECOGNITION Button
         Btn1 = Button(
             self.root,
@@ -42,12 +48,14 @@ class Face_Recognition:
 
     def face_recog(self):
         def drawBoundary(img, classifier, sealeFactor, minNeigbours, color, text, clf):
+
             # convert image in gray scale
-            gray_img = cv2.cvtColor(img, cv2.cvtColor(img, cv2.COLOR_BGR2GRAY))
+            gray_img = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
 
             # features variable is used to take the features from classifire
             features = classifier.detectMultiScale(gray_img, sealeFactor, minNeigbours)
             coord = []
+
             for (x, y, width, height) in features:
                 # create a rectangle
                 cv2.rectangle(img, (x, y), (x + width, y + height), (0, 255, 0), 3)
@@ -56,19 +64,21 @@ class Face_Recognition:
                 connection = mysql.connector.connect(host='localhost', username='cse299',
                                                      password="p2JaZ6@k",
                                                      database="face_recognition")
+
                 # cursor()=> this is an inbuilt function and used here to execute mysql query
-                query_name = "select Name from student where Studnet_ID=" + str(id)
                 cursor = connection.cursor()
+                
+                query_name = "select Name from student where Student_ID=" + str(id)
                 cursor.execute(query_name)
                 name = cursor.fetchone()
                 name = "+".join(name)
 
-                query_id = "select Studnet_ID from student where Studnet_ID=" + str(id)
+                query_id = "select Student_ID from student where Student_ID=" + str(id)
                 cursor.execute(query_id)
                 id = cursor.fetchone()
                 id = "+".join(id)
 
-                query_course = "select Course from student where Studnet_ID=" + str(id)
+                query_course = "select Course from student where Student_ID=" + str(id)
                 cursor.execute(query_course)
                 course = cursor.fetchone()
                 course = "+".join(course)
@@ -86,35 +96,35 @@ class Face_Recognition:
 
                 else:
                     cv2.rectangle(img, (x, y), (x + width, y + height), (0, 0, 255), 3)
-                    cv2.putText(img, " Unknown person unable to detect", (x, y - 5),
+                    cv2.putText(img, "Unknown person unable to detect", (x, y - 5),
                                 cv2.FONT_HERSHEY_COMPLEX, 0.8, (255, 255, 255), 3)
 
                 coord = [x, y, width, height]
 
             return coord
 
+
         def Recognize(img, clf, faceCascade):
             coord = drawBoundary(img, faceCascade, 1.1, 10, (255, 25, 2555), "Face", clf)
-            return coord
+            return img
 
         faceCascade = cv2.CascadeClassifier('haarcascade_frontalface_default.xml')
         clf = cv2.face.LBPHFaceRecognizer_create()
-        clf.read('classifier.xml')
+        clf.read("classifier.xml")
 
         video_cap = cv2.VideoCapture(0)
 
         while True:
-            ret, img = video_cap.read()
-            img = Recognize(img, clf, faceCascade)
-            cv2.imshow("Welcome to Face Recognition", img)
+            ret, img1 = video_cap.read()
+            img1 = Recognize(img1, clf, faceCascade)
+            cv2.imshow("Welcome to Face Recognition", img1)
 
             if cv2.waitKey(1) == 13:
                 break
+
         video_cap.release()
 
         cv2.destroyAllWindows()
-
-
 
             
 
