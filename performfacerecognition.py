@@ -43,7 +43,7 @@ class Face_Recognition:
     def face_recog(self):
         def drawBoundary(img, classifier, sealeFactor, minNeigbours, color, text, clf):
             # convert image in gray scale
-            gray_img = cv2.cvtColor(img, cv2.cvtColor(img, cv2.COLOR_BGR2GRAY))
+            gray_img = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
 
             # features variable is used to take the features from classifire
             features = classifier.detectMultiScale(gray_img, sealeFactor, minNeigbours)
@@ -57,31 +57,31 @@ class Face_Recognition:
                                                      password="p2JaZ6@k",
                                                      database="face_recognition")
                 # cursor()=> this is an inbuilt function and used here to execute mysql query
-                query_name = "select Name from student where Studnet_ID=" + str(id)
+                # query_name = "select Name from student where Student_ID="+str(id)
                 cursor = connection.cursor()
-                cursor.execute(query_name)
+                cursor.execute("select Name from student where Student_ID="+str(id))
                 name = cursor.fetchone()
                 name = "+".join(name)
 
-                query_id = "select Studnet_ID from student where Studnet_ID=" + str(id)
-                cursor.execute(query_id)
+                # query_id = "select Student_ID from student where Student_ID="+str(id)
+                cursor.execute("select Student_ID from student where Student_ID="+str(id))
                 id = cursor.fetchone()
                 id = "+".join(id)
 
-                query_course = "select Course from student where Studnet_ID=" + str(id)
-                cursor.execute(query_course)
+                # query_course = "select Course from student where Student_ID="+str(id)
+                cursor.execute( "select Course from student where Student_ID="+str(id))
                 course = cursor.fetchone()
                 course = "+".join(course)
 
                 # confidence is work how long we know the face and also give a value
                 if confidence > 77:
-                    cv2.putText(img, f'Name: {name}', (x, y - 55),
+                    cv2.putText(img, f'Name: {name}', (x, y-55),
                                 cv2.FONT_HERSHEY_COMPLEX, 0.8, (255, 255, 255), 3)
 
-                    cv2.putText(img, f'ID: {id}', (x, y - 30),
+                    cv2.putText(img, f'ID: {id}', (x, y-30),
                                 cv2.FONT_HERSHEY_COMPLEX, 0.8, (255, 255, 255), 3)
 
-                    cv2.putText(img, f'Course: {course}', (x, y - 5),
+                    cv2.putText(img, f'Course: {course}', (x, y-5),
                                 cv2.FONT_HERSHEY_COMPLEX, 0.8, (255, 255, 255), 3)
 
                 else:
@@ -95,7 +95,7 @@ class Face_Recognition:
 
         def Recognize(img, clf, faceCascade):
             coord = drawBoundary(img, faceCascade, 1.1, 10, (255, 25, 2555), "Face", clf)
-            return coord
+            return img
 
         faceCascade = cv2.CascadeClassifier('haarcascade_frontalface_default.xml')
         clf = cv2.face.LBPHFaceRecognizer_create()
@@ -105,7 +105,7 @@ class Face_Recognition:
 
         while True:
             ret, img = video_cap.read()
-            img = Recognize(img, clf, faceCascade)
+            img = Recognize(img,clf, faceCascade)
             cv2.imshow("Welcome to Face Recognition", img)
 
             if cv2.waitKey(1) == 13:
