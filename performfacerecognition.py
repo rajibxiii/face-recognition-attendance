@@ -57,8 +57,11 @@ class Face_Recognition:
                 entry == line.split((","))
                 nameList.append(entry[0])
 
-
-
+            if((id not in nameList) and (name not in nameList)) and (course not in nameList) and (department not in nameList):
+                now = datetime.datetime.now()
+                d1 = now.strftime("%d.%m.%Y")
+                dtString = now.strftime("%H:%M:%S")
+                att.writelines(f"\n{id},{name},{course},{department},{dtString},{d1},Present")
 
 
 
@@ -119,6 +122,8 @@ class Face_Recognition:
 
                     cv2.putText(img, f'Department: {department}', (x, y - 5),
                                 cv2.FONT_HERSHEY_COMPLEX, 0.8, (255, 255, 255), 3)
+
+                    self.attendance_marking(id, name, course, department)
 
                 else:
                     cv2.rectangle(img, (x, y), (x + width, y + height), (0, 0, 255), 3)
