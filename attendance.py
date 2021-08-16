@@ -95,21 +95,21 @@ class Attendance:
         name_entry_field.grid(row=0, column=3, pady=8)
 
 
-        # Student ID label and entry field
-        id_label = Label(
+        # Course label and entry field
+        course_label = Label(
             insideLeftFrame,
-            text="ID:",
+            text="Course:",
             font=("Calibri", 13),
             bg="white",
         )
-        id_label.grid(row=1, column=0)
+        course_label.grid(row=1, column=0)
 
-        id_entry_field = ttk.Entry(
+        course_entry_field = ttk.Entry(
             insideLeftFrame,
             width=20,
             font=("Calibri", 13),
         )
-        id_entry_field.grid(row=1, column=1, pady=8)
+        course_entry_field.grid(row=1, column=1, pady=8)
 
 
         # Department label and entry field
@@ -250,6 +250,25 @@ class Attendance:
         scroll_x.config(command=self.AttendanceReport.xview)
         scroll_y.config(command=self.AttendanceReport.yview)
 
+        self.AttendanceReport.heading("ID", text="Attendance ID")
+        self.AttendanceReport.heading("Name", text="Name")
+        self.AttendanceReport.heading("Course", text="Course")
+        self.AttendanceReport.heading("Department", text="Department")
+        self.AttendanceReport.heading("Date", text="Date")
+        self.AttendanceReport.heading("Time", text="Time")
+        self.AttendanceReport.heading("Attendance", text="Attendance")
+
+        self.AttendanceReport["show"] = "headings"
+
+        self.AttendanceReport.column("ID", width=100)
+        self.AttendanceReport.column("Name", width=100)
+        self.AttendanceReport.column("Course", width=100)
+        self.AttendanceReport.column("Department", width=100)
+        self.AttendanceReport.column("Date", width=100)
+        self.AttendanceReport.column("Time", width=100)
+        self.AttendanceReport.column("Attendance", width=100)
+
+        self.AttendanceReport.pack(fill=BOTH, expand=1)
 
 
 
