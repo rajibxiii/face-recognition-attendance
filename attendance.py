@@ -222,6 +222,34 @@ class Attendance:
         reset_btn.grid(row=0, column=3)
 
 
+        # right label Frame
+        rightFrame = LabelFrame(
+            main_frame,
+            bd=3,
+            bg="white",
+            relief=RIDGE,
+            text="ATTENDANCE",
+            font=("Calibri", 12),
+        )
+        rightFrame.place(x=760, y=10, width=730, height=565)
+
+        table_frame = Frame(rightFrame, bd=2, relief=RIDGE, bg="white")
+        table_frame.place(x=5, y=5, width=710, height=455)
+
+
+        # Table Scrollbar
+
+        scroll_x = ttk.Scrollbar(table_frame, orient=HORIZONTAL)
+        scroll_y = ttk.Scrollbar(table_frame, orient=VERTICAL)
+
+        self.AttendanceReport=ttk.Treeview(table_frame, column=("ID", "Name", "Course", "Department", "Date", "Time", "Attendance"), xscrollcommand=scroll_x.set, yscrollcommand=scroll_y.set)
+ 
+        scroll_x.pack(side=BOTTOM, fill=X)
+        scroll_y.pack(side=RIGHT, fill=Y)
+
+        scroll_x.config(command=self.AttendanceReport.xview)
+        scroll_y.config(command=self.AttendanceReport.yview)
+
 
 
 
