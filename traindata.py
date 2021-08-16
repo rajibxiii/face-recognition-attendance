@@ -15,7 +15,7 @@ class Traindata:
         self.root.geometry("1530x790+0+0")
         self.root.title("Face Recognition Student Attendance System")
         root.resizable(0, 0)
-        # root.attributes('-alpha', 0.95)
+        root.attributes('-alpha', 0.95)
 
 
         titleLabel = Label(
