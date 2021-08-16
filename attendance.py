@@ -56,25 +56,14 @@ class Attendance:
         left_frame_lable = Label(left_frame, image=self.PhoImgLeft)
         left_frame_lable.place(x=5, y=0, width=720, height=80)
 
-        # right label Frame
-        right_frame = LabelFrame(
-            main_frame,
-            bd=3,
-            bg="white",
-            relief=RIDGE,
-            text="ATTENDANCE",
-            font=("Calibri", 12),
-        )
-        right_frame.place(x=760, y=10, width=730, height=565)
-
-        insideLefFrame = Frame(left_frame, bd=2, relief=RIDGE, bg="white")
-        insideLefFrame.place(x=5, y=135, width=720, height=300)
+        insideLeftFrame = Frame(left_frame, bd=2, relief=RIDGE, bg="white")
+        insideLeftFrame.place(x=5, y=135, width=720, height=370)
 
         # Entry - labelland
 
         # Attendance Id label and entry field
         attendanceId_label = Label(
-            insideLefFrame,
+            insideLeftFrame,
             text="Attendance ID:",
             font=("Calibri", 13),
             bg="white",
@@ -82,7 +71,7 @@ class Attendance:
         attendanceId_label.grid(row=0, column=0, padx=10, pady=5, sticky=W)
 
         attendanceId_entry_field = ttk.Entry(
-            insideLefFrame,
+            insideLeftFrame,
             width=20,
             font=("Calibri", 13),
         )
@@ -91,7 +80,7 @@ class Attendance:
 
         # Name label and entry field
         name_label = Label(
-            insideLefFrame,
+            insideLeftFrame,
             text="Name:",
             font=("Calibri", 13),
             bg="white",
@@ -99,7 +88,7 @@ class Attendance:
         name_label.grid(row=0, column=2, padx=4, pady=8)
 
         name_entry_field = ttk.Entry(
-            insideLefFrame,
+            insideLeftFrame,
             width=20,
             font=("Calibri", 13),
         )
@@ -108,7 +97,7 @@ class Attendance:
 
         # Student ID label and entry field
         id_label = Label(
-            insideLefFrame,
+            insideLeftFrame,
             text="ID:",
             font=("Calibri", 13),
             bg="white",
@@ -116,7 +105,7 @@ class Attendance:
         id_label.grid(row=1, column=0)
 
         id_entry_field = ttk.Entry(
-            insideLefFrame,
+            insideLeftFrame,
             width=20,
             font=("Calibri", 13),
         )
@@ -125,7 +114,7 @@ class Attendance:
 
         # Department label and entry field
         department_label = Label(
-            insideLefFrame,
+            insideLeftFrame,
             text="Department:",
             font=("Calibri", 13),
             bg="white",
@@ -133,7 +122,7 @@ class Attendance:
         department_label.grid(row=1, column=2)
 
         department_entry_field = ttk.Entry(
-            insideLefFrame,
+            insideLeftFrame,
             width=20,
             font=("Calibri", 13),
         )
@@ -142,7 +131,7 @@ class Attendance:
 
         # Date label and entry field
         date_label = Label(
-            insideLefFrame,
+            insideLeftFrame,
             text="Date:",
             font=("Calibri", 13),
             bg="white",
@@ -150,7 +139,7 @@ class Attendance:
         date_label.grid(row=2, column=0)
 
         date_entry_field = ttk.Entry(
-            insideLefFrame,
+            insideLeftFrame,
             width=20,
             font=("Calibri", 13),
         )
@@ -159,7 +148,7 @@ class Attendance:
 
         # Time label and entry field
         time_label = Label(
-            insideLefFrame,
+            insideLeftFrame,
             text="Time:",
             font=("Calibri", 13),
             bg="white",
@@ -167,20 +156,70 @@ class Attendance:
         time_label.grid(row=2, column=2)
 
         time_entry_field = ttk.Entry(
-            insideLefFrame,
+            insideLeftFrame,
             width=20,
             font=("Calibri", 13),
         )
         time_entry_field.grid(row=2, column=3, pady=8)
 
 
+        attendance_label = Label(
+            insideLeftFrame,
+            text="Attendance Status:",
+            font=("Calibri", 13),
+            bg="white",
+        )
+        attendance_label.grid(row=3, column=0)
+
+        self.attend_status = ttk.Combobox(insideLeftFrame, width=20, font=("Calibri"), state="readonly")
+        self.attend_status ["values"] = ("Status", "Present", "Absent")
+        self.attend_status.grid (row=3, column=1, pady=8)
+        self.attend_status.current(0)
 
 
+        # bbutton frames
+        button_frame = Frame(insideLeftFrame, bd=2, relief=RIDGE, bg="white")
+        button_frame.place(x=0, y=300, width=715, height=35)
 
+        import_btn = Button(
+            button_frame,
+            text="Import Data",
+            width=19,
+            font=("Calibri", 13, "bold"),
+            bg="#3F0D12",
+            fg="white",
+        )
+        import_btn.grid(row=0, column=0)
 
+        export_btn = Button(
+            button_frame,
+            text="Export Data",
+            width=19,
+            font=("Calibri", 13, "bold"),
+            bg="#3F0D12",
+            fg="white",
+        )
+        export_btn.grid(row=0, column=1)
 
+        update_btn = Button(
+            button_frame,
+            text="Update",
+            width=19,
+            font=("Calibri", 13, "bold"),
+            bg="#3F0D12",
+            fg="white",
+        )
+        update_btn.grid(row=0, column=2)
 
-
+        reset_btn = Button(
+            button_frame,
+            text="Reset",
+            width=19,
+            font=("Calibri", 13, "bold"),
+            bg="#3F0D12",
+            fg="white",
+        )
+        reset_btn.grid(row=0, column=3)
 
 
 
