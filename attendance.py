@@ -18,6 +18,7 @@ class Attendance:
         self.root.title("Face Recognition Student Attendance System")
         root.resizable(0, 0)
         root.attributes("-alpha", 0.95)
+        #
 
         imgBg = Image.open(r"images\colorBg.png")
         imgBg = imgBg.resize((1530, 790), Image.ANTIALIAS)
