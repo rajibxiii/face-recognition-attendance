@@ -5,7 +5,7 @@ from student import Student
 import os
 from traindata import Traindata
 from performfacerecognition import Face_Recognition
-
+from attendance import Attendance
 
 class FaceRecSys:
     def __init__(self, root):
@@ -86,12 +86,13 @@ class FaceRecSys:
         attendanceButton = attendanceButton.resize((130, 130), Image.ANTIALIAS)
         self.PhoImgAttendBtn = ImageTk.PhotoImage(attendanceButton)
 
-        Btn3 = Button(BgImg, image=self.PhoImgAttendBtn, cursor="hand2")
+        Btn3 = Button(BgImg, image=self.PhoImgAttendBtn, cursor="hand2",command=self.attendanceData,)
         Btn3.place(x=850, y=270, width=130, height=130)
 
         Btn3 = Button(
             BgImg,
             text="ATTENDANCE",
+            command=self.attendanceData,
             cursor="hand2",
             font=("Calibri", 12,"bold"),
             bg="black",
@@ -193,6 +194,10 @@ class FaceRecSys:
         self.faceRecognitionwindow = Toplevel(self.root)
         self.app = Face_Recognition(self.faceRecognitionwindow)
 
+
+    def attendanceData(self):
+        self.attendance_window = Toplevel(self.root)
+        self.app = Attendance(self.attendance_window)
 
 
 if __name__ == "__main__":
