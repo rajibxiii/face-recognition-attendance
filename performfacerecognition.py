@@ -117,14 +117,8 @@ class Face_Recognition:
 
                 # confidence is work how long we know the face and also give a value
                 if confidence > 77:
-                    cv2.putText(
-                        img,
-                        f"Name: {name}",
-                        (x, y - 75),
-                        cv2.FONT_HERSHEY_COMPLEX,
-                        0.8,
-                        (255, 255, 255),
-                        3,
+                    cv2.putText(img, f"Name: {name}",(x, y - 75),
+                        cv2.FONT_HERSHEY_COMPLEX,0.8,(255, 255, 255),3,
                     )
 
                     cv2.putText(img,f"ID: {id}",(x, y - 55),cv2.FONT_HERSHEY_COMPLEX,
@@ -135,28 +129,16 @@ class Face_Recognition:
                                 cv2.FONT_HERSHEY_COMPLEX,0.8,(255, 255, 255),3,
                     )
 
-                    cv2.putText(
-                        img,
-                        f"Department: {department}",
-                        (x, y - 5),
-                        cv2.FONT_HERSHEY_COMPLEX,
-                        0.8,
-                        (255, 255, 255),
-                        3,
+                    cv2.putText(img,f"Department: {department}",(x, y - 5),
+                                cv2.FONT_HERSHEY_COMPLEX,0.8,(255, 255, 255),3,
                     )
 
                     self.attendance_marking(id, name, course, department)
 
                 else:
                     cv2.rectangle(img, (x, y), (x + width, y + height), (0, 0, 255), 3)
-                    cv2.putText(
-                        img,
-                        "Unknown person unable to detect",
-                        (x, y - 5),
-                        cv2.FONT_HERSHEY_COMPLEX,
-                        0.8,
-                        (255, 255, 255),
-                        3,
+                    cv2.putText(img,"Unknown person unable to detect",(x, y - 5),
+                        cv2.FONT_HERSHEY_COMPLEX,0.8, (255, 255, 255), 3,
                     )
 
                 coord = [x, y, width, height]
