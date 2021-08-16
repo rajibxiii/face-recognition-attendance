@@ -242,6 +242,7 @@ class Attendance:
         reset_btn = Button(
             button_frame,
             text="Reset",
+            command=self.reset_entry_data,
             width=19,
             font=("Calibri", 13, "bold"),
             bg="#3F0D12",
@@ -384,6 +385,20 @@ class Attendance:
         self.var_attendance_date.set(store_rows[4])
         self.var_attendance_time.set(store_rows[5])
         self.var_attendance_Status.set(store_rows[6])
+
+
+    """
+     function for reset button this function will reset data from the
+     entry field. this function is for ATTENDANCE window 
+    """
+    def reset_entry_data(self, event=''):
+        self.var_attendance_id.set('')
+        self.var_attendance_name.set('')
+        self.var_attendance_course.set('')
+        self.var_attendance_dep.set('')
+        self.var_attendance_date.set('')
+        self.var_attendance_time.set('')
+        self.var_attendance_Status.set('')
 
 
 
