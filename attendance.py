@@ -175,7 +175,7 @@ class Attendance:
         self.attend_status.grid(row=3, column=1, pady=8)
         self.attend_status.current(0)
 
-        # bbutton frames
+        # button frames
         button_frame = Frame(insideLeftFrame, bd=2, relief=RIDGE, bg="white")
         button_frame.place(x=0, y=300, width=715, height=35)
 
@@ -193,6 +193,7 @@ class Attendance:
         export_btn = Button(
             button_frame,
             text="Export Data",
+            command=self.exportInCsv,
             width=19,
             font=("Calibri", 13, "bold"),
             bg="#3F0D12",
@@ -287,9 +288,10 @@ class Attendance:
         for data in rows:
             self.AttendanceReport.insert("",END,values=data)
 
-
+    # import data from CSV file in ATTENDANCE CONSOL
     def importFromCsv(self):
         global mydata
+        mydata.clear()
         filename = filedialog.askopenfilename(
             initialdir = os.getcwd(),
             title='Open CSV',
@@ -298,10 +300,43 @@ class Attendance:
             parent=self.root
         )
         with  open(filename) as myfile:
-            readcsv = csv.reader(myfile,delimiter=',')
-            for data in readcsv:
+            read_csv = csv.reader(myfile,delimiter=',')
+            for data in read_csv:
                 mydata.append(data)
             self.fetchData(mydata)
+
+    # export data in CSV FILE
+
+    def exportInCsv(self):
+        """
+        BY this function we can export data from AttendanceReport to
+        another file . so need to Handle error because need to check does
+        that file already contain data or not
+        """
+        try:
+            if len(mydata) < 1 :
+                messagebox.showerror('No data', " Found no data to export",parent=self.root)
+                return False
+            filename = filedialog.asksaveasfilename(
+                initialdir=os.getcwd(),
+                title='Open CSV',
+                filetypes=(('CSV File', '*.csv'),
+                           ("ALL File", "*.*")),
+                parent=self.root
+            )
+            
+            with  open(filename,mode='w',newline="") as myfile:
+                csv_write = csv.writer(myfile,delimiter=',')
+                for data in mydata:
+                    csv_write.writerow(data)
+                messagebox.showinfo('Export Data',
+                                    'Successfully Data Exported in '+os.path.basename(filename))
+
+        except Exception as ex:
+            messagebox.showerror("Error",f'Due to : {str(ex)} ',
+                                 parent=self.root)
+
+
 
 
 
