@@ -5,7 +5,11 @@ from tkinter import messagebox
 import mysql.connector
 from fetchstudentdata import fetchdata
 import cv2
+import os
+import csv
+from tkinter import  filedialog
 
+mydata=[]
 
 class Attendance:
     def __init__(self, root):
@@ -178,6 +182,7 @@ class Attendance:
         import_btn = Button(
             button_frame,
             text="Import Data",
+            command=self.importFromCsv,
             width=19,
             font=("Calibri", 13, "bold"),
             bg="#3F0D12",
@@ -266,6 +271,56 @@ class Attendance:
         self.AttendanceReport.column("Attendance", width=100)
 
         self.AttendanceReport.pack(fill=BOTH, expand=1)
+
+
+
+
+
+    # fetch data of student in attendance window
+    """
+      ths function will delete 1st get_children data in table and import   
+      and insert data from csz file to table
+    
+    """
+    def fetchData(self,rows):
+        self.AttendanceReport.delete(*self.AttendanceReport.get_children())
+        for data in rows:
+            self.AttendanceReport.insert("",END,values=data)
+
+
+    def importFromCsv(self):
+        global mydata
+        filename = filedialog.askopenfilename(
+            initialdir = os.getcwd(),
+            title='Open CSV',
+            filetypes=(('CSV File','*.csv'),
+                       ("ALL File","*.*")),
+            parent=self.root
+        )
+        with  open(filename) as myfile:
+            readcsv = csv.reader(myfile,delimiter=',')
+            for data in readcsv:
+                mydata.append(data)
+            self.fetchData(mydata)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 if __name__ == "__main__":
