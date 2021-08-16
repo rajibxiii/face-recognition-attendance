@@ -18,7 +18,17 @@ class Attendance:
         self.root.title("Face Recognition Student Attendance System")
         root.resizable(0, 0)
         root.attributes("-alpha", 0.95)
-        #
+
+
+        # create variable cz need to show entry field data
+        self.var_attend_id = StringVar()
+        self.var_attendance_name = StringVar()
+        self.var_attend_id_dep = StringVar()
+
+
+
+
+
 
         imgBg = Image.open(r"images\colorBg.png")
         imgBg = imgBg.resize((1530, 790), Image.ANTIALIAS)
@@ -77,6 +87,7 @@ class Attendance:
         attendanceId_entry_field = ttk.Entry(
             insideLeftFrame,
             width=20,
+            textvariable= self.var_attend_id,
             font=("Calibri", 13),
         )
         attendanceId_entry_field.grid(row=0, column=1, padx=10, pady=5, sticky=W)
@@ -93,6 +104,7 @@ class Attendance:
         name_entry_field = ttk.Entry(
             insideLeftFrame,
             width=20,
+            textvariable=self.var_attendance_name,
             font=("Calibri", 13),
         )
         name_entry_field.grid(row=0, column=3, pady=8)
@@ -125,6 +137,7 @@ class Attendance:
         department_entry_field = ttk.Entry(
             insideLeftFrame,
             width=20,
+            textvariable=self.var_attend_id_dep,
             font=("Calibri", 13),
         )
         department_entry_field.grid(row=1, column=3, pady=8)
