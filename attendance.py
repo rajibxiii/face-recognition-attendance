@@ -13,7 +13,7 @@ class Attendance:
         self.root.geometry("1530x790+0+0")
         self.root.title("Face Recognition Student Attendance System")
         root.resizable(0, 0)
-        root.attributes('-alpha', 0.95)
+        root.attributes("-alpha", 0.95)
 
         imgBg = Image.open(r"images\colorBg.png")
         imgBg = imgBg.resize((1530, 790), Image.ANTIALIAS)
@@ -21,7 +21,6 @@ class Attendance:
 
         BgImg = Label(self.root, image=self.PhoImgBg)  # shows in window
         BgImg.place(x=0, y=0, width=1530, height=790)  # place image
-
 
         titleLabel = Label(
             BgImg,
@@ -77,7 +76,6 @@ class Attendance:
         )
         attendanceId_entry_field.grid(row=0, column=1, padx=10, pady=5, sticky=W)
 
-
         # Name label and entry field
         name_label = Label(
             insideLeftFrame,
@@ -93,7 +91,6 @@ class Attendance:
             font=("Calibri", 13),
         )
         name_entry_field.grid(row=0, column=3, pady=8)
-
 
         # Course label and entry field
         course_label = Label(
@@ -111,7 +108,6 @@ class Attendance:
         )
         course_entry_field.grid(row=1, column=1, pady=8)
 
-
         # Department label and entry field
         department_label = Label(
             insideLeftFrame,
@@ -127,7 +123,6 @@ class Attendance:
             font=("Calibri", 13),
         )
         department_entry_field.grid(row=1, column=3, pady=8)
-
 
         # Date label and entry field
         date_label = Label(
@@ -145,7 +140,6 @@ class Attendance:
         )
         date_entry_field.grid(row=2, column=1, pady=8)
 
-
         # Time label and entry field
         time_label = Label(
             insideLeftFrame,
@@ -162,7 +156,6 @@ class Attendance:
         )
         time_entry_field.grid(row=2, column=3, pady=8)
 
-
         attendance_label = Label(
             insideLeftFrame,
             text="Attendance Status:",
@@ -171,11 +164,12 @@ class Attendance:
         )
         attendance_label.grid(row=3, column=0)
 
-        self.attend_status = ttk.Combobox(insideLeftFrame, width=20, font=("Calibri"), state="readonly")
-        self.attend_status ["values"] = ("Status", "Present", "Absent")
-        self.attend_status.grid (row=3, column=1, pady=8)
+        self.attend_status = ttk.Combobox(
+            insideLeftFrame, width=20, font=("Calibri"), state="readonly"
+        )
+        self.attend_status["values"] = ("Status", "Present", "Absent")
+        self.attend_status.grid(row=3, column=1, pady=8)
         self.attend_status.current(0)
-
 
         # bbutton frames
         button_frame = Frame(insideLeftFrame, bd=2, relief=RIDGE, bg="white")
@@ -221,7 +215,6 @@ class Attendance:
         )
         reset_btn.grid(row=0, column=3)
 
-
         # right label Frame
         rightFrame = LabelFrame(
             main_frame,
@@ -236,14 +229,18 @@ class Attendance:
         table_frame = Frame(rightFrame, bd=2, relief=RIDGE, bg="white")
         table_frame.place(x=5, y=5, width=710, height=455)
 
-
         # Table Scrollbar
 
         scroll_x = ttk.Scrollbar(table_frame, orient=HORIZONTAL)
         scroll_y = ttk.Scrollbar(table_frame, orient=VERTICAL)
 
-        self.AttendanceReport=ttk.Treeview(table_frame, column=("ID", "Name", "Course", "Department", "Date", "Time", "Attendance"), xscrollcommand=scroll_x.set, yscrollcommand=scroll_y.set)
- 
+        self.AttendanceReport = ttk.Treeview(
+            table_frame,
+            column=("ID", "Name", "Course", "Department", "Date", "Time", "Attendance"),
+            xscrollcommand=scroll_x.set,
+            yscrollcommand=scroll_y.set,
+        )
+
         scroll_x.pack(side=BOTTOM, fill=X)
         scroll_y.pack(side=RIGHT, fill=Y)
 
@@ -269,7 +266,6 @@ class Attendance:
         self.AttendanceReport.column("Attendance", width=100)
 
         self.AttendanceReport.pack(fill=BOTH, expand=1)
-
 
 
 if __name__ == "__main__":
