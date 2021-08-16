@@ -44,8 +44,12 @@ class Face_Recognition:
         )
         Btn1.place(x=570, y=710, width=400, height=40)
 
-        # Function for Face Recognition
 
+
+
+
+
+    # Function for Face Recognition
     def face_recog(self):
         def drawBoundary(img, classifier, sealeFactor, minNeigbours, color, text, clf):
 
@@ -83,15 +87,24 @@ class Face_Recognition:
                 course = cursor.fetchone()
                 course = "+".join(course)
 
+                query_department = "select Department from student where Student_ID=" + str(id)
+                cursor.execute(query_department)
+                department = cursor.fetchone()
+                department = "+".join(department)
+             
+
                 # confidence is work how long we know the face and also give a value
                 if confidence > 77:
-                    cv2.putText(img, f'Name: {name}', (x, y - 55),
+                    cv2.putText(img, f'Name: {name}', (x, y - 75),
                                 cv2.FONT_HERSHEY_COMPLEX, 0.8, (255, 255, 255), 3)
 
-                    cv2.putText(img, f'ID: {id}', (x, y - 30),
+                    cv2.putText(img, f'ID: {id}', (x, y - 55),
                                 cv2.FONT_HERSHEY_COMPLEX, 0.8, (255, 255, 255), 3)
 
-                    cv2.putText(img, f'Course: {course}', (x, y - 5),
+                    cv2.putText(img, f'Course: {course}', (x, y - 30),
+                                cv2.FONT_HERSHEY_COMPLEX, 0.8, (255, 255, 255), 3)
+
+                    cv2.putText(img, f'Department: {department}', (x, y - 5),
                                 cv2.FONT_HERSHEY_COMPLEX, 0.8, (255, 255, 255), 3)
 
                 else:
