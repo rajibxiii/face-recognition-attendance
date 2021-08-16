@@ -301,6 +301,8 @@ class Attendance:
 
         self.AttendanceReport.pack(fill=BOTH, expand=1)
 
+        self.AttendanceReport.bind('<ButtonRelease>', self.get_cursor_data)
+
 
 
 
@@ -363,6 +365,33 @@ class Attendance:
         except Exception as ex:
             messagebox.showerror("Error",f'Due to : {str(ex)} ',
                                  parent=self.root)
+
+
+
+
+    """"
+    function to fetch data in student data entry in ATTENDANCE window 
+    """
+    def get_cursor_data(self,event=''):
+        cursor_row=self.AttendanceReport.focus()
+        content = self.AttendanceReport.item(cursor_row)
+        store_rows = content['values']
+
+        self.var_attendance_id.set(store_rows[0])
+        self.var_attendance_name.set(store_rows[1])
+        self.var_attendance_course.set(store_rows[2])
+        self.var_attendance_dep.set(store_rows[3])
+        self.var_attendance_date.set(store_rows[4])
+        self.var_attendance_time.set(store_rows[5])
+        self.var_attendance_Status.set(store_rows[6])
+
+
+
+
+
+
+
+
 
 
 
