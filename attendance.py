@@ -19,11 +19,17 @@ class Attendance:
         root.resizable(0, 0)
         root.attributes("-alpha", 0.95)
 
-
-        # create variable cz need to show entry field data
-        self.var_attend_id = StringVar()
+        """
+        create variable cz need to show entry field data
+        """
+        self.var_attendance_id = StringVar()
         self.var_attendance_name = StringVar()
-        self.var_attend_id_dep = StringVar()
+        self.var_attendance_course  = StringVar()
+        self.var_attendance_dep  = StringVar()
+        self.var_attendance_date = StringVar()
+        self.var_attendance_time  = StringVar()
+        self.var_attendance_Status  = StringVar()
+
 
 
 
@@ -87,7 +93,7 @@ class Attendance:
         attendanceId_entry_field = ttk.Entry(
             insideLeftFrame,
             width=20,
-            textvariable= self.var_attend_id,
+            textvariable= self.var_attendance_id,
             font=("Calibri", 13),
         )
         attendanceId_entry_field.grid(row=0, column=1, padx=10, pady=5, sticky=W)
@@ -121,6 +127,7 @@ class Attendance:
         course_entry_field = ttk.Entry(
             insideLeftFrame,
             width=20,
+            textvariable=self.var_attendance_course,
             font=("Calibri", 13),
         )
         course_entry_field.grid(row=1, column=1, pady=8)
@@ -137,7 +144,7 @@ class Attendance:
         department_entry_field = ttk.Entry(
             insideLeftFrame,
             width=20,
-            textvariable=self.var_attend_id_dep,
+            textvariable=self.var_attendance_dep,
             font=("Calibri", 13),
         )
         department_entry_field.grid(row=1, column=3, pady=8)
@@ -146,6 +153,7 @@ class Attendance:
         date_label = Label(
             insideLeftFrame,
             text="Date:",
+
             font=("Calibri", 13),
             bg="white",
         )
@@ -154,6 +162,7 @@ class Attendance:
         date_entry_field = ttk.Entry(
             insideLeftFrame,
             width=20,
+            textvariable = self.var_attendance_date,
             font=("Calibri", 13),
         )
         date_entry_field.grid(row=2, column=1, pady=8)
@@ -170,6 +179,7 @@ class Attendance:
         time_entry_field = ttk.Entry(
             insideLeftFrame,
             width=20,
+            textvariable=self.var_attendance_time,
             font=("Calibri", 13),
         )
         time_entry_field.grid(row=2, column=3, pady=8)
@@ -183,7 +193,11 @@ class Attendance:
         attendance_label.grid(row=3, column=0)
 
         self.attend_status = ttk.Combobox(
-            insideLeftFrame, width=20, font=("Calibri"), state="readonly"
+            insideLeftFrame,
+            width=20,
+            textvariable=self.var_attendance_Status,
+            font=("Calibri"),
+            state="readonly"
         )
         self.attend_status["values"] = ("Status", "Present", "Absent")
         self.attend_status.grid(row=3, column=1, pady=8)
