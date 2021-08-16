@@ -6,6 +6,8 @@ import mysql.connector
 import cv2
 import os
 import numpy as np
+from time import strftime
+from datetime import datetime
 
 
 class Face_Recognition:
@@ -43,6 +45,17 @@ class Face_Recognition:
             fg="white",
         )
         Btn1.place(x=570, y=710, width=400, height=40)
+
+
+    # Taking attendance
+    def attendance_marking (self, name, id, course, department):
+        with open("attendance.csv", "r+", newline="\n") as att:
+            attDataList = att.readlines()
+            nameList = []
+
+            for line in attDataList:
+                entry == line.split((","))
+                nameList.append(entry[0])
 
 
 
