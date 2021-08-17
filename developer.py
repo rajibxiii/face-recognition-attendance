@@ -16,7 +16,7 @@ class Developer:
 
 
         # Background Image
-        imgBg = Image.open(r"images\About.png")
+        imgBg = Image.open(r"images\About.jpg")
         imgBg = imgBg.resize((1530, 790), Image.ANTIALIAS)
         self.PhoImgBg = ImageTk.PhotoImage(imgBg)  # set image
 
