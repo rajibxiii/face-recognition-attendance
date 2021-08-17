@@ -8,6 +8,7 @@ from performfacerecognition import Face_Recognition
 from attendance import Attendance
 from time import strftime
 from datetime import datetime
+from developer import Developer
 
 class FaceRecSys:
     def __init__(self, root):
@@ -172,17 +173,18 @@ class FaceRecSys:
         Btn6.place(x=700, y=610, width=130, height=30)
 
         # About Button
-        contactDeveloper = Image.open(r"images\exit.png")
+        contactDeveloper = Image.open(r"images\dev.jpg")
         contactDeveloper = contactDeveloper.resize((130, 130), Image.ANTIALIAS)
         self.PhoImgContBtn = ImageTk.PhotoImage(contactDeveloper)
 
-        Btn7 = Button(BgImg, image=self.PhoImgContBtn, cursor="hand2")
+        Btn7 = Button(BgImg, image=self.PhoImgContBtn, cursor="hand2", command=self.developer)
         Btn7.place(x=1000, y=510, width=130, height=130)
 
         Btn7 = Button(
             BgImg,
             text="ABOUT",
             cursor="hand2",
+            command=self.developer,
             font=("Calibri",12,"bold",),
             bg="black",
             fg="white",
@@ -213,6 +215,10 @@ class FaceRecSys:
     def attendanceData(self):
         self.attendance_window = Toplevel(self.root)
         self.app = Attendance(self.attendance_window)
+
+    def developer(self):
+        self.attendance_window = Toplevel(self.root)
+        self.app = Developer(self.attendance_window)
 
 
 if __name__ == "__main__":
