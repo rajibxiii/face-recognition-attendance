@@ -16,6 +16,15 @@ class Face_Recognition:
         self.root.geometry("1530x790+0+0")
         self.root.title("Face Recognition System")
 
+        
+        img_top = Image.open(r"images\colorBg.png")
+        img_top = img_top.resize((1530, 790), Image.ANTIALIAS)
+        self.PhoImgTop = ImageTk.PhotoImage(img_top)
+
+        left_frame_lable = Label(self.root, image=self.PhoImgTop)
+        left_frame_lable.place(x=0, y=0, width=1530, height=790)
+
+
 
         # Date And Time
         def currentTime ():
@@ -28,23 +37,17 @@ class Face_Recognition:
         currentTime ()
 
 
-
         titleLabel = Label(
-            self.root,
-            text="Face Recognition",
-            font=("Calibri Light", 30),
-            # bg="#E8F0F2",
+            text="FACE RECOGNITION",
+            font=(
+                "Calibri Light",
+                30,
+            ),
             bg="#A71D31",
             fg="white",
         )
-        titleLabel.place(x=0, y=0, width=1530, height=60)
 
-        img_top = Image.open(r"images\traindata.gif")
-        img_top = img_top.resize((1530, 700), Image.ANTIALIAS)
-        self.PhoImgTop = ImageTk.PhotoImage(img_top)
-
-        left_frame_lable = Label(self.root, image=self.PhoImgTop)
-        left_frame_lable.place(x=0, y=55, width=1530, height=700)
+        titleLabel.place(x=0, y=120, width=1530, height=50)
 
         # FACE RECOGNITION Button
         Btn1 = Button(

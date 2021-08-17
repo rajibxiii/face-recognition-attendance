@@ -19,6 +19,14 @@ class Traindata:
         root.resizable(0, 0)
         root.attributes('-alpha', 0.95)
 
+        
+        img_top = Image.open(r"images\colorBg.png")
+        img_top = img_top.resize((1530, 790), Image.ANTIALIAS)
+        self.PhoImgTop = ImageTk.PhotoImage(img_top)
+
+        left_frame_lable = Label(self.root, image=self.PhoImgTop)
+        left_frame_lable.place(x=0, y=0, width=1530, height=790)
+
 
         # Date And Time
         def currentTime ():
@@ -31,9 +39,7 @@ class Traindata:
         currentTime ()
 
 
-
         titleLabel = Label(
-            self.root,
             text="TRAIN DATA SET",
             font=(
                 "Calibri Light",
@@ -42,15 +48,8 @@ class Traindata:
             bg="#A71D31",
             fg="white",
         )
+
         titleLabel.place(x=0, y=120, width=1530, height=50)
-
-
-        img_top = Image.open(r"images\traindata.gif")
-        img_top = img_top.resize((1530, 790), Image.ANTIALIAS)
-        self.PhoImgTop = ImageTk.PhotoImage(img_top)
-
-        left_frame_lable = Label(self.root, image=self.PhoImgTop)
-        left_frame_lable.place(x=0, y=0, width=1530, height=790)
 
 
         # Train Data Button
