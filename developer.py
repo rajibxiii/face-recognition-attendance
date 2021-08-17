@@ -11,13 +11,17 @@ class Developer:
     def __init__(self, root):
         self.root = root
         self.root.geometry("1530x790+0+0")
-        self.root.title("DEVELOPED BY")
+        self.root.title("ABOUT US")
         root.resizable(0, 0)
-        root.attributes('-alpha', 0.95)
 
 
+        # Background Image
+        imgBg = Image.open(r"images\About.png")
+        imgBg = imgBg.resize((1530, 790), Image.ANTIALIAS)
+        self.PhoImgBg = ImageTk.PhotoImage(imgBg)  # set image
 
-
+        BgImg = Label(self.root, image=self.PhoImgBg)  # shows in window
+        BgImg.place(x=0, y=0, width=1530, height=790)  # place image
 
 
 if __name__ == "__main__":
