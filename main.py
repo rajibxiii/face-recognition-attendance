@@ -170,7 +170,7 @@ class FaceRecSys:
         )
         Btn6.place(x=700, y=610, width=130, height=30)
 
-        # ABout Button
+        # About Button
         contactDeveloper = Image.open(r"images\exit.png")
         contactDeveloper = contactDeveloper.resize((130, 130), Image.ANTIALIAS)
         self.PhoImgContBtn = ImageTk.PhotoImage(contactDeveloper)
@@ -180,7 +180,7 @@ class FaceRecSys:
 
         Btn7 = Button(
             BgImg,
-            text="QUIT",
+            text="ABOUT",
             cursor="hand2",
             font=("Calibri",12,"bold",),
             bg="black",
