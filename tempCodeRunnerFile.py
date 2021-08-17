@@ -1,7 +1,9 @@
-        # attendanceId_entry_field = ttk.Entry(
-        #     insideLefFrame,
-        #     textvariable=self.var_id,
-        #     width=20,
-        #     font=("Calibri", 13),
-        # )
-        # attendanceId_entry_field.grid(row=0, column=1, padx=10, pady=5, sticky=W)
+        # Date And Time
+        def currentTime ():
+            string = strftime('%H:%M:%S %p')
+            lbl.config(text=string)
+            lbl.after(1000, currentTime)
+
+        lbl = Label (font = ("Calibri Light", 40))
+        lbl.place(x=612, y=35, width=300, height=50)
+        currentTime ()

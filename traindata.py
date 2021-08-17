@@ -7,6 +7,8 @@ from fetchstudentdata import fetchdata
 import cv2
 import os
 import numpy as np
+from time import strftime
+from datetime import datetime
 
 
 class Traindata:
@@ -16,6 +18,17 @@ class Traindata:
         self.root.title("Face Recognition Student Attendance System")
         root.resizable(0, 0)
         root.attributes('-alpha', 0.95)
+
+
+        # Date And Time
+        def currentTime ():
+            string = strftime('%H:%M:%S %p')
+            lbl.config(text=string)
+            lbl.after(1000, currentTime)
+
+        lbl = Label (font = ("Calibri Light", 40))
+        lbl.place(x=612, y=35, width=300, height=50)
+        currentTime ()
 
 
         titleLabel = Label(
