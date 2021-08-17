@@ -97,7 +97,43 @@ class FaceRecSys:
         )
         Btn2.place(x=550, y=370, width=130, height=30)
 
- 
+        # Attendance Button
+        attendanceButton = Image.open(r"images\attendance.jpg")
+        attendanceButton = attendanceButton.resize((130, 130), Image.ANTIALIAS)
+        self.PhoImgAttendBtn = ImageTk.PhotoImage(attendanceButton)
+
+        Btn3 = Button(BgImg, image=self.PhoImgAttendBtn, cursor="hand2",command=self.attendanceData,)
+        Btn3.place(x=850, y=270, width=130, height=130)
+
+        Btn3 = Button(
+            BgImg,
+            text="ATTENDANCE",
+            command=self.attendanceData,
+            cursor="hand2",
+            font=("Calibri", 12,"bold"),
+            bg="#3F0D12",
+            fg="white",
+        )
+        Btn3.place(x=850, y=370, width=130, height=30)
+
+        # Help desk button
+        helpDskButton = Image.open(r"images\help.jpg")
+        helpDskButton = helpDskButton.resize((130, 130), Image.ANTIALIAS)
+        self.PhoImgHelpdskBtn = ImageTk.PhotoImage(helpDskButton)
+
+        Btn4 = Button(BgImg, image=self.PhoImgHelpdskBtn, cursor="hand2")
+        Btn4.place(x=1150, y=270, width=130, height=130)
+
+        Btn4 = Button(
+            BgImg,
+            text="HELP DESK",
+            cursor="hand2",
+            font=("Calibri", 12,"bold",),
+            bg="#3F0D12",
+            fg="white",
+        )
+        Btn4.place(x=1150, y=370, width=130, height=30)
+
 
 
     # Function for opening images
