@@ -53,7 +53,7 @@ class Traindata:
 
 
         # Train Data Button
-        trainButton = Image.open(r"images\attendance.jpg")
+        trainButton = Image.open(r"images\dataT.jpg")
         trainButton = trainButton.resize((270, 270), Image.ANTIALIAS)
         self.PhoImgTrainButton = ImageTk.PhotoImage(trainButton)
 

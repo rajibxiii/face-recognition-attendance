@@ -51,7 +51,7 @@ class Face_Recognition:
 
         # FACE RECOGNITION Button
 
-        trainButton = Image.open(r"images\attendance.jpg")
+        trainButton = Image.open(r"images\faceR.jpg")
         trainButton = trainButton.resize((270, 270), Image.ANTIALIAS)
         self.PhoImgTrainButton = ImageTk.PhotoImage(trainButton)
 
