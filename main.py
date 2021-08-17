@@ -25,6 +25,18 @@ class FaceRecSys:
         BgImg = Label(self.root, image=self.PhoImgBg)  # shows in window
         BgImg.place(x=0, y=0, width=1530, height=790)  # place image
 
+
+        # Date And Time
+        def currentTime ():
+            string = strftime('%H:%M:%S %p')
+            lbl.config(text=string)
+            lbl.after(1000, currentTime)
+
+        lbl = Label (font = ("Calibri Light", 40))
+        lbl.place(x=612, y=35, width=300, height=50)
+        currentTime ()
+
+
         titleLabel = Label(
             text="STUDENT ATTENDANCE SYSTEM",
             font=(
@@ -36,18 +48,6 @@ class FaceRecSys:
         )
 
         titleLabel.place(x=0, y=120, width=1530, height=50)
-
-
-        # Date And Time
-        def currentTime ():
-            string = strftime('%H:%M:%S %p')
-            lbl.config(text=string)
-            lbl.after(1000, currentTime)
-
-        lbl = Label (font = ("Calibri", 13), background = "white", foreground = "blue")
-        lbl.place(x=0, y=35, width=110, height=50)
-        currentTime ()
-
 
         # Making  buttons for 'Student Details', 'Face Detector', 'Train Data', 'Attendance', 'Photos', 'Exit'
 
