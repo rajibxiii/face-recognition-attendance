@@ -45,13 +45,14 @@ class Attendance:
         BgImg = Label(self.root, image=self.PhoImgBg)  # shows in window
         BgImg.place(x=0, y=0, width=1530, height=790)  # place image
 
+
         # Date And Time
         def currentTime ():
             string = strftime('%d.%m.%Y ∙ %I:%M:%S %p')
             lbl.config(text=string)
             lbl.after(1000, currentTime)
 
-        lbl = Label (font = ("Calibri Light", 30))
+        lbl = Label (font = ("Calibri Light", 30), background="#3F0D12", foreground="white")
         lbl.place(x=520, y=42, width=500, height=40)
         currentTime ()
 
@@ -63,8 +64,8 @@ class Attendance:
                 "Calibri Light",
                 30,
             ),
-            bg="#E8F0F2",
-            fg="black",
+            bg="#A71D31",
+            fg="white",
         )
         titleLabel.place(x=0, y=120, width=1530, height=50)
 
