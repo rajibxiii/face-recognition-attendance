@@ -14,7 +14,7 @@ class FaceRecSys:
     def __init__(self, root):
         self.root = root
         self.root.geometry("1530x790+0+0")
-        self.root.title("Automated student attendance system based on face recognition")
+        self.root.title("Face Recognition Student Attendance System")
         root.resizable(0, 0)
         root.attributes('-alpha', 0.95)
 
@@ -73,13 +73,13 @@ class FaceRecSys:
                 12,
                 "bold",
             ),
-            bg="black",
+            bg="#3F0D12",
             fg="white",
         )
         Btn1.place(x=250, y=370, width=130, height=30)
 
         # Face Detect Button
-        faceDetectButton = Image.open(r"images\facedetect.PNG")
+        faceDetectButton = Image.open(r"images\facedetect.jpg")
         faceDetectButton = faceDetectButton.resize((130, 130), Image.ANTIALIAS)
         self.PhoImgFacDetBtn = ImageTk.PhotoImage(faceDetectButton)
 
@@ -92,104 +92,12 @@ class FaceRecSys:
             cursor="hand2",
             command=self.facedata,
             font=("Calibri",12,"bold"),
-            bg="black",
+            bg="#3F0D12",
             fg="white",
         )
         Btn2.place(x=550, y=370, width=130, height=30)
 
-        # Attendance Button
-        attendanceButton = Image.open(r"images\attendance1.PNG")
-        attendanceButton = attendanceButton.resize((130, 130), Image.ANTIALIAS)
-        self.PhoImgAttendBtn = ImageTk.PhotoImage(attendanceButton)
-
-        Btn3 = Button(BgImg, image=self.PhoImgAttendBtn, cursor="hand2",command=self.attendanceData,)
-        Btn3.place(x=850, y=270, width=130, height=130)
-
-        Btn3 = Button(
-            BgImg,
-            text="ATTENDANCE",
-            command=self.attendanceData,
-            cursor="hand2",
-            font=("Calibri", 12,"bold"),
-            bg="black",
-            fg="white",
-        )
-        Btn3.place(x=850, y=370, width=130, height=30)
-
-        # Help desk button
-        helpDskButton = Image.open(r"images\helpdesk.PNG")
-        helpDskButton = helpDskButton.resize((130, 130), Image.ANTIALIAS)
-        self.PhoImgHelpdskBtn = ImageTk.PhotoImage(helpDskButton)
-
-        Btn4 = Button(BgImg, image=self.PhoImgHelpdskBtn, cursor="hand2")
-        Btn4.place(x=1150, y=270, width=130, height=130)
-
-        Btn4 = Button(
-            BgImg,
-            text="HELP DESK",
-            cursor="hand2",
-            font=("Calibri", 12,"bold",),
-            bg="black",
-            fg="white",
-        )
-        Btn4.place(x=1150, y=370, width=130, height=30)
-
-        # Train data Button
-        trainFaceButton = Image.open(r"images\train data.PNG")
-        trainFaceButton = trainFaceButton.resize((130, 130), Image.ANTIALIAS)
-        self.PhoImgTrainFacBtn = ImageTk.PhotoImage(trainFaceButton)
-
-        Btn5 = Button(BgImg, image=self.PhoImgTrainFacBtn, cursor="hand2", command=self.train_dataset)
-        Btn5.place(x=400, y=510, width=130, height=130)
-
-        Btn5 = Button(
-            BgImg,
-            text="TRAIN DATA",
-            cursor="hand2",
-            command=self.train_dataset,
-            font=("Calibri",12,"bold"),
-            bg="black",
-            fg="white",
-        )
-        Btn5.place(x=400, y=610, width=130, height=30)
-
-        # Photos button
-        photosButton = Image.open(r"images\gallery.png")
-        photosButton = photosButton.resize((130, 130), Image.ANTIALIAS)
-        self.PhoImgPhoBtn = ImageTk.PhotoImage(photosButton)
-
-        Btn6 = Button(BgImg, image=self.PhoImgPhoBtn, cursor="hand2", command=self.open_img)
-        Btn6.place(x=700, y=510, width=130, height=130)
-
-        Btn6 = Button(
-            BgImg,
-            text="PHOTOS",
-            cursor="hand2",
-            command=self.open_img,
-            font=("Calibri",12,"bold"),
-            bg="black",
-            fg="white",
-        )
-        Btn6.place(x=700, y=610, width=130, height=30)
-
-        # About Button
-        contactDeveloper = Image.open(r"images\dev.jpg")
-        contactDeveloper = contactDeveloper.resize((130, 130), Image.ANTIALIAS)
-        self.PhoImgContBtn = ImageTk.PhotoImage(contactDeveloper)
-
-        Btn7 = Button(BgImg, image=self.PhoImgContBtn, cursor="hand2", command=self.developer)
-        Btn7.place(x=1000, y=510, width=130, height=130)
-
-        Btn7 = Button(
-            BgImg,
-            text="ABOUT",
-            cursor="hand2",
-            command=self.developer,
-            font=("Calibri",12,"bold",),
-            bg="black",
-            fg="white",
-        )
-        Btn7.place(x=1000, y=610, width=130, height=30)
+ 
 
 
     # Function for opening images
