@@ -47,12 +47,12 @@ class Attendance:
 
         # Date And Time
         def currentTime ():
-            string = strftime('%H:%M:%S %p')
+            string = strftime('%d.%m.%Y ∙ %I:%M:%S %p')
             lbl.config(text=string)
             lbl.after(1000, currentTime)
 
-        lbl = Label (font = ("Calibri Light", 40))
-        lbl.place(x=612, y=35, width=300, height=50)
+        lbl = Label (font = ("Calibri Light", 30))
+        lbl.place(x=520, y=42, width=500, height=40)
         currentTime ()
 
 
@@ -218,7 +218,7 @@ class Attendance:
 
         # button frames
         button_frame = Frame(insideLeftFrame, bd=2, relief=RIDGE, bg="white")
-        button_frame.place(x=0, y=300, width=715, height=35)
+        button_frame.place(x=0, y=330, width=715, height=35)
 
         import_btn = Button(
             button_frame,
