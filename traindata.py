@@ -53,17 +53,25 @@ class Traindata:
 
 
         # Train Data Button
+        trainButton = Image.open(r"images\attendance.jpg")
+        trainButton = trainButton.resize((270, 270), Image.ANTIALIAS)
+        self.PhoImgTrainButton = ImageTk.PhotoImage(trainButton)
+
+        Btn1 = Button(self.root, image=self.PhoImgTrainButton, cursor="hand2", command=self.trainClassifier)
+        Btn1.place(x=632, y=300, width=270, height=270)
+
+        # Train Data Button
         Btn1 = Button(
             self.root,
             text="TRAIN DATA",
             command=self.trainClassifier,
             cursor="hand2",
-            font=("Calibri", 30,"bold"),
+            font=("Calibri", 20),
             bg="#3F0D12",
             fg="white",
         )
-        Btn1.place(x=570, y=740, width=400, height=40)
-        # Btn1.place(x=0, y=380, width=1530, height=60)
+        Btn1.place(x=632, y=565, width=270, height=60)   
+
 
     
     def trainClassifier(self):
