@@ -6,6 +6,8 @@ import os
 from traindata import Traindata
 from performfacerecognition import Face_Recognition
 from attendance import Attendance
+from time import strftime
+from datetime import datetime
 
 class FaceRecSys:
     def __init__(self, root):
@@ -34,6 +36,18 @@ class FaceRecSys:
         )
 
         titleLabel.place(x=0, y=120, width=1530, height=50)
+
+
+        # Date And Time
+        def currentTime ():
+            string = strftime('%H:%M:%S %p')
+            lbl.config(text=string)
+            lbl.after(1000, currentTime)
+
+        lbl = Label (font = ("Calibri", 13), background = "white", foreground = "blue")
+        lbl.place(x=0, y=35, width=110, height=50)
+        currentTime ()
+
 
         # Making  buttons for 'Student Details', 'Face Detector', 'Train Data', 'Attendance', 'Photos', 'Exit'
 
@@ -156,7 +170,7 @@ class FaceRecSys:
         )
         Btn6.place(x=700, y=610, width=130, height=30)
 
-        # Quit Button
+        # ABout Button
         contactDeveloper = Image.open(r"images\exit.png")
         contactDeveloper = contactDeveloper.resize((130, 130), Image.ANTIALIAS)
         self.PhoImgContBtn = ImageTk.PhotoImage(contactDeveloper)
