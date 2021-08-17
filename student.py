@@ -73,7 +73,7 @@ class Student:
             bd=3,
             bg="white",
             relief=RIDGE,
-            text="STUDENT DETAILS",
+            text="STUDENT DETAILS FIELDS",
             font=("Calibri", 12),
         )
         left_frame.place(x=15, y=10, width=740, height=565)
@@ -498,7 +498,7 @@ class Student:
             bd=3,
             bg="white",
             relief=RIDGE,
-            text="STUDENT DETAILS",
+            text="SAVED DETAILS",
             font=("Calibri", 12),
         )
         right_frame.place(x=760, y=10, width=730, height=565)
