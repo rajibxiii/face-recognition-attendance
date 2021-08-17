@@ -60,7 +60,6 @@ class Traindata:
         Btn = Button(self.root, image=self.PhoImgTrainButton, cursor="hand2", command=self.trainClassifier)
         Btn.place(x=632, y=300, width=270, height=270)
 
-        # Train Data Button
         Btn = Button(
             self.root,
             text="TRAIN DATA",

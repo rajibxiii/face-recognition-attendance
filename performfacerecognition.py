@@ -50,16 +50,25 @@ class Face_Recognition:
         titleLabel.place(x=0, y=120, width=1530, height=50)
 
         # FACE RECOGNITION Button
-        Btn1 = Button(
+
+        trainButton = Image.open(r"images\attendance.jpg")
+        trainButton = trainButton.resize((270, 270), Image.ANTIALIAS)
+        self.PhoImgTrainButton = ImageTk.PhotoImage(trainButton)
+
+        Btn = Button(self.root, image=self.PhoImgTrainButton, cursor="hand2", command=self.face_recog)
+        Btn.place(x=632, y=300, width=270, height=270)
+
+        Btn = Button(
             self.root,
             text="FACE RECOGNITION",
             command=self.face_recog,
             cursor="hand2",
-            font=("Calibri", 30, "bold"),
+            font=("Calibri", 20),
             bg="#3F0D12",
             fg="white",
         )
-        Btn1.place(x=570, y=710, width=400, height=40)
+        Btn.place(x=632, y=565, width=270, height=60)   
+
 
     # Taking attendance
     def attendance_marking(self, name, id, course, department):
