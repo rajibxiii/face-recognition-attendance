@@ -40,10 +40,7 @@ class Face_Recognition:
 
         titleLabel = Label(
             text="FACE RECOGNITION",
-            font=(
-                "Calibri Light",
-                30,
-            ),
+            font=("Calibri Light",30),
             bg="#A71D31",
             fg="white",
         )
@@ -78,7 +75,7 @@ class Face_Recognition:
             nameList = []
 
             for line in attDataList:
-                entry == line.split((","))
+                entry = line.split((","))
                 nameList.append(entry[0])
 
             if (
@@ -116,32 +113,31 @@ class Face_Recognition:
                     password="p2JaZ6@k",
                     database="face_recognition",
                 )
+
+
                 # cursor()=> this is an inbuilt function and used here to execute mysql query
                 cursor = connection.cursor()
 
-                # query_name = "select Name from student where Student_ID="+str(id)
-                cursor.execute("select Name from student where Student_ID ="+str(id))
+                query_name = "select Name from student where Student_ID="+str(id)
+                cursor.execute(query_name)
                 name = cursor.fetchone()
                 name = "+".join(name)
-                # query_id = "select Student_ID from student where Student_ID="+str(id)
 
-                # cursor.execute("select Student_ID from student where Student_ID ="+str(id))
-                # id_no = cursor.fetchone()
-                # id_no = "+".join(id_no)
-
-                # query_course = "select Course from student where Student_ID="+str(id)
-                cursor.execute("select Course from student where Student_ID ="+str(id))
-                course = cursor.fetchone()
-                course = "+".join(course)
-
-                cursor.execute("select Student_ID from student where Student_ID ="+str(id))
+                query_id = "select Student_ID from student where Student_ID="+str(id)
+                cursor.execute(query_id)
                 id_no = cursor.fetchone()
                 id_no = "+".join(id_no)
 
+                query_course = "select Course from student where Student_ID="+str(id)
+                cursor.execute(query_course)
+                course = cursor.fetchone()
+                course = "+".join(course)
 
-                # query_department = "select Department from student where Student_ID="+str(id)
 
-                cursor.execute("select Department from student where Student_ID ="+str(id))
+
+
+                query_department = "select Department from student where Student_ID="+str(id)
+                cursor.execute(query_department)
                 department = cursor.fetchone()
                 department = "+".join(department)
 
@@ -151,10 +147,7 @@ class Face_Recognition:
                     cv2.putText(img, f"Name: {name}",(x, y - 75),
                         cv2.FONT_HERSHEY_COMPLEX,.5,(255, 0, 25),1)
 
-                    # cv2.putText(img,f"ID: {id_no}",(x, y - 50),cv2.FONT_HERSHEY_COMPLEX,
-                    #             1,(255, 0, 25),1,)
-
-                    cv2.putText(img,f"ID: {id_no}",(x, y - 45),cv2.FONT_HERSHEY_COMPLEX,
+                    cv2.putText(img,f"ID: {id_no}",(x, y - 50),cv2.FONT_HERSHEY_COMPLEX,
                                 1,(255, 0, 25),1,)
 
                     cv2.putText(img,f"Course: {course}",(x, y - 25),
