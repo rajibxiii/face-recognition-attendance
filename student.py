@@ -3,7 +3,7 @@ from tkinter import ttk
 from PIL import Image, ImageTk
 from tkinter import messagebox
 import mysql.connector
-# from fetchstudentdata import fetchdata
+from fetchstudentdata import fetchdata
 import cv2
 from time import strftime
 from datetime import datetime
@@ -641,8 +641,8 @@ class Student:
         self.student_table.column("photo", width=150)
 
         self.student_table.pack(fill=BOTH, expand=1)
-        # fetchdata.FetchStudentData(self)
-        self.FetchStudentData()
+        fetchdata.FetchStudentData(self)
+        # self.FetchStudentData()
         self.student_table.bind("<ButtonRelease>", self.FetchCursorDataInEntry)
 
     # function for add student data
@@ -689,7 +689,7 @@ class Student:
 
                 connection.commit()
                 # fetchdata.FetchStudentData(self)
-                self.FetchStudentData()
+                fetchdata.FetchStudentData(self)
                 connection.close()
                 messagebox.showinfo(
                     "Success", "Student details added successfully", parent=self.root
@@ -699,24 +699,24 @@ class Student:
 
         # fetch student data from mySql database (function)
 
-    def FetchStudentData(self):
-        connection = mysql.connector.connect(host='localhost', username='cse299',
-                                             password="p2JaZ6@k",
-                                             database="face_recognition")
-        # cursor()=> this is an inbuilt function and used here to execute mysql query
-        query = "select * from student"
-        cursor = connection.cursor()
-        cursor.execute(query)
-        # all student data is fetch in fetch_std_data variable
-        std_data = cursor.fetchall()
-
-        if len(std_data) != 0:
-            self.student_table.delete(*self.student_table.get_children())
-            for data in std_data:
-                self.student_table.insert("", END, values=data)
-
-            connection.commit()  # connection.commit() is used so that data can add continously
-        connection.close()
+    # def FetchStudentData(self):
+    #     connection = mysql.connector.connect(host='localhost', username='cse299',
+    #                                          password="p2JaZ6@k",
+    #                                          database="face_recognition")
+    #     # cursor()=> this is an inbuilt function and used here to execute mysql query
+    #     query = "select * from student"
+    #     cursor = connection.cursor()
+    #     cursor.execute(query)
+    #     # all student data is fetch in fetch_std_data variable
+    #     std_data = cursor.fetchall()
+    #
+    #     if len(std_data) != 0:
+    #         self.student_table.delete(*self.student_table.get_children())
+    #         for data in std_data:
+    #             self.student_table.insert("", END, values=data)
+    #
+    #         connection.commit()  # connection.commit() is used so that data can add continously
+    #     connection.close()
 
 
     """
@@ -801,7 +801,7 @@ class Student:
                     parent=self.root,
                 )
                 connection.commit()
-                self.FetchStudentData()
+                fetchdata.FetchStudentData(self)
                 connection.close()
 
             except Exception as es:

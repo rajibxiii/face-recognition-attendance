@@ -84,7 +84,7 @@ class Face_Recognition:
                 and (department not in nameList)
             ):
                 now = datetime.datetime.now()
-                d1 = now.strftime("%d-%m-%Y")
+                d1 = now.strftime("%d.%m.%Y")
                 dtString = now.strftime("%H:%M:%S")
                 att.writelines(
                     f"\n{id},{name},{course},{department},{dtString},{d1},Present"
@@ -123,10 +123,10 @@ class Face_Recognition:
                 name = cursor.fetchone()
                 name = "+".join(name)
 
-                query_id = "select Student_ID from student where Student_ID="+str(id)
-                cursor.execute(query_id)
-                id_no = cursor.fetchone()
-                id_no = "+".join(id_no)
+                # query_id = "select Student_ID from student where Student_ID="+str(id)
+                # cursor.execute(query_id)
+                # id_no = cursor.fetchone()
+                # id_no = "+".join(id_no)
 
                 query_course = "select Course from student where Student_ID="+str(id)
                 cursor.execute(query_course)
@@ -147,8 +147,8 @@ class Face_Recognition:
                     cv2.putText(img, f"Name: {name}",(x, y - 75),
                         cv2.FONT_HERSHEY_COMPLEX,.5,(255, 0, 25),1)
 
-                    cv2.putText(img,f"ID: {id_no}",(x, y - 50),cv2.FONT_HERSHEY_COMPLEX,
-                                1,(255, 0, 25),1,)
+                    # cv2.putText(img,f"ID: {id_no}",(x, y - 50),cv2.FONT_HERSHEY_COMPLEX,
+                    #             1,(255, 0, 25),1,)
 
                     cv2.putText(img,f"Course: {course}",(x, y - 25),
                                 cv2.FONT_HERSHEY_COMPLEX,.5,(255, 0, 25),1)
