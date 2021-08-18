@@ -54,7 +54,7 @@ class Face_Recognition:
         self.PhoImgTrainButton = ImageTk.PhotoImage(trainButton)
 
         Btn = Button(self.root, image=self.PhoImgTrainButton, cursor="hand2", command=self.face_recog)
-        Btn.place(x=632, y=300, width=270, height=270)
+        Btn.place(x=633, y=300, width=270, height=260)
 
         Btn = Button(
             self.root,
@@ -65,7 +65,7 @@ class Face_Recognition:
             bg="#3F0D12",
             fg="white",
         )
-        Btn.place(x=632, y=565, width=270, height=60)   
+        Btn.place(x=633, y=558, width=270, height=50)
 
 
     # Taking attendance
@@ -97,7 +97,7 @@ class Face_Recognition:
             # convert image in gray scale
             gray_img = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
 
-            # features variable is used to take the features from classifire
+            # features variable is used to take the features from classifier
             features = classifier.detectMultiScale(gray_img, sealeFactor, minNeigbours)
             coord = []
 
