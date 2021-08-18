@@ -670,6 +670,7 @@ class Student:
                 query = "insert into student values(%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)"
                 make_cursor.execute(
                     query,
+
                     (
                         self.var_dep.get(),
                         self.var_course.get(),

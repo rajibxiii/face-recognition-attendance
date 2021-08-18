@@ -10,6 +10,7 @@ from time import strftime
 from datetime import datetime
 
 
+
 class Face_Recognition:
     def __init__(self, root):
         self.root = root
@@ -107,92 +108,65 @@ class Face_Recognition:
                 # create a rectangle
                 cv2.rectangle(img, (x, y), (x + width, y + height), (0, 255, 0), 3)
                 id, predict = clf.predict(gray_img[y : y + height, x : x + width])
-                confidence = int((100 * (1 - predict / 300)))
+                print(id)
+                confidence = int((100*(1 - predict / 300)))
                 connection = mysql.connector.connect(
                     host="localhost",
                     username="cse299",
                     password="p2JaZ6@k",
                     database="face_recognition",
                 )
-
                 # cursor()=> this is an inbuilt function and used here to execute mysql query
                 cursor = connection.cursor()
 
-                query_name = "select Name from student where Student_ID=" + str(id)
-                cursor.execute(query_name)
+                # query_name = "select Name from student where Student_ID="+str(id)
+                cursor.execute("select Name from student where Student_ID ="+str(id))
                 name = cursor.fetchone()
                 name = "+".join(name)
+                # query_id = "select Student_ID from student where Student_ID="+str(id)
 
-                query_id = "select Student_ID from student where Student_ID=" + str(id)
-                cursor.execute(query_id)
-                id = cursor.fetchone()
-                id = "+".join(id)
+                cursor.execute("select Student_ID from student where Student_ID ="+str(id))
+                id_no = cursor.fetchone()
+                id_no = "+".join(id_no)
 
-                query_course = "select Course from student where Student_ID=" + str(id)
-                cursor.execute(query_course)
+                # query_course = "select Course from student where Student_ID="+str(id)
+                cursor.execute("select Course from student where Student_ID ="+str(id))
                 course = cursor.fetchone()
                 course = "+".join(course)
 
-                query_department = (
-                    "select Department from student where Student_ID=" + str(id)
-                )
-                cursor.execute(query_department)
+
+                # query_department = "select Department from student where Student_ID="+str(id)
+
+                cursor.execute("select Department from student where Student_ID ="+str(id))
                 department = cursor.fetchone()
                 department = "+".join(department)
 
                 # confidence is work how long we know the face and also give a value
-                if confidence > 77:
+                if confidence > 75:
                     cv2.putText(img, f"Name: {name}",(x, y - 75),
-                        cv2.FONT_HERSHEY_COMPLEX,0.8,(255, 255, 255),3,
-                    )
+                        cv2.FONT_HERSHEY_COMPLEX,.5,(255, 0, 25),1)
 
-                    cv2.putText(img,f"ID: {id}",(x, y - 55),cv2.FONT_HERSHEY_COMPLEX,
-                                0.8,(255, 255, 255),3,
-                    )
+                    cv2.putText(img,f"ID: {id_no}",(x, y - 50),cv2.FONT_HERSHEY_COMPLEX,
+                                1,(255, 0, 25),1,)
 
-                    cv2.putText(img,f"Course: {course}",(x, y - 30),
-                                cv2.FONT_HERSHEY_COMPLEX,0.8,(255, 255, 255),3,
-                    )
+                    cv2.putText(img,f"Course: {course}",(x, y - 25),
+                                cv2.FONT_HERSHEY_COMPLEX,.5,(255, 0, 25),1)
 
                     cv2.putText(img,f"Department: {department}",(x, y - 5),
-                                cv2.FONT_HERSHEY_COMPLEX,0.8,(255, 255, 255),3,
-                    )
+                                cv2.FONT_HERSHEY_COMPLEX,.5,(255, 0, 25),1)
 
-                    self.attendance_marking(id, name, course, department)
+                    # self.attendance_marking( name,id, course, department)
 
                 else:
                     cv2.rectangle(img, (x, y), (x + width, y + height), (0, 0, 255), 3)
-                    cv2.putText(img,"Unknown person unable to detect",(x, y - 5),
-                        cv2.FONT_HERSHEY_COMPLEX,0.8, (255, 255, 255), 3,
-                    )
+                    cv2.putText(img,"Unknown person ",(x, y - 5),
+                        cv2.FONT_HERSHEY_COMPLEX,0.5, (255, 0, 25), 1)
 
-                coord = [x, y, width, height]
+                coord = [x, y, width, y]
 
             return coord
 
-        def Recognize(img, clf, faceCascade):
-            coord = drawBoundary(
-                img, faceCascade, 1.1, 10, (255, 25, 2555), "Face", clf
-            )
-            return img
 
-        faceCascade = cv2.CascadeClassifier("haarcascade_frontalface_default.xml")
-        clf = cv2.face.LBPHFaceRecognizer_create()
-        clf.read("classifier.xml")
-
-        video_cap = cv2.VideoCapture(0)
-
-        while True:
-            ret, img = video_cap.read()
-            img = Recognize(img, clf, faceCascade)
-            cv2.imshow("Welcome to Face Recognition", img)
-
-            if cv2.waitKey(1) == 13:
-                break
-
-        video_cap.release()
-
-        cv2.destroyAllWindows()
 
 
 if __name__ == "__main__":
