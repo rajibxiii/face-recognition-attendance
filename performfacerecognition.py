@@ -7,7 +7,7 @@ import cv2
 import os
 import numpy as np
 from time import strftime
-from datetime import datetime
+import datetime
 
 
 
@@ -84,7 +84,7 @@ class Face_Recognition:
                 and (department not in nameList)
             ):
                 now = datetime.datetime.now()
-                d1 = now.strftime("%d.%m.%Y")
+                d1 = now.strftime("%d-%m-%Y")
                 dtString = now.strftime("%H:%M:%S")
                 att.writelines(
                     f"\n{id},{name},{course},{department},{dtString},{d1},Present"
