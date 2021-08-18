@@ -141,6 +141,34 @@ class Face_Recognition:
                 department = cursor.fetchone()
                 department = "+".join(department)
 
+                #check the problem to detact the facce and make ractangle
+                faceCascade = cv2.CascadeClassifier("haarcascade_frontalface_default.xml")
+                clf = cv2.face.LBPHFaceRecognizer_create()
+                clf.read("classifier.xml")
+
+                video_cap = cv2.VideoCapture(0)
+                print (video_cap)
+
+                while True:
+                    ret, img = video_cap.read()
+                    print(ret)
+                    print(img)
+                    img = Recognize(img, clf, faceCascade)
+                    print(img)
+                    cv2.imshow("Face", img)
+
+                    if cv2.waitKey(1) == 13:
+                        break
+                video_cap.release()
+                cv2.destroyAllWindows()
+
+
+                #============================ =======================
+
+
+
+
+
                 # confidence is work how long we know the face and also give a value
                 if confidence > 75:
                     cv2.putText(img, f"Name: {name}",(x, y - 75),
