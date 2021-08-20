@@ -24,7 +24,9 @@ class Face_Recognition:
 
         left_frame_lable = Label(self.root, image=self.PhoImgTop)
         left_frame_lable.place(x=0, y=0, width=1530, height=790)
-        
+
+
+
 
         # Date And Time
         def currentTime ():
@@ -114,28 +116,25 @@ class Face_Recognition:
                 )
 
 
-                # cursor()=> this is an inbuilt function and used here to execute mysql query
+                #cursor()= this is an inbuilt function and used here to execute mysql query
                 cursor = connection.cursor()
 
-                query_name = "select Name from student where Student_ID="+str(id)
-                cursor.execute(query_name)
+                cursor.execute("SELECT Name FROM student where Student_ID="+str(id))
                 name = cursor.fetchone()
-                name = "+".join(name)
+               # name = "+".join(name)
 
-                query_id = "select Student_ID from student where Student_ID="+str(id)
+                query_id = "SELECT Student_ID FROM student where Student_ID="+str(id)
                 cursor.execute(query_id)
                 id_no = cursor.fetchone()
-                id_no = "+".join(id_no)
+              #  id_no = "+".join(id_no)
 
-                query_course = "select Course from student where Student_ID="+str(id)
-                cursor.execute(query_course)
+                cursor.execute("SELECT Course FROM student where Student_ID="+str(id))
                 course = cursor.fetchone()
-                course = "+".join(course)
+              #  course = "+".join(course)
 
-                query_department = "select Department from student where Student_ID="+str(id)
-                cursor.execute(query_department)
+                cursor.execute("SELECT Department FROM student where Student_ID="+str(id))
                 department = cursor.fetchone()
-                department = "+".join(department)
+              #  department = "+".join(department)
 
 
                 # confidence is work how long we know the face and also give a value
