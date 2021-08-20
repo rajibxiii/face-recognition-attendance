@@ -67,10 +67,13 @@ class FaceRecSys:
             text="STUDENT DETAILS",
             command=self.student_details,
             cursor="hand2",
-            font=( "Calibri", 12,"bold"),
+            font=("Calibri",
+                12,
+                "bold"),
             bg="#3F0D12",
             fg="white",
         )
+        
         Btn1.place(x=250, y=370, width=130, height=30)
 
         # Face Detect Button

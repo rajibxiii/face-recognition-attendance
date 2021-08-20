@@ -7,7 +7,7 @@ import cv2
 import os
 import numpy as np
 from time import strftime
-import datetime
+from datetime import datetime
 
 
 
