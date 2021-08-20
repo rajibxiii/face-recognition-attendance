@@ -8,6 +8,7 @@ import os
 import numpy as np
 from time import strftime
 import datetime
+from pymysql import connect, cursors
 
 
 
@@ -99,19 +100,18 @@ class Face_Recognition:
 
                 #cursor()= this is an inbuilt function and used here to execute mysql query
                 cursor = connection.cursor()
+                #cursor.execute("SELECT * FROM student")
 
-                cursor.execute("SELECT Name FROM student where Student_ID="+str(id))
+                cursor.execute("SELECT Name FROM student where Student_ID="+str(2222222))
                 n = cursor.fetchone()
-                while n is not None:
-                    n = cursor.fetchone()
 
-                cursor.execute("SELECT Student_ID FROM student where Student_ID="+str(id))
+                cursor.execute("SELECT Student_ID FROM student where Student_ID="+str(2222222))
                 i = cursor.fetchone()
 
-                cursor.execute("SELECT Course FROM student where Student_ID="+str(id))
+                cursor.execute("SELECT Course FROM student where Student_ID="+str(2222222))
                 c = cursor.fetchone()
 
-                cursor.execute("SELECT Department FROM student where Student_ID="+str(id))       
+                cursor.execute("SELECT Department FROM student where Student_ID="+str(2222222))       
                 d = cursor.fetchone()
 
 
