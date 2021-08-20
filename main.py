@@ -4,7 +4,7 @@ from PIL import Image, ImageTk
 from student import Student
 import os
 from traindata import Traindata
-from performfacerecognition import Face_Recognition
+from faceRecognitionProcess import Face_Recognition
 from attendance import Attendance
 from time import strftime
 from datetime import datetime
@@ -73,7 +73,7 @@ class FaceRecSys:
             bg="#3F0D12",
             fg="white",
         )
-        
+
         Btn1.place(x=250, y=370, width=130, height=30)
 
         # Face Detect Button

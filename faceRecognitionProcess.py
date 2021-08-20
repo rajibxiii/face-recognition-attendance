@@ -71,39 +71,15 @@ class Face_Recognition:
 
 
 
-
-    # Taking attendance
-    def attendance_marking(self, name, id, course, department):
-        with open("attendance.csv", "r+", newline="\n") as att:
-            attDataList = att.readlines()
-            nameList = []
-
-            for line in attDataList:
-                entry = line.split((","))
-                nameList.append(entry[0])
-
-            if (
-                ((id not in nameList) and (name not in nameList))
-                and (course not in nameList)
-                and (department not in nameList)
-            ):
-                now = datetime.datetime.now()
-                d1 = now.strftime("%d.%m.%Y")
-                dtString = now.strftime("%H:%M:%S")
-                att.writelines(
-                    f"\n{id},{name},{course},{department},{dtString},{d1},Present"
-                )
-
-
     # Function for Face Recognition
     def face_recog(self):
-        def drawBoundary(img, classifier, scalefactor, minNeighbors, color, text, clf):
+        def drawBoundary(img, classifier, scaleFactor, minNeighbors, color, text, clf):
 
             # convert image in gray scale
             gray_img = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
 
             # features variable is used to take the features from classifier
-            features = classifier.detectMultiScale(gray_img, scalefactor, minNeighbors)
+            features = classifier.detectMultiScale(gray_img, scaleFactor, minNeighbors)
             coord = []
 
             for (x, y, width, height) in features:
@@ -124,46 +100,40 @@ class Face_Recognition:
                 cursor = connection.cursor()
 
                 cursor.execute("SELECT Name FROM face_recognition.student where Student_ID="+str(id))
-                name = cursor.fetchone()
-                while name is not None:
-                    name = "+".join(name)
-                    name = cursor.fetchone()
+                connection.autocommit(True)
+                n = cursor.fetchone()
+                n = "+".join(cursor)
 
-                query_id = "SELECT Student_ID FROM face_recognition.student where Student_ID="+str(id)
-                cursor.execute(query_id)
-                id_no = cursor.fetchone()
-                while id_no is not None:
-                    id_no = "+".join(id_no)
-                    name = cursor.fetchone()
+                cursor.execute("SELECT Student_ID FROM face_recognition.student where Student_ID="+str(id))
+                connection.autocommit(True)
+                i = cursor.fetchone()
+                i = "+".join(cursor)
 
                 cursor.execute("SELECT Course FROM face_recognition.student where Student_ID="+str(id))
-                course = cursor.fetchone()
-                while course is not None:
-                    course = "+".join(course)
-                    name = cursor.fetchone()
+                connection.autocommit(True)
+                c = cursor.fetchone()
+                c = "+".join(cursor)
 
                 cursor.execute("SELECT Department FROM face_recognition.student where Student_ID="+str(id))
-                department = cursor.fetchone()
-                while department is not None:
-                    department = "+".join(department)
-                    name = cursor.fetchone()
+                connection.autocommit(True)
+                d = cursor.fetchone()
+                d = "+".join(cursor)
 
 
                 #confidence is work how long we know the face and also give a value
                 if confidence > 77:
-                    cv2.putText(img, f"Name: {name}",(x, y - 75),
+                    cv2.putText(img, f"Name: {n}",(x, y - 75),
                         cv2.FONT_HERSHEY_COMPLEX,.5,(255, 0, 25),1)
 
-                    cv2.putText(img,f"ID: {id_no}",(x, y - 50),cv2.FONT_HERSHEY_COMPLEX,
+                    cv2.putText(img,f"ID: {i}",(x, y - 50),cv2.FONT_HERSHEY_COMPLEX,
                                 .5,(255, 0, 25),1,)
 
-                    cv2.putText(img,f"Course: {course}",(x, y - 25),
+                    cv2.putText(img,f"Course: {c}",(x, y - 25),
                                 cv2.FONT_HERSHEY_COMPLEX,.5,(255, 0, 25),1)
 
-                    cv2.putText(img,f"Department: {department}",(x, y - 5),
+                    cv2.putText(img,f"Department: {d}",(x, y - 5),
                                 cv2.FONT_HERSHEY_COMPLEX,.5,(255, 0, 25),1)
 
-                    self.attendance_marking(name, id_no, course, department)
 
                 else:
                     cv2.rectangle(img, (x, y), (x + width, y + height), (0, 0, 255), 3)
@@ -178,7 +148,7 @@ class Face_Recognition:
             coord = drawBoundary(img, faceCascade, 1.1, 10, (255, 25, 255), "Face", clf)
             return img
 
-        faceCascade = cv2.CascadeClassifier('haarcascade_frontalface_default.xml')
+        faceCascade = cv2.CascadeClassifier("haarcascade_frontalface_default.xml")
         clf = cv2.face.LBPHFaceRecognizer_create()
         clf.read("classifier.xml")
 
