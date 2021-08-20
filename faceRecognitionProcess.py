@@ -123,26 +123,30 @@ class Face_Recognition:
                 #cursor()= this is an inbuilt function and used here to execute mysql query
                 cursor = connection.cursor()
 
-                cursor.execute("SELECT Name FROM student where Student_ID="+str(id))
+                cursor.execute("SELECT Name FROM face_recognition.student where Student_ID="+str(id))
                 name = cursor.fetchone()
                 while name is not None:
                     name = "+".join(name)
+                    name = cursor.fetchone()
 
-                query_id = "SELECT Student_ID FROM student where Student_ID="+str(id)
+                query_id = "SELECT Student_ID FROM face_recognition.student where Student_ID="+str(id)
                 cursor.execute(query_id)
                 id_no = cursor.fetchone()
                 while id_no is not None:
                     id_no = "+".join(id_no)
+                    name = cursor.fetchone()
 
-                cursor.execute("SELECT Course FROM student where Student_ID="+str(id))
+                cursor.execute("SELECT Course FROM face_recognition.student where Student_ID="+str(id))
                 course = cursor.fetchone()
                 while course is not None:
                     course = "+".join(course)
+                    name = cursor.fetchone()
 
-                cursor.execute("SELECT Department FROM student where Student_ID="+str(id))
+                cursor.execute("SELECT Department FROM face_recognition.student where Student_ID="+str(id))
                 department = cursor.fetchone()
                 while department is not None:
                     department = "+".join(department)
+                    name = cursor.fetchone()
 
 
                 #confidence is work how long we know the face and also give a value
