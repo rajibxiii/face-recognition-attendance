@@ -105,7 +105,7 @@ class Face_Recognition:
                 # create a rectangle
                 cv2.rectangle(img, (x, y), (x + width, y + height), (0, 255, 0), 3)
                 id, predict = clf.predict(gray_img[y : y + height, x : x + width])
-                print(id)
+
                 confidence = int((100*(1 - predict / 300)))
                 connection = mysql.connector.connect(
                     host="localhost",
@@ -143,7 +143,7 @@ class Face_Recognition:
 
 
                 # confidence is work how long we know the face and also give a value
-                if confidence > 75:
+                if confidence > 77:
                     cv2.putText(img, f"Name: {name}",(x, y - 75),
                         cv2.FONT_HERSHEY_COMPLEX,.5,(255, 0, 25),1)
 
@@ -160,10 +160,10 @@ class Face_Recognition:
 
                 else:
                     cv2.rectangle(img, (x, y), (x + width, y + height), (0, 0, 255), 3)
-                    cv2.putText(img,"Unknown person ",(x, y - 5),
+                    cv2.putText(img,"Unknown Person",(x, y - 5),
                         cv2.FONT_HERSHEY_COMPLEX,0.5, (255, 0, 25), 1)
 
-                coord = [x, y, width, y]
+                coord = [x, y, width, height]
 
             return coord
 
