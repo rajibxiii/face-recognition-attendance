@@ -47,6 +47,8 @@ class Face_Recognition:
 
         titleLabel.place(x=0, y=120, width=1530, height=50)
 
+
+
         # FACE RECOGNITION Button
 
         trainButton = Image.open(r"images\faceR.jpg")
@@ -93,8 +95,6 @@ class Face_Recognition:
                 )
 
 
-
-
     # Function for Face Recognition
     def face_recog(self):
         def drawBoundary(img, classifier, scalefactor, minNeighbors, color, text, clf):
@@ -125,20 +125,24 @@ class Face_Recognition:
 
                 cursor.execute("SELECT Name FROM student where Student_ID="+str(id))
                 name = cursor.fetchone()
-               # name = "+".join(name)
+                while name is not None:
+                    name = "+".join(name)
 
                 query_id = "SELECT Student_ID FROM student where Student_ID="+str(id)
                 cursor.execute(query_id)
                 id_no = cursor.fetchone()
-              #  id_no = "+".join(id_no)
+                while id_no is not None:
+                    id_no = "+".join(id_no)
 
                 cursor.execute("SELECT Course FROM student where Student_ID="+str(id))
                 course = cursor.fetchone()
-              #  course = "+".join(course)
+                while course is not None:
+                    course = "+".join(course)
 
                 cursor.execute("SELECT Department FROM student where Student_ID="+str(id))
                 department = cursor.fetchone()
-              #  department = "+".join(department)
+                while department is not None:
+                    department = "+".join(department)
 
 
                 #confidence is work how long we know the face and also give a value
@@ -155,7 +159,7 @@ class Face_Recognition:
                     cv2.putText(img,f"Department: {department}",(x, y - 5),
                                 cv2.FONT_HERSHEY_COMPLEX,.5,(255, 0, 25),1)
 
-                    self.attendance_marking( name,id, course, department)
+                    self.attendance_marking(name, id_no, course, department)
 
                 else:
                     cv2.rectangle(img, (x, y), (x + width, y + height), (0, 0, 255), 3)
