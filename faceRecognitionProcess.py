@@ -87,7 +87,7 @@ class Face_Recognition:
                 # create a rectangle
                 cv2.rectangle(img, (x, y), (x + width, y + height), (0, 255, 0), 3)
                 id, predict = clf.predict(gray_img[y : y + height, x : x + width])
-                confidence = int((100*(1 - predict / 300)))
+                confidence = int(100*(1 - predict/300))
 
                 connection = mysql.connector.connect(
                     host="localhost",
@@ -102,23 +102,23 @@ class Face_Recognition:
                 cursor = connection.cursor()
                 #cursor.execute("SELECT * FROM student")
 
-                cursor.execute("SELECT Name FROM student where Student_ID="+str(2222222))
+                cursor.execute("SELECT Name FROM student where Student_ID="+str(id))
                 n = cursor.fetchone()
 
-                cursor.execute("SELECT Student_ID FROM student where Student_ID="+str(2222222))
+                cursor.execute("SELECT Student_ID FROM student where Student_ID="+str(id))
                 i = cursor.fetchone()
 
-                cursor.execute("SELECT Course FROM student where Student_ID="+str(2222222))
+                cursor.execute("SELECT Course FROM student where Student_ID="+str(id))
                 c = cursor.fetchone()
 
-                cursor.execute("SELECT Department FROM student where Student_ID="+str(2222222))       
+                cursor.execute("SELECT Department FROM student where Student_ID="+str(id))       
                 d = cursor.fetchone()
 
 
 
 
                 #confidence is work how long we know the face and also give a value
-                if confidence > 77:
+                if confidence > 50:
                     cv2.putText(img, f"Name: {n}",(x, y - 75),
                         cv2.FONT_HERSHEY_COMPLEX,.5,(255, 0, 25),1)
 
