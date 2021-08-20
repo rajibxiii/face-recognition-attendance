@@ -164,8 +164,6 @@ class Face_Recognition:
 
 
 
-
-
         def Recognize(img, clf, faceCascade):
             coord = drawBoundary(img, faceCascade, 1.1, 10, (255, 25, 255), "Face", clf)
             return img
@@ -174,7 +172,7 @@ class Face_Recognition:
         clf = cv2.face.LBPHFaceRecognizer_create()
         clf.read("classifier.xml")
 
-        video_cap = cv2.VideoCapture(0)
+        video_cap = cv2.VideoCapture(0, cv2.CAP_DSHOW)
 
         while True:
             ret, img = video_cap.read()
