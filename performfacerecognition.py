@@ -123,18 +123,15 @@ class Face_Recognition:
                 name = cursor.fetchone()
                 name = "+".join(name)
 
-                # query_id = "select Student_ID from student where Student_ID="+str(id)
-                # cursor.execute(query_id)
-                # id_no = cursor.fetchone()
-                # id_no = "+".join(id_no)
+                query_id = "select Student_ID from student where Student_ID="+str(id)
+                cursor.execute(query_id)
+                id_no = cursor.fetchone()
+                id_no = "+".join(id_no)
 
                 query_course = "select Course from student where Student_ID="+str(id)
                 cursor.execute(query_course)
                 course = cursor.fetchone()
                 course = "+".join(course)
-
-
-
 
                 query_department = "select Department from student where Student_ID="+str(id)
                 cursor.execute(query_department)
