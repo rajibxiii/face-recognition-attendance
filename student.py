@@ -586,10 +586,7 @@ class Student:
         self.student_table = ttk.Treeview(
             table_frame,
             column=(
-                    "dep",
-                    "course",
-                    "year",
-                    "sem",
+                    "dep","course","year","sem",
                     "id",
                     "name",
                     "sec",
@@ -601,7 +598,6 @@ class Student:
                     "faculty",
                     "photo",
             ),
-
             xscrollcommand=scroll_x.set,
             yscrollcommand=scroll_y.set,
         )
@@ -646,7 +642,7 @@ class Student:
 
         self.student_table.pack(fill=BOTH, expand=1)
         fetchdata.FetchStudentData(self)
-
+        #self.FetchStudentData()
         self.student_table.bind("<ButtonRelease>", self.FetchCursorDataInEntry)
 
     # function for add student data
@@ -692,8 +688,8 @@ class Student:
                 )
 
                 connection.commit()
+                # fetchdata.FetchStudentData(self)
                 fetchdata.FetchStudentData(self)
-
                 connection.close()
                 messagebox.showinfo(
                     "Success", "Student details added successfully", parent=self.root
@@ -701,7 +697,33 @@ class Student:
             except Exception as ex:
                 messagebox.showerror("Error", f" Due to : {str(ex)}", parent=self.root)
 
+        # fetch student data from mySql database (function)
 
+    # def FetchStudentData(self):
+    #     connection = mysql.connector.connect(host='localhost', username='cse299',
+    #                                          password="p2JaZ6@k",
+    #                                          database="face_recognition")
+    #     # cursor()=> this is an inbuilt function and used here to execute mysql query
+    #     query = "select * from student"
+    #     cursor = connection.cursor()
+    #     cursor.execute(query)
+    #     # all student data is fetch in fetch_std_data variable
+    #     std_data = cursor.fetchall()
+    #
+    #     if len(std_data) != 0:
+    #         self.student_table.delete(*self.student_table.get_children())
+    #         for data in std_data:
+    #             self.student_table.insert("", END, values=data)
+    #
+    #         connection.commit()  # connection.commit() is used so that data can add continously
+    #     connection.close()
+
+
+    """
+         FetchCursorDataInEntry ( get the cursor data )this function will work when we click in student data cursor 
+         and that time student data will fetch to student details entry fields and show related
+         student data . this purpose is ,so tht we can use update function.....
+    """
 
     def FetchCursorDataInEntry(self, event=""):
         focus_on_cursor = self.student_table.focus()
@@ -815,7 +837,7 @@ class Student:
                         return
 
                 connection.commit()
-                fetchdata.FetchStudentData(self)
+                self.FetchStudentData()
                 connection.close()
                 messagebox.showinfo(
                     "Delete", "Student Details deleted successfully", parent=self.root
@@ -888,7 +910,7 @@ class Student:
                     )
 
                 connection.commit()
-                fetchdata.FetchStudentData(self)
+                self.FetchStudentData()
                 self.reset_data()
                 connection.close()
 
@@ -903,7 +925,7 @@ class Student:
                         crop_face = img [y:y+h, x:x+w]
                         return crop_face
 
-                capture = cv2.VideoCapture(0)
+                capture = cv2.VideoCapture(0, cv2.CAP_DSHOW)
                 img_id = 0
 
                 while True:
