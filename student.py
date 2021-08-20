@@ -586,7 +586,10 @@ class Student:
         self.student_table = ttk.Treeview(
             table_frame,
             column=(
-                    "dep","course","year","sem",
+                    "dep",
+                    "course",
+                    "year",
+                    "sem",
                     "id",
                     "name",
                     "sec",
@@ -598,6 +601,7 @@ class Student:
                     "faculty",
                     "photo",
             ),
+            
             xscrollcommand=scroll_x.set,
             yscrollcommand=scroll_y.set,
         )
