@@ -93,31 +93,28 @@ class Face_Recognition:
                     username="cse299",
                     password="p2JaZ6@k",
                     database="face_recognition",
+                    autocommit=True
                 )
 
 
                 #cursor()= this is an inbuilt function and used here to execute mysql query
                 cursor = connection.cursor()
 
-                cursor.execute("SELECT Name FROM face_recognition.student where Student_ID="+str(id))
-                connection.autocommit(True)
+                cursor.execute("SELECT Name FROM student where Student_ID="+str(id))
                 n = cursor.fetchone()
-                n = "+".join(cursor)
+                while n is not None:
+                    n = cursor.fetchone()
 
-                cursor.execute("SELECT Student_ID FROM face_recognition.student where Student_ID="+str(id))
-                connection.autocommit(True)
+                cursor.execute("SELECT Student_ID FROM student where Student_ID="+str(id))
                 i = cursor.fetchone()
-                i = "+".join(cursor)
 
-                cursor.execute("SELECT Course FROM face_recognition.student where Student_ID="+str(id))
-                connection.autocommit(True)
+                cursor.execute("SELECT Course FROM student where Student_ID="+str(id))
                 c = cursor.fetchone()
-                c = "+".join(cursor)
 
-                cursor.execute("SELECT Department FROM face_recognition.student where Student_ID="+str(id))
-                connection.autocommit(True)
+                cursor.execute("SELECT Department FROM student where Student_ID="+str(id))       
                 d = cursor.fetchone()
-                d = "+".join(cursor)
+
+
 
 
                 #confidence is work how long we know the face and also give a value
