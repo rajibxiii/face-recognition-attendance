@@ -144,8 +144,8 @@ class Face_Recognition:
                     cv2.putText(img, f"Name: {name}",(x, y - 75),
                         cv2.FONT_HERSHEY_COMPLEX,.5,(255, 0, 25),1)
 
-                    # cv2.putText(img,f"ID: {id_no}",(x, y - 50),cv2.FONT_HERSHEY_COMPLEX,
-                    #             1,(255, 0, 25),1,)
+                    cv2.putText(img,f"ID: {id_no}",(x, y - 50),cv2.FONT_HERSHEY_COMPLEX,
+                                1,(255, 0, 25),1,)
 
                     cv2.putText(img,f"Course: {course}",(x, y - 25),
                                 cv2.FONT_HERSHEY_COMPLEX,.5,(255, 0, 25),1)
@@ -153,7 +153,7 @@ class Face_Recognition:
                     cv2.putText(img,f"Department: {department}",(x, y - 5),
                                 cv2.FONT_HERSHEY_COMPLEX,.5,(255, 0, 25),1)
 
-                    # self.attendance_marking( name,id, course, department)
+                    self.attendance_marking( name,id, course, department)
 
                 else:
                     cv2.rectangle(img, (x, y), (x + width, y + height), (0, 0, 255), 3)
