@@ -24,8 +24,7 @@ class Face_Recognition:
 
         left_frame_lable = Label(self.root, image=self.PhoImgTop)
         left_frame_lable.place(x=0, y=0, width=1530, height=790)
-
-
+        
 
         # Date And Time
         def currentTime ():
