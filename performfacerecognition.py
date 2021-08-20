@@ -167,6 +167,10 @@ class Face_Recognition:
 
             return coord
 
+
+
+
+
         def Recognize(img, clf, faceCascade):
             coord = drawBoundary(img, faceCascade, 1.1, 10, (255, 25, 255), "Face", clf)
             return img
