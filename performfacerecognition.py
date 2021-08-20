@@ -7,7 +7,7 @@ import cv2
 import os
 import numpy as np
 from time import strftime
-from datetime import datetime
+import datetime
 
 
 
@@ -24,7 +24,6 @@ class Face_Recognition:
 
         left_frame_lable = Label(self.root, image=self.PhoImgTop)
         left_frame_lable.place(x=0, y=0, width=1530, height=790)
-
 
 
 
@@ -55,7 +54,7 @@ class Face_Recognition:
         self.PhoImgTrainButton = ImageTk.PhotoImage(trainButton)
 
         Btn = Button(self.root, image=self.PhoImgTrainButton, cursor="hand2", command=self.face_recog)
-        Btn.place(x=632, y=300, width=270, height=270)
+        Btn.place(x=633, y=300, width=270, height=260)
 
         Btn = Button(
             self.root,
@@ -66,7 +65,9 @@ class Face_Recognition:
             bg="#3F0D12",
             fg="white",
         )
-        Btn.place(x=632, y=565, width=270, height=60)
+        Btn.place(x=633, y=558, width=270, height=50)
+
+
 
 
     # Taking attendance
@@ -91,23 +92,26 @@ class Face_Recognition:
                     f"\n{id},{name},{course},{department},{dtString},{d1},Present"
                 )
 
+
+
+
     # Function for Face Recognition
     def face_recog(self):
-        def drawBoundary(img, classifier, sealeFactor, minNeigbours, color, text, clf):
+        def drawBoundary(img, classifier, scalefactor, minNeighbors, color, text, clf):
 
             # convert image in gray scale
             gray_img = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
 
             # features variable is used to take the features from classifier
-            features = classifier.detectMultiScale(gray_img, sealeFactor, minNeigbours)
+            features = classifier.detectMultiScale(gray_img, scalefactor, minNeighbors)
             coord = []
 
             for (x, y, width, height) in features:
                 # create a rectangle
                 cv2.rectangle(img, (x, y), (x + width, y + height), (0, 255, 0), 3)
                 id, predict = clf.predict(gray_img[y : y + height, x : x + width])
-
                 confidence = int((100*(1 - predict / 300)))
+
                 connection = mysql.connector.connect(
                     host="localhost",
                     username="cse299",
@@ -137,13 +141,13 @@ class Face_Recognition:
               #  department = "+".join(department)
 
 
-                # confidence is work how long we know the face and also give a value
+                #confidence is work how long we know the face and also give a value
                 if confidence > 77:
                     cv2.putText(img, f"Name: {name}",(x, y - 75),
                         cv2.FONT_HERSHEY_COMPLEX,.5,(255, 0, 25),1)
 
                     cv2.putText(img,f"ID: {id_no}",(x, y - 50),cv2.FONT_HERSHEY_COMPLEX,
-                                1,(255, 0, 25),1,)
+                                .5,(255, 0, 25),1,)
 
                     cv2.putText(img,f"Course: {course}",(x, y - 25),
                                 cv2.FONT_HERSHEY_COMPLEX,.5,(255, 0, 25),1)
@@ -155,20 +159,18 @@ class Face_Recognition:
 
                 else:
                     cv2.rectangle(img, (x, y), (x + width, y + height), (0, 0, 255), 3)
-                    cv2.putText(img,"Unknown Person",(x, y - 5),
+                    cv2.putText(img,"Unknown person ",(x, y - 5),
                         cv2.FONT_HERSHEY_COMPLEX,0.5, (255, 0, 25), 1)
 
                 coord = [x, y, width, height]
 
             return coord
 
-
-
         def Recognize(img, clf, faceCascade):
             coord = drawBoundary(img, faceCascade, 1.1, 10, (255, 25, 255), "Face", clf)
             return img
 
-        faceCascade = cv2.CascadeClassifier("haarcascade_frontalface_default.xml")
+        faceCascade = cv2.CascadeClassifier('haarcascade_frontalface_default.xml')
         clf = cv2.face.LBPHFaceRecognizer_create()
         clf.read("classifier.xml")
 
@@ -177,10 +179,12 @@ class Face_Recognition:
         while True:
             ret, img = video_cap.read()
             img = Recognize(img, clf, faceCascade)
-            cv2.imshow("Face", img)
+            cv2.imshow('Recognizing Face', img)
+            cv2.waitKey(1)
 
-            if cv2.waitKey(1) == 13:
+            if cv2.getWindowProperty('Recognizing Face', 4) < 1:
                 break
+            
         video_cap.release()
         cv2.destroyAllWindows()
 
