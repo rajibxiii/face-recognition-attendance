@@ -193,9 +193,8 @@ class Face_Recognition:
             cv2.waitKey(1)
 
             if cv2.getWindowProperty('Recognizing Face', 4) < 1:
-                if cv2.waitKey(1)==13:
-                    break
-            
+                break
+
         video_cap.release()
         cv2.destroyAllWindows()
 
