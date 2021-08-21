@@ -611,7 +611,7 @@ class Student:
                     "course",
                     "year",
                     "sem",
-                    "id",
+                    "serial",
                     "name",
                     "sec",
                     "gender",
@@ -620,6 +620,7 @@ class Student:
                     "phone",
                     "address",
                     "faculty",
+                    "nsuid",
                     "photo",
             ),
 
@@ -637,7 +638,7 @@ class Student:
         self.student_table.heading("course", text="Course")
         self.student_table.heading("year", text="Year")
         self.student_table.heading("sem", text="Semester")
-        self.student_table.heading("id", text="ID")
+        self.student_table.heading("serial", text="Serial")
         self.student_table.heading("name", text="Name")
         self.student_table.heading("sec", text="Section")
         self.student_table.heading("gender", text="Gender")
@@ -646,6 +647,7 @@ class Student:
         self.student_table.heading("phone", text="Phone")
         self.student_table.heading("address", text="Address")
         self.student_table.heading("faculty", text="Faculty")
+        self.student_table.heading("nsuid", text="Nsuid")
         self.student_table.heading("photo", text="PhotoSampleStatus")
         self.student_table["show"] = "headings"
 
@@ -654,7 +656,7 @@ class Student:
         self.student_table.column("course", width=100)
         self.student_table.column("year", width=100)
         self.student_table.column("sem", width=100)
-        self.student_table.column("id", width=100)
+        self.student_table.column("serial", width=100)
         self.student_table.column("name", width=150)
         self.student_table.column("sec", width=75)
         self.student_table.column("gender", width=75)
@@ -663,6 +665,7 @@ class Student:
         self.student_table.column("phone", width=100)
         self.student_table.column("address", width=100)
         self.student_table.column("faculty", width=100)
+        self.student_table.column("nsuid", width=100)
         self.student_table.column("photo", width=150)
 
         self.student_table.pack(fill=BOTH, expand=1)
@@ -677,6 +680,7 @@ class Student:
             self.var_dep.get() == "select department"
             or self.var_name.get() == ""
             or self.var_sl.get() == ""
+            or self.var_nsuid.get() == ""
         ):
             messagebox.showerror("Error", "All fields are required", parent=self.root)
         else:
@@ -708,6 +712,7 @@ class Student:
                         self.var_phone.get(),
                         self.var_address.get(),
                         self.var_faculty.get(),
+                        self.var_nsuid.get(),
                         self.var_radio_btn1.get(),
                     ),
                 )
@@ -743,7 +748,8 @@ class Student:
         self.var_phone.set(get_data[10]),
         self.var_address.set(get_data[11]),
         self.var_faculty.set(get_data[12]),
-        self.var_radio_btn1.set(get_data[13])
+        self.var_nsuid.set(get_data[13]),
+        self.var_radio_btn1.set(get_data[14])
 
 
     # Updating funtions
@@ -752,6 +758,7 @@ class Student:
             self.var_dep.get() == "select department"
             or self.var_name.get() == ""
             or self.var_sl.get() == ""
+            or self.var_nsuid.get() == ""
         ):
             messagebox.showerror("Error", "All fields are required", parent=self.root)
 
@@ -771,7 +778,7 @@ class Student:
                     )
                     make_cursor = connection.cursor()
                     make_cursor.execute(
-                        "update student set Department=%s, Course=%s, Year=%s, Semester=%s, Name=%s, Section=%s, Gender=%s, DOB=%s, Email=%s, Phone=%s, Address=%s, Faculty=%s, PhotoSample=%s where Student_ID=%s",
+                        "update student set Department=%s, Course=%s, Year=%s, Semester=%s, Name=%s, Section=%s, Gender=%s, DOB=%s, Email=%s, Phone=%s, Address=%s, Faculty=%s, Nsuid=%s, PhotoSample=%s where Student_ID=%s",
                         (
                             self.var_dep.get(),
                             self.var_course.get(),
@@ -785,6 +792,7 @@ class Student:
                             self.var_phone.get(),
                             self.var_address.get(),
                             self.var_faculty.get(),
+                            self.var_nsuid.get(),
                             self.var_radio_btn1.get(),
                             self.var_sl.get(),
                         ),
@@ -810,7 +818,7 @@ class Student:
     # Delete Student Details Funtion
     def delete_data(self):
         if self.var_sl.get() == "":
-            messagebox.showerror("Error", "Student ID is required", parent=self.root)
+            messagebox.showerror("Error", "Serial Number is required", parent=self.root)
 
         else:
             try:
@@ -860,6 +868,7 @@ class Student:
         self.var_phone.set(""),
         self.var_address.set(""),
         self.var_faculty.set(""),
+        self.var_nsuid.set(""),
         self.var_radio_btn1.set("")
 
 
@@ -870,6 +879,7 @@ class Student:
             self.var_dep.get() == "select department"
             or self.var_name.get() == ""
             or self.var_sl.get() == ""
+            or self.var_nsuid.get() == ""
         ):
             messagebox.showerror("Error", "All fields are required", parent=self.root)
 
@@ -889,7 +899,7 @@ class Student:
                 for x in result:
                     id+=1
                 make_cursor.execute(
-                        "update student set Department=%s, Course=%s, Year=%s, Semester=%s, Name=%s, Section=%s, Gender=%s, DOB=%s, Email=%s, Phone=%s, Address=%s, Faculty=%s, PhotoSample=%s where Student_ID=%s",
+                        "update student set Department=%s, Course=%s, Year=%s, Semester=%s, Name=%s, Section=%s, Gender=%s, DOB=%s, Email=%s, Phone=%s, Address=%s, Faculty=%s, Nsuid=%s, PhotoSample=%s where Student_ID=%s",
                         (
                             self.var_dep.get(),
                             self.var_course.get(),
@@ -903,6 +913,7 @@ class Student:
                             self.var_phone.get(),
                             self.var_address.get(),
                             self.var_faculty.get(),
+                            self.var_nsuid.get(),
                             self.var_radio_btn1.get(),
                             self.var_sl.get()==id+1
                         ),
