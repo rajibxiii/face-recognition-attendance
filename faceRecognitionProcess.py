@@ -82,17 +82,19 @@ class Face_Recognition:
                 entry = line.split((","))
                 nameList.append(entry[0])
 
+            now = datetime.datetime.now()
+            d1 = now.strftime("%d.%m.%Y")
+            dtString = now.strftime("%I:%M:%S %p")
+
             if (
                 ((id not in nameList)
                 and (name not in nameList))
                 and (course not in nameList)
-                and (department not in nameList)):
+                and (department not in nameList)
+                and (d1 not in nameList)):
                 
-                    now = datetime.datetime.now()
-                    d1 = now.strftime("%d.%m.%Y")
-                    dtString = now.strftime("%H:%M:%S")
                     att.writelines(
-                        f"\n{id},{name},{course},{department},{dtString},{d1},Present")
+                        f"\n{id},{name},{course},{department},{d1},{dtString},Present")
 
 
 
@@ -128,16 +130,16 @@ class Face_Recognition:
                 #cursor.execute("SELECT * FROM student")
 
                 cursor.execute("SELECT Name FROM student where Serial="+str(id))
-                n = cursor.fetchone()
+                n = cursor.fetchone()[0]
 
                 cursor.execute("SELECT NSU_ID FROM student where Serial="+str(id))
-                i = cursor.fetchone()
+                i = cursor.fetchone()[0]
 
                 cursor.execute("SELECT Course FROM student where Serial="+str(id))
-                c = cursor.fetchone()
+                c = cursor.fetchone()[0]
 
                 cursor.execute("SELECT Department FROM student where Serial="+str(id))       
-                d = cursor.fetchone()
+                d = cursor.fetchone()[0]
 
 
 

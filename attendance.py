@@ -37,8 +37,6 @@ class Attendance:
 
 
 
-
-
         imgBg = Image.open(r"images\colorBg.png")
         imgBg = imgBg.resize((1530, 790), Image.ANTIALIAS)
         self.PhoImgBg = ImageTk.PhotoImage(imgBg)  # set image
@@ -96,24 +94,6 @@ class Attendance:
 
         # Entry - labelland
 
-        # Attendance SL label and entry field
-        attendanceSerial_label = Label(
-            insideLeftFrame,
-            text="Attendance Serial:",
-            font=("Calibri", 13),
-            bg="white",
-        )
-        attendanceSerial_label.grid(row=0, column=0, padx=10, pady=5, sticky=W)
-
-        attendanceSerial_entry_field = ttk.Entry(
-            insideLeftFrame,
-            width=20,
-            textvariable= self.var_attendance_serial,
-            font=("Calibri", 13),
-        )
-        attendanceSerial_entry_field.grid(row=0, column=1, padx=10, pady=5, sticky=W)
-
-
 
         # Attendance ID label and entry field
         attendanceId_label = Label(
@@ -122,7 +102,7 @@ class Attendance:
             font=("Calibri", 13),
             bg="white",
         )
-        attendanceId_label.grid(row=0, column=2, padx=10, pady=5, sticky=W)
+        attendanceId_label.grid(row=0, column=0, padx=10, pady=5, sticky=W)
 
         attendanceId_entry_field = ttk.Entry(
             insideLeftFrame,
@@ -130,7 +110,7 @@ class Attendance:
             textvariable= self.var_attendance_nsuid,
             font=("Calibri", 13),
         )
-        attendanceId_entry_field.grid(row=0, column=3, padx=10, pady=5, sticky=W)
+        attendanceId_entry_field.grid(row=0, column=1, padx=10, pady=5, sticky=W)
 
 
 
@@ -141,7 +121,7 @@ class Attendance:
             font=("Calibri", 13),
             bg="white",
         )
-        name_label.grid(row=1, column=2, padx=4, pady=8)
+        name_label.grid(row=0, column=2, padx=4, pady=8)
 
         name_entry_field = ttk.Entry(
             insideLeftFrame,
@@ -149,7 +129,7 @@ class Attendance:
             textvariable=self.var_attendance_name,
             font=("Calibri", 13),
         )
-        name_entry_field.grid(row=1, column=3, pady=8)
+        name_entry_field.grid(row=0, column=3, pady=8)
 
         # Course label and entry field
         course_label = Label(
@@ -175,7 +155,7 @@ class Attendance:
             font=("Calibri", 13),
             bg="white",
         )
-        department_label.grid(row=2, column=2)
+        department_label.grid(row=1, column=2)
 
         department_entry_field = ttk.Entry(
             insideLeftFrame,
@@ -183,7 +163,7 @@ class Attendance:
             textvariable=self.var_attendance_dep,
             font=("Calibri", 13),
         )
-        department_entry_field.grid(row=2, column=3, pady=8)
+        department_entry_field.grid(row=1, column=3, pady=8)
 
         # Date label and entry field
         date_label = Label(
@@ -210,7 +190,7 @@ class Attendance:
             font=("Calibri", 13),
             bg="white",
         )
-        time_label.grid(row=3, column=2)
+        time_label.grid(row=2, column=2)
 
         time_entry_field = ttk.Entry(
             insideLeftFrame,
@@ -218,7 +198,7 @@ class Attendance:
             textvariable=self.var_attendance_time,
             font=("Calibri", 13),
         )
-        time_entry_field.grid(row=3, column=3, pady=8)
+        time_entry_field.grid(row=2, column=3, pady=8)
 
 
         attendance_label = Label(
@@ -308,7 +288,7 @@ class Attendance:
 
         self.AttendanceReport = ttk.Treeview(
             table_frame,
-            column=("Serial", "ID", "Name", "Course", "Department", "Date", "Time", "Attendance"),
+            column=("ID", "Name", "Course", "Department", "Date", "Time", "Attendance"),
             xscrollcommand=scroll_x.set,
             yscrollcommand=scroll_y.set,
         )
@@ -319,7 +299,6 @@ class Attendance:
         scroll_x.config(command=self.AttendanceReport.xview)
         scroll_y.config(command=self.AttendanceReport.yview)
 
-        self.AttendanceReport.heading("Serial", text="Attendance Serial")
         self.AttendanceReport.heading("ID", text="NSU ID")
         self.AttendanceReport.heading("Name", text="Name")
         self.AttendanceReport.heading("Course", text="Course")
@@ -330,7 +309,6 @@ class Attendance:
 
         self.AttendanceReport["show"] = "headings"
 
-        self.AttendanceReport.column("Serial", width=100)
         self.AttendanceReport.column("ID", width=100)
         self.AttendanceReport.column("Name", width=100)
         self.AttendanceReport.column("Course", width=100)
@@ -387,6 +365,7 @@ class Attendance:
             if len(mydata) < 1 :
                 messagebox.showerror('No data', " Found no data to export",parent=self.root)
                 return False
+            
             filename = filedialog.asksaveasfilename(
                 initialdir=os.getcwd(),
                 title='Open CSV',
@@ -399,7 +378,7 @@ class Attendance:
                 csv_write = csv.writer(myfile,delimiter=',')
                 for data in mydata:
                     csv_write.writerow(data)
-                messagebox.showinfo('Export Data',
+                    messagebox.showinfo('Export Data',
                                     'Successfully Data Exported in '+os.path.basename(filename))
 
         except Exception as ex:
@@ -417,14 +396,13 @@ class Attendance:
         content = self.AttendanceReport.item(cursor_row)
         store_rows = content['values']
 
-        self.var_attendance_serial.set(store_rows[0])
-        self.var_attendance_nsuid.set(store_rows[1])
-        self.var_attendance_name.set(store_rows[2])
+        self.var_attendance_nsuid.set(store_rows[0])
+        self.var_attendance_name.set(store_rows[1])
         self.var_attendance_course.set(store_rows[2])
-        self.var_attendance_dep.set(store_rows[4])
-        self.var_attendance_date.set(store_rows[5])
-        self.var_attendance_time.set(store_rows[6])
-        self.var_attendance_Status.set(store_rows[7])
+        self.var_attendance_dep.set(store_rows[3])
+        self.var_attendance_date.set(store_rows[4])
+        self.var_attendance_time.set(store_rows[5])
+        self.var_attendance_Status.set(store_rows[6])
 
 
     """
@@ -432,7 +410,6 @@ class Attendance:
      entry field. this function is for ATTENDANCE window 
     """
     def reset_entry_data(self, event=''):
-        self.var_attendance_serial.set('')
         self.var_attendance_nsuid.set('')
         self.var_attendance_name.set('')
         self.var_attendance_course.set('')
