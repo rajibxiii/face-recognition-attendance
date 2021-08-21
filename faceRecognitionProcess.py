@@ -83,16 +83,16 @@ class Face_Recognition:
                 nameList.append(entry[0])
 
             if (
-                ((id not in nameList) and (name not in nameList))
+                ((id not in nameList)
+                and (name not in nameList))
                 and (course not in nameList)
-                and (department not in nameList)
-            ):
-                now = datetime.datetime.now()
-                d1 = now.strftime("%d.%m.%Y")
-                dtString = now.strftime("%H:%M:%S")
-                att.writelines(
-                    f"\n{id},{name},{course},{department},{dtString},{d1},Present"
-                )
+                and (department not in nameList)):
+                
+                    now = datetime.datetime.now()
+                    d1 = now.strftime("%d.%m.%Y")
+                    dtString = now.strftime("%H:%M:%S")
+                    att.writelines(
+                        f"\n{id},{name},{course},{department},{dtString},{d1},Present")
 
 
 
@@ -145,23 +145,23 @@ class Face_Recognition:
                 #confidence is work how long we know the face and also give a value
                 if confidence > 50:
                     cv2.putText(img, f"Name: {n}",(x, y - 75),
-                        cv2.FONT_HERSHEY_COMPLEX,.5,(255, 0, 25),1)
+                        cv2.FONT_HERSHEY_COMPLEX,.5,(255, 255, 255),1)
 
                     cv2.putText(img,f"ID: {i}",(x, y - 50),cv2.FONT_HERSHEY_COMPLEX,
-                                .5,(255, 0, 25),1,)
+                                .5,(255, 255, 255),1,)
 
                     cv2.putText(img,f"Course: {c}",(x, y - 25),
-                                cv2.FONT_HERSHEY_COMPLEX,.5,(255, 0, 25),1)
+                                cv2.FONT_HERSHEY_COMPLEX,.5,(255, 255, 255),1)
 
                     cv2.putText(img,f"Department: {d}",(x, y - 5),
-                                cv2.FONT_HERSHEY_COMPLEX,.5,(255, 0, 25),1)
+                                cv2.FONT_HERSHEY_COMPLEX,.5,(255, 255, 255),1)
 
                     self.attendance_marking(n, i, c, d)
 
 
                 else:
                     cv2.rectangle(img, (x, y), (x + width, y + height), (0, 0, 255), 3)
-                    cv2.putText(img,"Unknown person ",(x, y - 5),
+                    cv2.putText(img,"UNKNOWN PERSON ",(x, y - 5),
                         cv2.FONT_HERSHEY_COMPLEX,0.5, (255, 0, 25), 1)
 
                 coord = [x, y, width, height]
