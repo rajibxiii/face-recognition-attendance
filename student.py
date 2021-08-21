@@ -22,7 +22,7 @@ class Student:
         self.var_course = StringVar()
         self.var_year = StringVar()
         self.var_semester = StringVar()
-        self.var_id = StringVar()
+        self.var_sl = StringVar()
         self.var_name = StringVar()
         self.var_section = StringVar()
         self.var_gender = StringVar()
@@ -31,6 +31,7 @@ class Student:
         self.var_phone = StringVar()
         self.var_address = StringVar()
         self.var_faculty = StringVar()
+        self.var_nsuid = StringVar()
         self.var_radio_btn1 = StringVar()
 
         # Background Image
@@ -225,22 +226,42 @@ class Student:
         )
         student_information_frame.place(x=5, y=235, width=723, height=303)
 
-        # student Id label and entry field
+        # student SL label and entry field
         studentId_label = Label(
             student_information_frame,
-            text="Student ID",
+            text="Serial No.:",
             font=("Calibri", 13),
             bg="white",
         )
         studentId_label.grid(row=0, column=0, padx=10, sticky=W)
 
-        studentId_entry_field = ttk.Entry(
+        studentSl_entry_field = ttk.Entry(
             student_information_frame,
-            textvariable=self.var_id,
+            textvariable=self.var_sl,
             width=20,
             font=("Calibri", 13),
         )
-        studentId_entry_field.grid(row=0, column=1, padx=10, pady=5, sticky=W)
+        studentSl_entry_field.grid(row=0, column=1, padx=10, pady=5, sticky=W)
+
+
+        # student ID label and entry field
+        studentId_label = Label(
+            student_information_frame,
+            text="NSU ID:",
+            font=("Calibri", 13),
+            bg="white",
+        )
+        studentId_label.grid(row=0, column=2, padx=10, sticky=W)
+
+        studentId_entry_field = ttk.Entry(
+            student_information_frame,
+            textvariable=self.var_nsuid,
+            width=20,
+            font=("Calibri", 13),
+        )
+        studentId_entry_field.grid(row=0, column=3, padx=10, pady=5, sticky=W)
+
+
 
         # student name label and entry field
         student_name_label = Label(
@@ -249,7 +270,7 @@ class Student:
             font=("Calibri", 13),
             bg="white",
         )
-        student_name_label.grid(row=0, column=2, padx=10, pady=5, sticky=W)
+        student_name_label.grid(row=1, column=2, padx=10, pady=5, sticky=W)
 
         student_name_entry_field = ttk.Entry(
             student_information_frame,
@@ -260,7 +281,7 @@ class Student:
                 13,
             ),
         )
-        student_name_entry_field.grid(row=0, column=3, padx=10, pady=5, sticky=W)
+        student_name_entry_field.grid(row=1, column=3, padx=10, pady=5, sticky=W)
 
         # student section label and entry field
         student_section_label = Label(
@@ -301,7 +322,7 @@ class Student:
             ),
             bg="white",
         )
-        student_gender_label.grid(row=1, column=2, padx=10, pady=5, sticky=W)
+        student_gender_label.grid(row=2, column=2, padx=10, pady=5, sticky=W)
 
         gender_combo_box = ttk.Combobox(
             student_information_frame,
@@ -314,7 +335,7 @@ class Student:
         gender_combo_box["value"] = ("Choose", "Male", "Female", "Third Gender", "Other")
 
         gender_combo_box.current(0)
-        gender_combo_box.grid(row=1, column=3, padx=10, pady=5, sticky=W)
+        gender_combo_box.grid(row=2, column=3, padx=10, pady=5, sticky=W)
 
         # student Date of birth label and entry field
         student_birthdate_label = Label(
@@ -340,7 +361,7 @@ class Student:
             font=("Calibri", 13),
             bg="white",
         )
-        student_email_label.grid(row=2, column=2, padx=10, pady=5, sticky=W)
+        student_email_label.grid(row=3, column=2, padx=10, pady=5, sticky=W)
 
         student_email_entry_field = ttk.Entry(
             student_information_frame,
@@ -348,7 +369,7 @@ class Student:
             width=20,
             font=("Calibri", 13),
         )
-        student_email_entry_field.grid(row=2, column=3, padx=10, pady=5, sticky=W)
+        student_email_entry_field.grid(row=3, column=3, padx=10, pady=5, sticky=W)
 
         # student Phone label and entry field
         student_phoneno_label = Label(
@@ -374,7 +395,7 @@ class Student:
             font=("Calibri", 13),
             bg="white",
         )
-        student_address_label.grid(row=3, column=2, padx=10, pady=5, sticky=W)
+        student_address_label.grid(row=4, column=2, padx=10, pady=5, sticky=W)
 
         student_address_entry_field = ttk.Entry(
             student_information_frame,
@@ -382,7 +403,7 @@ class Student:
             width=20,
             font=("Calibri", 13),
         )
-        student_address_entry_field.grid(row=3, column=3, padx=10, pady=5, sticky=W)
+        student_address_entry_field.grid(row=4, column=3, padx=10, pady=5, sticky=W)
 
         # student Faculty label and entry field
         student_instructor_label = Label(
@@ -655,7 +676,7 @@ class Student:
         if (
             self.var_dep.get() == "select department"
             or self.var_name.get() == ""
-            or self.var_id.get() == ""
+            or self.var_sl.get() == ""
         ):
             messagebox.showerror("Error", "All fields are required", parent=self.root)
         else:
@@ -678,7 +699,7 @@ class Student:
                         self.var_course.get(),
                         self.var_year.get(),
                         self.var_semester.get(),
-                        self.var_id.get(),
+                        self.var_sl.get(),
                         self.var_name.get(),
                         self.var_section.get(),
                         self.var_gender.get(),
@@ -713,7 +734,7 @@ class Student:
         self.var_course.set(get_data[1]),
         self.var_year.set(get_data[2]),
         self.var_semester.set(get_data[3]),
-        self.var_id.set(get_data[4]),
+        self.var_sl.set(get_data[4]),
         self.var_name.set(get_data[5]),
         self.var_section.set(get_data[6]),
         self.var_gender.set(get_data[7]),
@@ -730,7 +751,7 @@ class Student:
         if (
             self.var_dep.get() == "select department"
             or self.var_name.get() == ""
-            or self.var_id.get() == ""
+            or self.var_sl.get() == ""
         ):
             messagebox.showerror("Error", "All fields are required", parent=self.root)
 
@@ -765,7 +786,7 @@ class Student:
                             self.var_address.get(),
                             self.var_faculty.get(),
                             self.var_radio_btn1.get(),
-                            self.var_id.get(),
+                            self.var_sl.get(),
                         ),
                     )
 
@@ -788,7 +809,7 @@ class Student:
 
     # Delete Student Details Funtion
     def delete_data(self):
-        if self.var_id.get() == "":
+        if self.var_sl.get() == "":
             messagebox.showerror("Error", "Student ID is required", parent=self.root)
 
         else:
@@ -807,7 +828,7 @@ class Student:
                     )
                     make_cursor = connection.cursor()
                     sql = "delete from student where student_id=%s"
-                    val = (self.var_id.get(),)
+                    val = (self.var_sl.get(),)
                     make_cursor.execute(sql, val)
 
                 else:
@@ -830,7 +851,7 @@ class Student:
         self.var_course.set("Select Course"),
         self.var_year.set("Select Year"),
         self.var_semester.set("Select Semester"),
-        self.var_id.set(""),
+        self.var_sl.set(""),
         self.var_name.set(""),
         self.var_section.set("Select Section"),
         self.var_gender.set("Male"),
@@ -848,7 +869,7 @@ class Student:
         if (
             self.var_dep.get() == "select department"
             or self.var_name.get() == ""
-            or self.var_id.get() == ""
+            or self.var_sl.get() == ""
         ):
             messagebox.showerror("Error", "All fields are required", parent=self.root)
 
@@ -883,7 +904,7 @@ class Student:
                             self.var_address.get(),
                             self.var_faculty.get(),
                             self.var_radio_btn1.get(),
-                            self.var_id.get()==id+1
+                            self.var_sl.get()==id+1
                         ),
                     )
 
