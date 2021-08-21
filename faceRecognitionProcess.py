@@ -73,7 +73,7 @@ class Face_Recognition:
 
 
     # Taking attendance
-    def attendance_marking(self, name, id, course, department):
+    def attendance_marking(self,  id, name,course, department):
         with open("attendance.csv", "r+", newline="\n") as att:
             attDataList = att.readlines()
             nameList = []
@@ -81,6 +81,7 @@ class Face_Recognition:
             for line in attDataList:
                 entry = line.split((","))
                 nameList.append(entry[0])
+
 
             if (
                 ((id not in nameList)
@@ -95,6 +96,13 @@ class Face_Recognition:
                         f"\n{id},{name},{course},{department},{dtString},{d1},Present")
 
 
+
+            if ((id not in nameList) and (name not in nameList) and (course not in nameList)and (department not in nameList)):
+                now = datetime.datetime.now()
+                d1 = now.strftime("%d.%m.%Y")
+                dtString = now.strftime("%H:%M:%S")
+                att.writelines(
+                    f"\n{id},{name},{course},{department},{dtString},{d1},Present")
 
 
     # Function for Face Recognition
@@ -127,34 +135,34 @@ class Face_Recognition:
                 cursor = connection.cursor()
                 #cursor.execute("SELECT * FROM student")
 
-                cursor.execute("SELECT Name FROM student where Serial="+str(id))
+                cursor.execute("SELECT Name FROM student where Serial=" + str(id))
                 n = cursor.fetchone()
 
-                cursor.execute("SELECT NSU_ID FROM student where Serial="+str(id))
+                cursor.execute("SELECT NSU_ID FROM student where Serial=" + str(id))
                 i = cursor.fetchone()
 
-                cursor.execute("SELECT Course FROM student where Serial="+str(id))
+                cursor.execute("SELECT Course FROM student where Serial=" + str(id))
                 c = cursor.fetchone()
 
-                cursor.execute("SELECT Department FROM student where Serial="+str(id))       
+                cursor.execute("SELECT Department FROM student where Serial=" + str(id))
                 d = cursor.fetchone()
 
 
-
-
                 #confidence is work how long we know the face and also give a value
+
+                # confidence is work how long we know the face and also give a value
                 if confidence > 50:
-                    cv2.putText(img, f"Name: {n}",(x, y - 75),
-                        cv2.FONT_HERSHEY_COMPLEX,.5,(255, 255, 255),1)
+                    cv2.putText(img, f"Name: {n}", (x, y - 75),
+                                cv2.FONT_HERSHEY_COMPLEX, .5, (255, 255, 255), 1)
 
-                    cv2.putText(img,f"ID: {i}",(x, y - 50),cv2.FONT_HERSHEY_COMPLEX,
-                                .5,(255, 255, 255),1,)
+                    cv2.putText(img, f"ID: {i}", (x, y - 50), cv2.FONT_HERSHEY_COMPLEX,
+                                .5, (255, 255, 255), 1, )
 
-                    cv2.putText(img,f"Course: {c}",(x, y - 25),
-                                cv2.FONT_HERSHEY_COMPLEX,.5,(255, 255, 255),1)
+                    cv2.putText(img, f"Course: {c}", (x, y - 25),
+                                cv2.FONT_HERSHEY_COMPLEX, .5, (255, 255, 255), 1)
 
-                    cv2.putText(img,f"Department: {d}",(x, y - 5),
-                                cv2.FONT_HERSHEY_COMPLEX,.5,(255, 255, 255),1)
+                    cv2.putText(img, f"Department: {d}", (x, y - 5),
+                                cv2.FONT_HERSHEY_COMPLEX, .5, (255, 255, 255), 1)
 
                     self.attendance_marking(n, i, c, d)
 
@@ -185,7 +193,8 @@ class Face_Recognition:
             cv2.waitKey(1)
 
             if cv2.getWindowProperty('Recognizing Face', 4) < 1:
-                break
+                if cv2.waitKey(1)==13:
+                    break
             
         video_cap.release()
         cv2.destroyAllWindows()
