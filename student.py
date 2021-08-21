@@ -669,12 +669,7 @@ class Student:
         self.student_table.column("photo", width=150)
 
         self.student_table.pack(fill=BOTH, expand=1)
-
         fetchdata.FetchStudentData(self)
-
-
-        # fetchdata.FetchStudentData(self)
-        self.FetchStudentData()
 
         self.student_table.bind("<ButtonRelease>", self.FetchCursorDataInEntry)
 
@@ -699,11 +694,7 @@ class Student:
 
                 # cursor()=> this is an inbuilt function to execute mysql query
                 make_cursor = connection.cursor()
-
                 query = "insert into student values(%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)"
-
-                query = "insert into student values (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s,%s)"
-
                 make_cursor.execute(
                     query,
 
@@ -727,12 +718,7 @@ class Student:
                 )
 
                 connection.commit()
-
                 fetchdata.FetchStudentData(self)
-
-
-                # fetchdata.FetchStudentData(self)
-                self.FetchStudentData()
 
                 connection.close()
                 messagebox.showinfo(
@@ -741,34 +727,6 @@ class Student:
             except Exception as ex:
                 messagebox.showerror("Error", f" Due to : {str(ex)}", parent=self.root)
 
-
-        # fetch student data from mySql database (function)
-
-    def FetchStudentData(self):
-        connection = mysql.connector.connect(host='localhost', username='cse299',
-                                             password="p2JaZ6@k",
-                                             database="face_recognition")
-        # cursor()=> this is an inbuilt function and used here to execute mysql query
-        query = "select * from student"
-        cursor = connection.cursor()
-        cursor.execute(query)
-        # all student data is fetch in fetch_std_data variable
-        std_data = cursor.fetchall()
-
-        if len(std_data) != 0:
-            self.student_table.delete(*self.student_table.get_children())
-            for data in std_data:
-                self.student_table.insert("", END, values=data)
-
-            connection.commit()  # connection.commit() is used so that data can add continously
-        connection.close()
-
-
-    """
-         FetchCursorDataInEntry ( get the cursor data )this function will work when we click in student data cursor 
-         and that time student data will fetch to student details entry fields and show related
-         student data . this purpose is ,so tht we can use update function.....
-    """
 
 
     def FetchCursorDataInEntry(self, event=""):
@@ -796,7 +754,6 @@ class Student:
 
     # Updating funtions
     def update_data(self):
-
         if (
             self.var_dep.get() == "select department"
             or self.var_name.get() == ""
@@ -852,9 +809,7 @@ class Student:
                 )
                 connection.commit()
                 fetchdata.FetchStudentData(self)
-                # self.FetchStudentData()
                 connection.close()
-
 
             except Exception as es:
                 messagebox.showerror("Error", f"Reason: {str(es)}", parent=self.root)
@@ -862,14 +817,8 @@ class Student:
 
     # Delete Student Details Funtion
     def delete_data(self):
-
         if self.var_sl.get() == "":
             messagebox.showerror("Error", "Serial Number is required", parent=self.root)
-
-        global connection
-        if self.var_id.get() == "":
-            messagebox.showerror("Error", "Student ID is required", parent=self.root)
-
 
         else:
             try:
@@ -966,12 +915,9 @@ class Student:
                             self.var_faculty.get(),
                             self.var_nsuid.get(),
                             self.var_radio_btn1.get(),
-
                             self.var_sl.get()==id+1
-
-                            self.var_id.get() == id+1
-                        )
-                )
+                        ),
+                    )
 
                 connection.commit()
                 fetchdata.FetchStudentData(self)
