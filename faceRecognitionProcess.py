@@ -72,6 +72,31 @@ class Face_Recognition:
 
 
 
+    # Taking attendance
+    def attendance_marking(self, name, id, course, department):
+        with open("attendance.csv", "r+", newline="\n") as att:
+            attDataList = att.readlines()
+            nameList = []
+
+            for line in attDataList:
+                entry = line.split((","))
+                nameList.append(entry[0])
+
+            if (
+                ((id not in nameList) and (name not in nameList))
+                and (course not in nameList)
+                and (department not in nameList)
+            ):
+                now = datetime.datetime.now()
+                d1 = now.strftime("%d.%m.%Y")
+                dtString = now.strftime("%H:%M:%S")
+                att.writelines(
+                    f"\n{id},{name},{course},{department},{dtString},{d1},Present"
+                )
+
+
+
+
     # Function for Face Recognition
     def face_recog(self):
         def drawBoundary(img, classifier, scaleFactor, minNeighbors, color, text, clf):
@@ -130,6 +155,8 @@ class Face_Recognition:
 
                     cv2.putText(img,f"Department: {d}",(x, y - 5),
                                 cv2.FONT_HERSHEY_COMPLEX,.5,(255, 0, 25),1)
+
+                    self.attendance_marking(n, i, c, d)
 
 
                 else:

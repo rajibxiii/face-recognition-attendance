@@ -95,6 +95,7 @@ class FaceRecSys:
         )
         Btn2.place(x=550, y=370, width=130, height=30)
 
+
         # Attendance Button
         attendanceButton = Image.open(r"images\attendance.jpg")
         attendanceButton = attendanceButton.resize((130, 130), Image.ANTIALIAS)
