@@ -796,7 +796,7 @@ class Student:
 
     # Updating funtions
     def update_data(self):
-        global connection
+
         if (
             self.var_dep.get() == "select department"
             or self.var_name.get() == ""
@@ -851,8 +851,8 @@ class Student:
                     parent=self.root,
                 )
                 connection.commit()
-                # fetchdata.FetchStudentData(self)
-                self.FetchStudentData()
+                fetchdata.FetchStudentData(self)
+                # self.FetchStudentData()
                 connection.close()
 
 
