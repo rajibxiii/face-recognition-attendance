@@ -227,13 +227,13 @@ class Student:
         student_information_frame.place(x=5, y=235, width=723, height=303)
 
         # student SL label and entry field
-        studentId_label = Label(
+        studentSl_label = Label(
             student_information_frame,
             text="Serial No.:",
             font=("Calibri", 13),
             bg="white",
         )
-        studentId_label.grid(row=0, column=0, padx=10, sticky=W)
+        studentSl_label.grid(row=0, column=0, padx=10, sticky=W)
 
         studentSl_entry_field = ttk.Entry(
             student_information_frame,
@@ -647,7 +647,7 @@ class Student:
         self.student_table.heading("phone", text="Phone")
         self.student_table.heading("address", text="Address")
         self.student_table.heading("faculty", text="Faculty")
-        self.student_table.heading("nsuid", text="Nsuid")
+        self.student_table.heading("nsuid", text="NSU_ID")
         self.student_table.heading("photo", text="PhotoSampleStatus")
         self.student_table["show"] = "headings"
 
@@ -694,7 +694,7 @@ class Student:
 
                 # cursor()=> this is an inbuilt function to execute mysql query
                 make_cursor = connection.cursor()
-                query = "insert into student values(%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)"
+                query = "insert into student values(%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)"
                 make_cursor.execute(
                     query,
 
@@ -778,7 +778,7 @@ class Student:
                     )
                     make_cursor = connection.cursor()
                     make_cursor.execute(
-                        "update student set Department=%s, Course=%s, Year=%s, Semester=%s, Name=%s, Section=%s, Gender=%s, DOB=%s, Email=%s, Phone=%s, Address=%s, Faculty=%s, Nsuid=%s, PhotoSample=%s where Student_ID=%s",
+                        "update student set Department=%s, Course=%s, Year=%s, Semester=%s, Name=%s, Section=%s, Gender=%s, DOB=%s, Email=%s, Phone=%s, Address=%s, Faculty=%s, NSU_ID=%s, PhotoSample=%s where Serial=%s",
                         (
                             self.var_dep.get(),
                             self.var_course.get(),
@@ -835,7 +835,7 @@ class Student:
                         database="face_recognition",
                     )
                     make_cursor = connection.cursor()
-                    sql = "delete from student where student_id=%s"
+                    sql = "delete from student where Serial=%s"
                     val = (self.var_sl.get(),)
                     make_cursor.execute(sql, val)
 
@@ -899,7 +899,7 @@ class Student:
                 for x in result:
                     id+=1
                 make_cursor.execute(
-                        "update student set Department=%s, Course=%s, Year=%s, Semester=%s, Name=%s, Section=%s, Gender=%s, DOB=%s, Email=%s, Phone=%s, Address=%s, Faculty=%s, Nsuid=%s, PhotoSample=%s where Student_ID=%s",
+                        "update student set Department=%s, Course=%s, Year=%s, Semester=%s, Name=%s, Section=%s, Gender=%s, DOB=%s, Email=%s, Phone=%s, Address=%s, Faculty=%s, NSU_ID=%s, PhotoSample=%s where Serial=%s",
                         (
                             self.var_dep.get(),
                             self.var_course.get(),

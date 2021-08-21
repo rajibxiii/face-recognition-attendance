@@ -102,16 +102,16 @@ class Face_Recognition:
                 cursor = connection.cursor()
                 #cursor.execute("SELECT * FROM student")
 
-                cursor.execute("SELECT Name FROM student where Student_ID="+str(id))
+                cursor.execute("SELECT Name FROM student where Serial="+str(id))
                 n = cursor.fetchone()
 
-                cursor.execute("SELECT Student_ID FROM student where Student_ID="+str(id))
+                cursor.execute("SELECT NSU_ID FROM student where Serial="+str(id))
                 i = cursor.fetchone()
 
-                cursor.execute("SELECT Course FROM student where Student_ID="+str(id))
+                cursor.execute("SELECT Course FROM student where Serial="+str(id))
                 c = cursor.fetchone()
 
-                cursor.execute("SELECT Department FROM student where Student_ID="+str(id))       
+                cursor.execute("SELECT Department FROM student where Serial="+str(id))       
                 d = cursor.fetchone()
 
 
