@@ -89,7 +89,8 @@ class Traindata:
             faces.append(imageNp)
             ids.append(id)
             cv2.imshow("Training", imageNp)
-            cv2.waitKey(1) == 13
+            if cv2.waitKey(1) == 13:
+                break
         
         ids = np.array(ids)
 
