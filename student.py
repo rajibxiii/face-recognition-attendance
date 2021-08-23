@@ -953,7 +953,6 @@ class Student:
                         break
                 
                 capture.release()
-                cv2.destroyAllWindows()
                 messagebox.showinfo("Result", "Generating Data Sets Completed Successfully")
             
             except Exception as es:
