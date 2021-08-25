@@ -54,7 +54,7 @@ class Traindata:
 
 
         # Mail Button
-        sendMailButton = Image.open(r"images\dataT.jpg")
+        sendMailButton = Image.open(r"images\emaild.jpg")
         sendMailButton = sendMailButton.resize((270, 270), Image.ANTIALIAS)
         self.PhoImgsendMailButton = ImageTk.PhotoImage(sendMailButton)
 
