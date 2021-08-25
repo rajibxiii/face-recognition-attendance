@@ -422,23 +422,7 @@ class Student:
         )
         student_instructor_entry_field.grid(row=4, column=1, padx=10, pady=5, sticky=W)
 
-        # radio buttons
 
-        radio_button1 = ttk.Radiobutton(
-            student_information_frame,
-            variable=self.var_radio_btn1,
-            text="Take Photo Sample",
-            value="Yes",
-        )
-        radio_button1.grid(row=6, column=0)
-
-        radio_button2 = ttk.Radiobutton(
-            student_information_frame,
-            variable=self.var_radio_btn1,
-            text="No Photo Sample",
-            value="No",
-        )
-        radio_button2.grid(row=6, column=1)
 
         # bbutton frame for student details left side part
         button_frame = Frame(student_information_frame, bd=2, relief=RIDGE, bg="white")
@@ -838,6 +822,30 @@ class Student:
                     sql = "delete from student where Serial=%s"
                     val = (self.var_sl.get(),)
                     make_cursor.execute(sql, val)
+
+                    while True:
+                        ret, myframe = capture.read()
+                        if crop_face(myframe) is not None:
+                            img_id += 1
+                            face = cv2.resize(crop_face(myframe), (450, 450))
+                            face = cv2.cvtColor(face, cv2.COLOR_BGR2GRAY)
+                            file_path = "data/user." + str(id) + "." + str(img_id) + ".jpg"
+                            cv2.imwrite(file_path, face)
+                            cv2.putText(face, str(img_id), (50, 50), cv2.FONT_HERSHEY_COMPLEX, 2, (0, 255, 0), 2)
+                            cv2.imshow("Cropped Face", face)
+
+                        if cv2.waitKey(1) == 13 or int(img_id) == 100:
+                            break
+
+                    capture.release()
+                    messagebox.showinfo("Result", "Generating Data Sets Completed Successfully")
+
+                except Exception as es:
+                messagebox.showerror("Error", f"Reason: {str(es)}", parent=self.root)
+
+
+
+
 
                 else:
                     if not delete:
