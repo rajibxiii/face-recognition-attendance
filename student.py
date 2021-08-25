@@ -32,7 +32,6 @@ class Student:
         self.var_address = StringVar()
         self.var_faculty = StringVar()
         self.var_nsuid = StringVar()
-        self.var_radio_btn1 = StringVar()
 
         # Background Image
         imgBg = Image.open(r"images\colorBg.png")
