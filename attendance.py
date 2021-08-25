@@ -224,33 +224,36 @@ class Attendance:
         button_frame = Frame(insideLeftFrame, bd=2, relief=RIDGE, bg="white")
         button_frame.place(x=0, y=330, width=715, height=35)
 
+        # IMPORT BUTTON
         import_btn = Button(
             button_frame,
             text="Import Data",
             command=self.importFromCsv,
-            width=19,
+            width=25,
             font=("Calibri", 13, "bold"),
             bg="#3F0D12",
             fg="white",
         )
         import_btn.grid(row=0, column=0)
 
+        #EXPORT BUTTON
         export_btn = Button(
             button_frame,
             text="Export Data",
             command=self.exportInCsv,
-            width=19,
+            width=26,
             font=("Calibri", 13, "bold"),
             bg="#3F0D12",
             fg="white",
         )
         export_btn.grid(row=0, column=1)
 
+        #RESET BUTTON,==> reset all combobox data fetch from attendence.py consol
         reset_btn = Button(
             button_frame,
             text="Reset",
             command=self.reset_entry_data,
-            width=19,
+            width=25,
             font=("Calibri", 13, "bold"),
             bg="#3F0D12",
             fg="white",
