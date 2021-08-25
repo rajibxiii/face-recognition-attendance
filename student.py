@@ -632,7 +632,7 @@ class Student:
         self.student_table.heading("address", text="Address")
         self.student_table.heading("faculty", text="Faculty")
         self.student_table.heading("nsuid", text="NSU_ID")
-        self.student_table.heading("photo", text="PhotoSampleStatus")
+    
         self.student_table["show"] = "headings"
 
         ######## labeling and fixed size to student details right box ########
@@ -650,7 +650,7 @@ class Student:
         self.student_table.column("address", width=100)
         self.student_table.column("faculty", width=100)
         self.student_table.column("nsuid", width=100)
-        self.student_table.column("photo", width=150)
+
 
         self.student_table.pack(fill=BOTH, expand=1)
         fetchdata.FetchStudentData(self)
@@ -678,7 +678,7 @@ class Student:
 
                 # cursor()=> this is an inbuilt function to execute mysql query
                 make_cursor = connection.cursor()
-                query = "insert into student values(%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)"
+                query = "insert into student values(%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)"
                 make_cursor.execute(
                     query,
 
@@ -762,7 +762,7 @@ class Student:
                     )
                     make_cursor = connection.cursor()
                     make_cursor.execute(
-                        "update student set Department=%s, Course=%s, Year=%s, Semester=%s, Name=%s, Section=%s, Gender=%s, DOB=%s, Email=%s, Phone=%s, Address=%s, Faculty=%s, NSU_ID=%s, PhotoSample=%s where Serial=%s",
+                        "update student set Department=%s, Course=%s, Year=%s, Semester=%s, Name=%s, Section=%s, Gender=%s, DOB=%s, Email=%s, Phone=%s, Address=%s, Faculty=%s, NSU_ID=%s,where Serial=%s",
                         (
                             self.var_dep.get(),
                             self.var_course.get(),
@@ -852,7 +852,7 @@ class Student:
         self.var_address.set(""),
         self.var_faculty.set(""),
         self.var_nsuid.set(""),
-        
+
 
 
     # Generating Data Set
@@ -882,7 +882,7 @@ class Student:
                 for x in result:
                     id+=1
                 make_cursor.execute(
-                        "update student set Department=%s, Course=%s, Year=%s, Semester=%s, Name=%s, Section=%s, Gender=%s, DOB=%s, Email=%s, Phone=%s, Address=%s, Faculty=%s, NSU_ID=%s, PhotoSample=%s where Serial=%s",
+                        "update student set Department=%s, Course=%s, Year=%s, Semester=%s, Name=%s, Section=%s, Gender=%s, DOB=%s, Email=%s, Phone=%s, Address=%s, Faculty=%s, NSU_ID=%s, where Serial=%s",
                         (
                             self.var_dep.get(),
                             self.var_course.get(),
