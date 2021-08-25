@@ -32,7 +32,7 @@ class Student:
         self.var_address = StringVar()
         self.var_faculty = StringVar()
         self.var_nsuid = StringVar()
-
+        self.var_radio_btn1 = StringVar()
 
         # Background Image
         imgBg = Image.open(r"images\colorBg.png")
@@ -422,7 +422,23 @@ class Student:
         )
         student_instructor_entry_field.grid(row=4, column=1, padx=10, pady=5, sticky=W)
 
+        # radio buttons
 
+        radio_button1 = ttk.Radiobutton(
+            student_information_frame,
+            variable=self.var_radio_btn1,
+            text="Take Photo Sample",
+            value="Yes",
+        )
+        radio_button1.grid(row=6, column=0)
+
+        radio_button2 = ttk.Radiobutton(
+            student_information_frame,
+            variable=self.var_radio_btn1,
+            text="No Photo Sample",
+            value="No",
+        )
+        radio_button2.grid(row=6, column=1)
 
         # bbutton frame for student details left side part
         button_frame = Frame(student_information_frame, bd=2, relief=RIDGE, bg="white")
@@ -632,7 +648,7 @@ class Student:
         self.student_table.heading("address", text="Address")
         self.student_table.heading("faculty", text="Faculty")
         self.student_table.heading("nsuid", text="NSU_ID")
-    
+        self.student_table.heading("photo", text="PhotoSampleStatus")
         self.student_table["show"] = "headings"
 
         ######## labeling and fixed size to student details right box ########
@@ -650,7 +666,7 @@ class Student:
         self.student_table.column("address", width=100)
         self.student_table.column("faculty", width=100)
         self.student_table.column("nsuid", width=100)
-
+        self.student_table.column("photo", width=150)
 
         self.student_table.pack(fill=BOTH, expand=1)
         fetchdata.FetchStudentData(self)
@@ -678,7 +694,7 @@ class Student:
 
                 # cursor()=> this is an inbuilt function to execute mysql query
                 make_cursor = connection.cursor()
-                query = "insert into student values(%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)"
+                query = "insert into student values(%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)"
                 make_cursor.execute(
                     query,
 
@@ -697,7 +713,7 @@ class Student:
                         self.var_address.get(),
                         self.var_faculty.get(),
                         self.var_nsuid.get(),
-
+                        self.var_radio_btn1.get(),
                     ),
                 )
 
@@ -733,7 +749,7 @@ class Student:
         self.var_address.set(get_data[11]),
         self.var_faculty.set(get_data[12]),
         self.var_nsuid.set(get_data[13]),
-
+        self.var_radio_btn1.set(get_data[14])
 
 
     # Updating funtions
@@ -762,7 +778,7 @@ class Student:
                     )
                     make_cursor = connection.cursor()
                     make_cursor.execute(
-                        "update student set Department=%s, Course=%s, Year=%s, Semester=%s, Name=%s, Section=%s, Gender=%s, DOB=%s, Email=%s, Phone=%s, Address=%s, Faculty=%s, NSU_ID=%s,where Serial=%s",
+                        "update student set Department=%s, Course=%s, Year=%s, Semester=%s, Name=%s, Section=%s, Gender=%s, DOB=%s, Email=%s, Phone=%s, Address=%s, Faculty=%s, NSU_ID=%s, PhotoSample=%s where Serial=%s",
                         (
                             self.var_dep.get(),
                             self.var_course.get(),
@@ -777,6 +793,7 @@ class Student:
                             self.var_address.get(),
                             self.var_faculty.get(),
                             self.var_nsuid.get(),
+                            self.var_radio_btn1.get(),
                             self.var_sl.get(),
                         ),
                     )
@@ -852,7 +869,7 @@ class Student:
         self.var_address.set(""),
         self.var_faculty.set(""),
         self.var_nsuid.set(""),
-
+        self.var_radio_btn1.set("")
 
 
     # Generating Data Set
@@ -882,7 +899,7 @@ class Student:
                 for x in result:
                     id+=1
                 make_cursor.execute(
-                        "update student set Department=%s, Course=%s, Year=%s, Semester=%s, Name=%s, Section=%s, Gender=%s, DOB=%s, Email=%s, Phone=%s, Address=%s, Faculty=%s, NSU_ID=%s, where Serial=%s",
+                        "update student set Department=%s, Course=%s, Year=%s, Semester=%s, Name=%s, Section=%s, Gender=%s, DOB=%s, Email=%s, Phone=%s, Address=%s, Faculty=%s, NSU_ID=%s, PhotoSample=%s where Serial=%s",
                         (
                             self.var_dep.get(),
                             self.var_course.get(),
@@ -897,7 +914,7 @@ class Student:
                             self.var_address.get(),
                             self.var_faculty.get(),
                             self.var_nsuid.get(),
-
+                            self.var_radio_btn1.get(),
                             self.var_sl.get()==id+1
                         ),
                     )
