@@ -422,23 +422,23 @@ class Student:
         )
         student_instructor_entry_field.grid(row=4, column=1, padx=10, pady=5, sticky=W)
 
-        # radio buttons
-
-        radio_button1 = ttk.Radiobutton(
-            student_information_frame,
-            variable=self.var_radio_btn1,
-            text="Take Photo Sample",
-            value="Yes",
-        )
-        radio_button1.grid(row=6, column=0)
-
-        radio_button2 = ttk.Radiobutton(
-            student_information_frame,
-            variable=self.var_radio_btn1,
-            text="No Photo Sample",
-            value="No",
-        )
-        radio_button2.grid(row=6, column=1)
+        # # radio buttons
+        #
+        # radio_button1 = ttk.Radiobutton(
+        #     student_information_frame,
+        #     variable=self.var_radio_btn1,
+        #     text="Take Photo Sample",
+        #     value="Yes",
+        # )
+        # radio_button1.grid(row=6, column=0)
+        #
+        # radio_button2 = ttk.Radiobutton(
+        #     student_information_frame,
+        #     variable=self.var_radio_btn1,
+        #     text="No Photo Sample",
+        #     value="No",
+        # )
+        # radio_button2.grid(row=6, column=1)
 
         # bbutton frame for student details left side part
         button_frame = Frame(student_information_frame, bd=2, relief=RIDGE, bg="white")
