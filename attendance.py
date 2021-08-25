@@ -246,16 +246,6 @@ class Attendance:
         )
         export_btn.grid(row=0, column=1)
 
-        update_btn = Button(
-            button_frame,
-            text="Update",
-            width=19,
-            font=("Calibri", 13, "bold"),
-            bg="#3F0D12",
-            fg="white",
-        )
-        update_btn.grid(row=0, column=2)
-
         reset_btn = Button(
             button_frame,
             text="Reset",
@@ -265,7 +255,7 @@ class Attendance:
             bg="#3F0D12",
             fg="white",
         )
-        reset_btn.grid(row=0, column=3)
+        reset_btn.grid(row=0, column=2)
 
         # right label Frame
         rightFrame = LabelFrame(
