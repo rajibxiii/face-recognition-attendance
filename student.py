@@ -22,7 +22,7 @@ class Student:
         self.var_course = StringVar()
         self.var_year = StringVar()
         self.var_semester = StringVar()
-        self.var_sl = StringVar()
+        self.var_serial = StringVar()
         self.var_name = StringVar()
         self.var_section = StringVar()
         self.var_gender = StringVar()
@@ -236,7 +236,7 @@ class Student:
 
         studentSl_entry_field = ttk.Entry(
             student_information_frame,
-            textvariable=self.var_sl,
+            textvariable=self.var_serial,
             width=20,
             font=("Calibri", 13),
         )
@@ -420,8 +420,6 @@ class Student:
             font=("Calibri", 13),
         )
         student_instructor_entry_field.grid(row=4, column=1, padx=10, pady=5, sticky=W)
-
-        # radio buttons
 
 
         # bbutton frame for student details left side part
@@ -660,7 +658,7 @@ class Student:
         if (
             self.var_dep.get() == "select department"
             or self.var_name.get() == ""
-            or self.var_sl.get() == ""
+            or self.var_serial.get() == ""
             or self.var_nsuid.get() == ""
         ):
             messagebox.showerror("Error", "All fields are required", parent=self.root)
@@ -684,7 +682,7 @@ class Student:
                         self.var_course.get(),
                         self.var_year.get(),
                         self.var_semester.get(),
-                        self.var_sl.get(),
+                        self.var_serial.get(),
                         self.var_name.get(),
                         self.var_section.get(),
                         self.var_gender.get(),
@@ -719,7 +717,7 @@ class Student:
         self.var_course.set(get_data[1]),
         self.var_year.set(get_data[2]),
         self.var_semester.set(get_data[3]),
-        self.var_sl.set(get_data[4]),
+        self.var_serial.set(get_data[4]),
         self.var_name.set(get_data[5]),
         self.var_section.set(get_data[6]),
         self.var_gender.set(get_data[7]),
@@ -736,7 +734,7 @@ class Student:
         if (
             self.var_dep.get() == "select department"
             or self.var_name.get() == ""
-            or self.var_sl.get() == ""
+            or self.var_serial.get() == ""
             or self.var_nsuid.get() == ""
         ):
             messagebox.showerror("Error", "All fields are required", parent=self.root)
@@ -772,7 +770,7 @@ class Student:
                             self.var_address.get(),
                             self.var_faculty.get(),
                             self.var_nsuid.get(),
-                            self.var_sl.get(),
+                            self.var_serial.get(),
                         ),
                     )
 
@@ -795,7 +793,7 @@ class Student:
 
     # Delete Student Details Funtion
     def delete_data(self):
-        if self.var_sl.get() == "":
+        if self.var_serial.get() == "":
             messagebox.showerror("Error", "Serial Number is required", parent=self.root)
 
         else:
@@ -814,7 +812,7 @@ class Student:
                     )
                     make_cursor = connection.cursor()
                     sql = "delete from student where Serial=%s"
-                    val = (self.var_sl.get(),)
+                    val = (self.var_serial.get(),)
                     make_cursor.execute(sql, val)
 
                 else:
@@ -837,7 +835,7 @@ class Student:
         self.var_course.set("Select Course"),
         self.var_year.set("Select Year"),
         self.var_semester.set("Select Semester"),
-        self.var_sl.set(""),
+        self.var_serial.set(""),
         self.var_name.set(""),
         self.var_section.set("Select Section"),
         self.var_gender.set("Male"),
@@ -855,7 +853,7 @@ class Student:
         if (
             self.var_dep.get() == "select department"
             or self.var_name.get() == ""
-            or self.var_sl.get() == ""
+            or self.var_serial.get() == ""
             or self.var_nsuid.get() == ""
         ):
             messagebox.showerror("Error", "All fields are required", parent=self.root)
@@ -891,7 +889,7 @@ class Student:
                             self.var_address.get(),
                             self.var_faculty.get(),
                             self.var_nsuid.get(),
-                            self.var_sl.get()==id+1
+                            self.var_serial.get()==id+1
                         ),
                     )
 
