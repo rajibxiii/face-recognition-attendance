@@ -6,6 +6,7 @@ import os
 from traindata import Traindata
 from faceRecognitionProcess import Face_Recognition
 from attendance import Attendance
+from helpdesk import Helpdesk
 from time import strftime
 from datetime import datetime
 from developer import Developer
@@ -115,17 +116,18 @@ class FaceRecSys:
         )
         Btn3.place(x=850, y=370, width=130, height=30)
 
-        # Help desk button
+        # Contact button
         helpDskButton = Image.open(r"images\help.jpg")
         helpDskButton = helpDskButton.resize((130, 130), Image.ANTIALIAS)
         self.PhoImgHelpdskBtn = ImageTk.PhotoImage(helpDskButton)
 
-        Btn4 = Button(BgImg, image=self.PhoImgHelpdskBtn, cursor="hand2")
+        Btn4 = Button(BgImg, image=self.PhoImgHelpdskBtn, cursor="hand2", command = self.contactDev)
         Btn4.place(x=1150, y=270, width=130, height=130)
 
         Btn4 = Button(
             BgImg,
-            text="HELP DESK",
+            text="CONTACT DEV",
+            command = self.contactDev,
             cursor="hand2",
             font=("Calibri", 12,"bold",),
             bg="#3F0D12",
@@ -218,6 +220,10 @@ class FaceRecSys:
     def developer(self):
         self.attendance_window = Toplevel(self.root)
         self.app = Developer(self.attendance_window)
+
+    def contactDev(self):
+        self.attendance_window = Toplevel(self.root)
+        self.app = Helpdesk(self.attendance_window)
 
 
 if __name__ == "__main__":

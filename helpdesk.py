@@ -12,7 +12,7 @@ from datetime import datetime
 import webbrowser
 
 
-class Traindata:
+class Helpdesk:
     def __init__(self, root):
         self.root = root
         self.root.geometry("1530x790+0+0")
@@ -82,7 +82,7 @@ class Traindata:
 
 if __name__ == "__main__":
     root = Tk()  # root is needed to call by toolkit (tk)
-    obj = Traindata(root)
+    obj = Helpdesk(root)
     root.mainloop()
 
 
