@@ -36,6 +36,7 @@ class FaceRecSys:
 
         lbl = Label (font = ("Calibri Light", 30), background="#3F0D12", foreground="white")
         lbl.place(x=520, y=42, width=500, height=40)
+
         currentTime ()
 
 
@@ -218,12 +219,13 @@ class FaceRecSys:
         self.app = Attendance(self.attendance_window)
 
     def developer(self):
-        self.attendance_window = Toplevel(self.root)
-        self.app = Developer(self.attendance_window)
+        self.developer_window = Toplevel(self.root)
+        self.app = Developer(self.developer_window)
+
 
     def contactDev(self):
-        self.attendance_window = Toplevel(self.root)
-        self.app = Helpdesk(self.attendance_window)
+        self.contactdev_window = Toplevel(self.root)
+        self.app = Helpdesk(self.contactdev_window)
 
 
 if __name__ == "__main__":

@@ -13,7 +13,7 @@ class Student:
     def __init__(self, root):
         self.root = root
         self.root.geometry("1530x790+0+0")
-        self.root.title("Face Recognition Student Attendance System")
+        self.root.title("Attendance Database")
         root.resizable(0, 0)
         root.attributes('-alpha', 0.95)
 
@@ -49,8 +49,9 @@ class Student:
 
         lbl = Label (font = ("Calibri Light", 30), background="#3F0D12", foreground="white")
         lbl.place(x=520, y=42, width=500, height=40)
-        currentTime ()
 
+
+        currentTime ()
 
         titleLabel = Label(
             BgImg,

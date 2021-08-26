@@ -11,7 +11,7 @@ class Developer:
     def __init__(self, root):
         self.root = root
         self.root.geometry("1530x790+0+0")
-        self.root.title("ABOUT US")
+        self.root.title("About The Program")
         root.resizable(0, 0)
 
 
