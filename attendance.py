@@ -7,11 +7,12 @@ from fetchstudentdata import fetchdata
 import cv2
 import os
 import csv
-from tkinter import  filedialog
+from tkinter import filedialog
 from time import strftime
 from datetime import datetime
 
-mydata=[]
+mydata = []
+
 
 class Attendance:
     def __init__(self, root):
@@ -27,13 +28,11 @@ class Attendance:
         self.var_attendance_serial = StringVar()
         self.var_attendance_name = StringVar()
         self.var_attendance_nsuid = StringVar()
-        self.var_attendance_course  = StringVar()
-        self.var_attendance_dep  = StringVar()
+        self.var_attendance_course = StringVar()
+        self.var_attendance_dep = StringVar()
         self.var_attendance_date = StringVar()
-        self.var_attendance_time  = StringVar()
-        self.var_attendance_Status  = StringVar()
-
-
+        self.var_attendance_time = StringVar()
+        self.var_attendance_Status = StringVar()
 
         imgBg = Image.open(r"images\colorBg.png")
         imgBg = imgBg.resize((1530, 790), Image.ANTIALIAS)
@@ -42,19 +41,17 @@ class Attendance:
         BgImg = Label(self.root, image=self.PhoImgBg)  # shows in window
         BgImg.place(x=0, y=0, width=1530, height=790)  # place image
 
-
         # Date And Time
-        def currentTime ():
-            string = strftime('%d.%m.%Y ∙ %I:%M:%S %p')
+        def currentTime():
+            string = strftime("%d.%m.%Y ∙ %I:%M:%S %p")
             lbl.config(text=string)
             lbl.after(1000, currentTime)
 
-        lbl = Label (
-            BgImg,
-            font = ("Calibri Light", 30), background="#3F0D12", foreground="white")
+        lbl = Label(
+            BgImg, font=("Calibri Light", 30), background="#3F0D12", foreground="white"
+        )
         lbl.place(x=520, y=42, width=500, height=40)
-        currentTime ()
-
+        currentTime()
 
         titleLabel = Label(
             BgImg,
@@ -94,7 +91,6 @@ class Attendance:
 
         # Entry - labelland
 
-
         # Attendance ID label and entry field
         attendanceId_label = Label(
             insideLeftFrame,
@@ -107,12 +103,10 @@ class Attendance:
         attendanceId_entry_field = ttk.Entry(
             insideLeftFrame,
             width=20,
-            textvariable= self.var_attendance_nsuid,
+            textvariable=self.var_attendance_nsuid,
             font=("Calibri", 13),
         )
         attendanceId_entry_field.grid(row=0, column=1, padx=10, pady=5, sticky=W)
-
-
 
         # Name label and entry field
         name_label = Label(
@@ -169,7 +163,6 @@ class Attendance:
         date_label = Label(
             insideLeftFrame,
             text="Date:",
-
             font=("Calibri", 13),
             bg="white",
         )
@@ -178,7 +171,7 @@ class Attendance:
         date_entry_field = ttk.Entry(
             insideLeftFrame,
             width=20,
-            textvariable = self.var_attendance_date,
+            textvariable=self.var_attendance_date,
             font=("Calibri", 13),
         )
         date_entry_field.grid(row=2, column=1, pady=8)
@@ -200,7 +193,6 @@ class Attendance:
         )
         time_entry_field.grid(row=2, column=3, pady=8)
 
-
         attendance_label = Label(
             insideLeftFrame,
             text="Attendance Status:",
@@ -214,7 +206,7 @@ class Attendance:
             width=20,
             textvariable=self.var_attendance_Status,
             font=("Calibri"),
-            state="readonly"
+            state="readonly",
         )
         self.attend_status["values"] = ("Status", "Present", "Absent")
         self.attend_status.grid(row=3, column=1, pady=8)
@@ -236,7 +228,7 @@ class Attendance:
         )
         import_btn.grid(row=0, column=0)
 
-        #EXPORT BUTTON
+        # EXPORT BUTTON
         export_btn = Button(
             button_frame,
             text="Export Data",
@@ -248,7 +240,7 @@ class Attendance:
         )
         export_btn.grid(row=0, column=1)
 
-        #RESET BUTTON,==> reset all combobox data fetch from attendence.py consol
+        # RESET BUTTON,==> reset all combobox data fetch from attendence.py consol
         reset_btn = Button(
             button_frame,
             text="Reset",
@@ -312,11 +304,7 @@ class Attendance:
 
         self.AttendanceReport.pack(fill=BOTH, expand=1)
 
-        self.AttendanceReport.bind('<ButtonRelease>', self.get_cursor_data)
-
-
-
-
+        self.AttendanceReport.bind("<ButtonRelease>", self.get_cursor_data)
 
     # fetch data of student in attendance window
     """
@@ -324,24 +312,24 @@ class Attendance:
       and insert data from csz file to table
     
     """
-    def fetchData(self,rows):
+
+    def fetchData(self, rows):
         self.AttendanceReport.delete(*self.AttendanceReport.get_children())
         for data in rows:
-            self.AttendanceReport.insert("",END,values=data)
+            self.AttendanceReport.insert("", END, values=data)
 
     # import data from CSV file in ATTENDANCE CONSOL
     def importFromCsv(self):
         global mydata
         mydata.clear()
         filename = filedialog.askopenfilename(
-            initialdir = os.getcwd(),
-            title='Open CSV',
-            filetypes=(('CSV File','*.csv'),
-                       ("ALL File","*.*")),
-            parent=self.root
+            initialdir=os.getcwd(),
+            title="Open CSV",
+            filetypes=(("CSV File", "*.csv"), ("ALL File", "*.*")),
+            parent=self.root,
         )
-        with  open(filename) as myfile:
-            read_csv = csv.reader(myfile,delimiter=',')
+        with open(filename) as myfile:
+            read_csv = csv.reader(myfile, delimiter=",")
             for data in read_csv:
                 mydata.append(data)
             self.fetchData(mydata)
@@ -355,39 +343,39 @@ class Attendance:
         that file already contain data or not
         """
         try:
-            if len(mydata) < 1 :
-                messagebox.showerror('No data', " Found no data to export",parent=self.root)
+            if len(mydata) < 1:
+                messagebox.showerror(
+                    "No data", " Found no data to export", parent=self.root
+                )
                 return False
-            
+
             filename = filedialog.asksaveasfilename(
                 initialdir=os.getcwd(),
-                title='Open CSV',
-                filetypes=(('CSV File', '*.csv'),
-                           ("ALL File", "*.*")),
-                parent=self.root
+                title="Open CSV",
+                filetypes=(("CSV File", "*.csv"), ("ALL File", "*.*")),
+                parent=self.root,
             )
-            
-            with  open(filename,mode='w',newline="") as myfile:
-                csv_write = csv.writer(myfile,delimiter=',')
+
+            with open(filename, mode="w", newline="") as myfile:
+                csv_write = csv.writer(myfile, delimiter=",")
                 for data in mydata:
                     csv_write.writerow(data)
-                    messagebox.showinfo('Export Data',
-                                    'Successfully Data Exported in '+os.path.basename(filename))
+                    messagebox.showinfo(
+                        "Export Data",
+                        "Successfully Data Exported in " + os.path.basename(filename),
+                    )
 
         except Exception as ex:
-            messagebox.showerror("Error",f'Due to : {str(ex)} ',
-                                 parent=self.root)
-
-
-
+            messagebox.showerror("Error", f"Due to : {str(ex)} ", parent=self.root)
 
     """"
     function to fetch data in student data entry in ATTENDANCE window 
     """
-    def get_cursor_data(self,event=''):
-        cursor_row=self.AttendanceReport.focus()
+
+    def get_cursor_data(self, event=""):
+        cursor_row = self.AttendanceReport.focus()
         content = self.AttendanceReport.item(cursor_row)
-        store_rows = content['values']
+        store_rows = content["values"]
 
         self.var_attendance_nsuid.set(store_rows[0])
         self.var_attendance_name.set(store_rows[1])
@@ -397,22 +385,19 @@ class Attendance:
         self.var_attendance_time.set(store_rows[5])
         self.var_attendance_Status.set(store_rows[6])
 
-
     """
      function for reset button this function will reset data from the
      entry field. this function is for ATTENDANCE window 
     """
-    def reset_entry_data(self, event=''):
-        self.var_attendance_nsuid.set('')
-        self.var_attendance_name.set('')
-        self.var_attendance_course.set('')
-        self.var_attendance_dep.set('')
-        self.var_attendance_date.set('')
-        self.var_attendance_time.set('')
-        self.var_attendance_Status.set('')
 
-
-
+    def reset_entry_data(self, event=""):
+        self.var_attendance_nsuid.set("")
+        self.var_attendance_name.set("")
+        self.var_attendance_course.set("")
+        self.var_attendance_dep.set("")
+        self.var_attendance_date.set("")
+        self.var_attendance_time.set("")
+        self.var_attendance_Status.set("")
 
 
 if __name__ == "__main__":

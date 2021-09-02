@@ -11,13 +11,11 @@ import datetime
 from pymysql import connect, cursors
 
 
-
 class Face_Recognition:
     def __init__(self, root):
         self.root = root
         self.root.geometry("1530x790+0+0")
         self.root.title("Face Recognizer")
-
 
         img_top = Image.open(r"images\colorBg.png")
         img_top = img_top.resize((1530, 790), Image.ANTIALIAS)
@@ -26,32 +24,27 @@ class Face_Recognition:
         BgImg = Label(self.root, image=self.PhoImgTop)
         BgImg.place(x=0, y=0, width=1530, height=790)
 
-
-
         # Date And Time
-        def currentTime ():
-            string = strftime('%d.%m.%Y ∙ %I:%M:%S %p')
+        def currentTime():
+            string = strftime("%d.%m.%Y ∙ %I:%M:%S %p")
             lbl.config(text=string)
             lbl.after(1000, currentTime)
 
-        lbl = Label (
-            BgImg,
-            font = ("Calibri Light", 30), background="#3F0D12", foreground="white")
+        lbl = Label(
+            BgImg, font=("Calibri Light", 30), background="#3F0D12", foreground="white"
+        )
         lbl.place(x=520, y=42, width=500, height=40)
-        currentTime ()
-
+        currentTime()
 
         titleLabel = Label(
             BgImg,
             text="FACE RECOGNITION",
-            font=("Calibri Light",30),
+            font=("Calibri Light", 30),
             bg="#A71D31",
             fg="white",
         )
 
         titleLabel.place(x=0, y=120, width=1530, height=50)
-
-
 
         # FACE RECOGNITION Button
 
@@ -59,7 +52,12 @@ class Face_Recognition:
         trainButton = trainButton.resize((270, 270), Image.ANTIALIAS)
         self.PhoImgTrainButton = ImageTk.PhotoImage(trainButton)
 
-        Btn = Button(self.root, image=self.PhoImgTrainButton, cursor="hand2", command=self.face_recog)
+        Btn = Button(
+            self.root,
+            image=self.PhoImgTrainButton,
+            cursor="hand2",
+            command=self.face_recog,
+        )
         Btn.place(x=633, y=300, width=270, height=260)
 
         Btn = Button(
@@ -72,8 +70,6 @@ class Face_Recognition:
             fg="white",
         )
         Btn.place(x=633, y=558, width=270, height=50)
-
-
 
     # Taking attendance
     def attendance_marking(self, name, id, course, department):
@@ -90,17 +86,15 @@ class Face_Recognition:
             dtString = now.strftime("%I:%M:%S %p")
 
             if (
-                ((id not in nameList)
-                and (name not in nameList))
+                ((id not in nameList) and (name not in nameList))
                 and (course not in nameList)
                 and (department not in nameList)
-                and (d1 not in nameList)):
-                
-                    att.writelines(
-                        f"\n{id},{name},{course},{department},{d1},{dtString},Present")
+                and (d1 not in nameList)
+            ):
 
-
-
+                att.writelines(
+                    f"\n{id},{name},{course},{department},{d1},{dtString},Present"
+                )
 
     # Function for Face Recognition
     def face_recog(self):
@@ -117,57 +111,87 @@ class Face_Recognition:
                 # create a rectangle
                 cv2.rectangle(img, (x, y), (x + width, y + height), (0, 255, 0), 3)
                 id, predict = clf.predict(gray_img[y : y + height, x : x + width])
-                confidence = int(100*(1 - predict/300))
+                confidence = int(100 * (1 - predict / 300))
 
                 connection = mysql.connector.connect(
                     host="localhost",
                     username="cse299",
                     password="p2JaZ6@k",
                     database="face_recognition",
-                    autocommit=True
+                    autocommit=True,
                 )
 
-
-                #cursor()= this is an inbuilt function and used here to execute mysql query
+                # cursor()= this is an inbuilt function and used here to execute mysql query
                 cursor = connection.cursor()
-                #cursor.execute("SELECT * FROM student")
+                # cursor.execute("SELECT * FROM student")
 
-                cursor.execute("SELECT Name FROM student where Serial="+str(id))
+                cursor.execute("SELECT Name FROM student where Serial=" + str(id))
                 n = cursor.fetchone()[0]
 
-                cursor.execute("SELECT NSU_ID FROM student where Serial="+str(id))
+                cursor.execute("SELECT NSU_ID FROM student where Serial=" + str(id))
                 i = cursor.fetchone()[0]
 
-                cursor.execute("SELECT Course FROM student where Serial="+str(id))
+                cursor.execute("SELECT Course FROM student where Serial=" + str(id))
                 c = cursor.fetchone()[0]
 
-                cursor.execute("SELECT Department FROM student where Serial="+str(id))       
+                cursor.execute("SELECT Department FROM student where Serial=" + str(id))
                 d = cursor.fetchone()[0]
 
-
-
-
-                #confidence is work how long we know the face and also give a value
+                # confidence is work how long we know the face and also give a value
                 if confidence > 50:
-                    cv2.putText(img, f"Name: {n}",(x, y - 75),
-                        cv2.FONT_HERSHEY_COMPLEX,.5,(255, 255, 255),1)
+                    cv2.putText(
+                        img,
+                        f"Name: {n}",
+                        (x, y - 75),
+                        cv2.FONT_HERSHEY_COMPLEX,
+                        0.5,
+                        (255, 255, 255),
+                        1,
+                    )
 
-                    cv2.putText(img,f"ID: {i}",(x, y - 50),cv2.FONT_HERSHEY_COMPLEX,
-                                .5,(255, 255, 255),1,)
+                    cv2.putText(
+                        img,
+                        f"ID: {i}",
+                        (x, y - 50),
+                        cv2.FONT_HERSHEY_COMPLEX,
+                        0.5,
+                        (255, 255, 255),
+                        1,
+                    )
 
-                    cv2.putText(img,f"Course: {c}",(x, y - 25),
-                                cv2.FONT_HERSHEY_COMPLEX,.5,(255, 255, 255),1)
+                    cv2.putText(
+                        img,
+                        f"Course: {c}",
+                        (x, y - 25),
+                        cv2.FONT_HERSHEY_COMPLEX,
+                        0.5,
+                        (255, 255, 255),
+                        1,
+                    )
 
-                    cv2.putText(img,f"Department: {d}",(x, y - 5),
-                                cv2.FONT_HERSHEY_COMPLEX,.5,(255, 255, 255),1)
+                    cv2.putText(
+                        img,
+                        f"Department: {d}",
+                        (x, y - 5),
+                        cv2.FONT_HERSHEY_COMPLEX,
+                        0.5,
+                        (255, 255, 255),
+                        1,
+                    )
 
                     self.attendance_marking(n, i, c, d)
 
-
                 else:
                     cv2.rectangle(img, (x, y), (x + width, y + height), (0, 0, 255), 3)
-                    cv2.putText(img,"UNKNOWN PERSON ",(x, y - 5),
-                        cv2.FONT_HERSHEY_COMPLEX,0.5, (255, 0, 25), 1)
+                    cv2.putText(
+                        img,
+                        "UNKNOWN PERSON ",
+                        (x, y - 5),
+                        cv2.FONT_HERSHEY_COMPLEX,
+                        0.5,
+                        (255, 0, 25),
+                        1,
+                    )
 
                 coord = [x, y, width, height]
 
@@ -186,12 +210,12 @@ class Face_Recognition:
         while True:
             ret, img = video_cap.read()
             img = Recognize(img, clf, faceCascade)
-            cv2.imshow('Recognizing Face', img)
+            cv2.imshow("Recognizing Face", img)
             cv2.waitKey(1)
 
-            if cv2.getWindowProperty('Recognizing Face', 4) < 1:
+            if cv2.getWindowProperty("Recognizing Face", 4) < 1:
                 break
-            
+
         video_cap.release()
         cv2.destroyAllWindows()
 
