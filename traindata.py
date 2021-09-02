@@ -19,7 +19,7 @@ class Traindata:
         root.resizable(0, 0)
         root.attributes('-alpha', 0.95)
 
-        
+        # Background Image
         img_top = Image.open(r"images\colorBg.png")
         img_top = img_top.resize((1530, 790), Image.ANTIALIAS)
         self.PhoImgTop = ImageTk.PhotoImage(img_top)
