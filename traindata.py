@@ -24,8 +24,8 @@ class Traindata:
         img_top = img_top.resize((1530, 790), Image.ANTIALIAS)
         self.PhoImgTop = ImageTk.PhotoImage(img_top)
 
-        left_frame_lable = Label(self.root, image=self.PhoImgTop)
-        left_frame_lable.place(x=0, y=0, width=1530, height=790)
+        BgImg = Label(self.root, image=self.PhoImgTop)
+        BgImg.place(x=0, y=0, width=1530, height=790)
 
 
         # Date And Time
@@ -40,6 +40,7 @@ class Traindata:
 
 
         titleLabel = Label(
+            BgImg,
             text="TRAIN DATA SET",
             font=(
                 "Calibri Light",
