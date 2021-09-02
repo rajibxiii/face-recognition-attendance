@@ -272,7 +272,7 @@ class Attendance:
         rightFrame.place(x=760, y=10, width=730, height=565)
 
         table_frame = Frame(rightFrame, bd=2, relief=RIDGE, bg="white")
-        table_frame.place(x=5, y=5, width=710, height=455)
+        table_frame.place(x=5, y=5, width=710, height=524)
 
         # Table Scrollbar
 
