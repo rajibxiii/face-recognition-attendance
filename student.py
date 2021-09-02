@@ -424,8 +424,23 @@ class Student:
 
 
         # bbutton frame for student details left side part
+        button_frame1 = Frame(student_information_frame, bd=2, relief=RIDGE, bg="white")
+        button_frame1.place(x=0, y=208, width=715, height=35)
+
+        take_photo_btn = Button(
+            button_frame1,
+            command = self.generate_data_set,
+            text="Take Photo Sample",
+            width=79,
+            font=("Calibri", 13, "bold"),
+            bg="#3F0D12",
+            fg="white",
+        )
+        take_photo_btn.grid(row=0, column=0)
+
+        # button frame 2
         button_frame = Frame(student_information_frame, bd=2, relief=RIDGE, bg="white")
-        button_frame.place(x=0, y=208, width=715, height=35)
+        button_frame.place(x=0, y=242, width=715, height=35)
 
         save_btn = Button(
             button_frame,
@@ -471,30 +486,8 @@ class Student:
         )
         reset_btn.grid(row=0, column=3)
 
-        # bbutton frame 2
-        button_frame1 = Frame(student_information_frame, bd=2, relief=RIDGE, bg="white")
-        button_frame1.place(x=0, y=242, width=715, height=35)
 
-        take_photo_btn = Button(
-            button_frame1,
-            command = self.generate_data_set,
-            text="Take Photo Sample",
-            width=39,
-            font=("Calibri", 13, "bold"),
-            bg="#3F0D12",
-            fg="white",
-        )
-        take_photo_btn.grid(row=0, column=0)
 
-        update_photo_btn = Button(
-            button_frame1,
-            text="Update Photo Sample",
-            width=39,
-            font=("Calibri", 13, "bold"),
-            bg="#3F0D12",
-            fg="white",
-        )
-        update_photo_btn.grid(row=0, column=1)
 
         # right label Frame
         right_frame = LabelFrame(
