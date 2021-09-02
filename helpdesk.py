@@ -18,9 +18,8 @@ class Helpdesk:
         self.root.geometry("1530x790+0+0")
         self.root.title("Contact Us")
         root.resizable(0, 0)
-        root.attributes('-alpha', 0.95)
+        root.attributes("-alpha", 0.95)
 
-        
         # Background Image
         img_top = Image.open(r"images\colorBg.png")
         img_top = img_top.resize((1530, 790), Image.ANTIALIAS)
@@ -29,17 +28,17 @@ class Helpdesk:
         BgImg = Label(self.root, image=self.PhoImgTop)
         BgImg.place(x=0, y=0, width=1530, height=790)
 
-
         # Date And Time
-        def currentTime ():
-            string = strftime('%d.%m.%Y ∙ %I:%M:%S %p')
+        def currentTime():
+            string = strftime("%d.%m.%Y ∙ %I:%M:%S %p")
             lbl.config(text=string)
             lbl.after(1000, currentTime)
 
-        lbl = Label (BgImg, font = ("Calibri Light", 30), background="#3F0D12", foreground="white")
+        lbl = Label(
+            BgImg, font=("Calibri Light", 30), background="#3F0D12", foreground="white"
+        )
         lbl.place(x=520, y=42, width=500, height=40)
-        currentTime ()
-
+        currentTime()
 
         titleLabel = Label(
             BgImg,
@@ -54,13 +53,17 @@ class Helpdesk:
 
         titleLabel.place(x=0, y=120, width=1530, height=50)
 
-
         # Mail Button
         sendMailButton = Image.open(r"images\emaild.jpg")
         sendMailButton = sendMailButton.resize((270, 270), Image.ANTIALIAS)
         self.PhoImgsendMailButton = ImageTk.PhotoImage(sendMailButton)
 
-        Btn = Button(self.root, image=self.PhoImgsendMailButton, cursor="hand2", command=self.sendMail)
+        Btn = Button(
+            self.root,
+            image=self.PhoImgsendMailButton,
+            cursor="hand2",
+            command=self.sendMail,
+        )
         Btn.place(x=632, y=300, width=270, height=270)
 
         Btn = Button(
@@ -72,19 +75,13 @@ class Helpdesk:
             bg="#3F0D12",
             fg="white",
         )
-        Btn.place(x=632, y=565, width=270, height=60)   
+        Btn.place(x=632, y=565, width=270, height=60)
 
-
-    
     def sendMail(self):
-        webbrowser.open('mailto:md.razib@northsouth.edu?subject=FRSAS Issue')
-
-
+        webbrowser.open("mailto:md.razib@northsouth.edu?subject=FRSAS Issue")
 
 
 if __name__ == "__main__":
     root = Tk()  # root is needed to call by toolkit (tk)
     obj = Helpdesk(root)
     root.mainloop()
-
-

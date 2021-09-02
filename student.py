@@ -15,7 +15,7 @@ class Student:
         self.root.geometry("1530x790+0+0")
         self.root.title("Attendance Database")
         root.resizable(0, 0)
-        root.attributes('-alpha', 0.95)
+        root.attributes("-alpha", 0.95)
 
         # Variables for entry field
         self.var_dep = StringVar()
@@ -42,19 +42,16 @@ class Student:
         BgImg.place(x=0, y=0, width=1530, height=790)  # place image
 
         # Date And Time
-        def currentTime ():
-            string = strftime('%d.%m.%Y ∙ %I:%M:%S %p')
+        def currentTime():
+            string = strftime("%d.%m.%Y ∙ %I:%M:%S %p")
             lbl.config(text=string)
             lbl.after(1000, currentTime)
 
-        lbl = Label (
-            BgImg,
-            font = ("Calibri Light", 30),
-            background="#3F0D12",
-            foreground="white")
+        lbl = Label(
+            BgImg, font=("Calibri Light", 30), background="#3F0D12", foreground="white"
+        )
         lbl.place(x=520, y=42, width=500, height=40)
-        currentTime ()
-
+        currentTime()
 
         titleLabel = Label(
             BgImg,
@@ -246,7 +243,6 @@ class Student:
         )
         studentSl_entry_field.grid(row=0, column=1, padx=10, pady=5, sticky=W)
 
-
         # student ID label and entry field
         studentId_label = Label(
             student_information_frame,
@@ -263,8 +259,6 @@ class Student:
             font=("Calibri", 13),
         )
         studentId_entry_field.grid(row=0, column=3, padx=10, pady=5, sticky=W)
-
-
 
         # student name label and entry field
         student_name_label = Label(
@@ -307,9 +301,47 @@ class Student:
         )
 
         section_combo_box["value"] = (
-            "Select Section","1","2","3","4","5","6","7","8","9","10","11","12","13","14",
-            "15","16","17","18","19","20","21","22","23","24","25","26","27","28","29","30",
-            "31","32","33","34","35","36","37","38","39","40"
+            "Select Section",
+            "1",
+            "2",
+            "3",
+            "4",
+            "5",
+            "6",
+            "7",
+            "8",
+            "9",
+            "10",
+            "11",
+            "12",
+            "13",
+            "14",
+            "15",
+            "16",
+            "17",
+            "18",
+            "19",
+            "20",
+            "21",
+            "22",
+            "23",
+            "24",
+            "25",
+            "26",
+            "27",
+            "28",
+            "29",
+            "30",
+            "31",
+            "32",
+            "33",
+            "34",
+            "35",
+            "36",
+            "37",
+            "38",
+            "39",
+            "40",
         )
 
         section_combo_box.current(0)
@@ -335,7 +367,13 @@ class Student:
             width=18,
         )
 
-        gender_combo_box["value"] = ("Choose", "Male", "Female", "Third Gender", "Other")
+        gender_combo_box["value"] = (
+            "Choose",
+            "Male",
+            "Female",
+            "Third Gender",
+            "Other",
+        )
 
         gender_combo_box.current(0)
         gender_combo_box.grid(row=2, column=3, padx=10, pady=5, sticky=W)
@@ -353,7 +391,7 @@ class Student:
             student_information_frame,
             textvariable=self.var_dob,
             width=20,
-            font=("Calibri",13)
+            font=("Calibri", 13),
         )
         student_birthdate_entry_field.grid(row=2, column=1, padx=10, pady=5, sticky=W)
 
@@ -425,14 +463,13 @@ class Student:
         )
         student_instructor_entry_field.grid(row=4, column=1, padx=10, pady=5, sticky=W)
 
-
         # bbutton frame for student details left side part
         button_frame1 = Frame(student_information_frame, bd=2, relief=RIDGE, bg="white")
         button_frame1.place(x=0, y=208, width=715, height=35)
 
         take_photo_btn = Button(
             button_frame1,
-            command = self.generate_data_set,
+            command=self.generate_data_set,
             text="Take Photo Sample",
             width=79,
             font=("Calibri", 13, "bold"),
@@ -489,9 +526,6 @@ class Student:
         )
         reset_btn.grid(row=0, column=3)
 
-
-
-
         # right label Frame
         right_frame = LabelFrame(
             main_frame,
@@ -520,22 +554,21 @@ class Student:
         self.student_table = ttk.Treeview(
             table_frame,
             column=(
-                    "dep",
-                    "course",
-                    "year",
-                    "sem",
-                    "serial",
-                    "name",
-                    "sec",
-                    "gender",
-                    "dob",
-                    "email",
-                    "phone",
-                    "address",
-                    "faculty",
-                    "nsuid",
+                "dep",
+                "course",
+                "year",
+                "sem",
+                "serial",
+                "name",
+                "sec",
+                "gender",
+                "dob",
+                "email",
+                "phone",
+                "address",
+                "faculty",
+                "nsuid",
             ),
-
             xscrollcommand=scroll_x.set,
             yscrollcommand=scroll_y.set,
         )
@@ -605,7 +638,6 @@ class Student:
                 query = "insert into student values(%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)"
                 make_cursor.execute(
                     query,
-
                     (
                         self.var_dep.get(),
                         self.var_course.get(),
@@ -634,8 +666,6 @@ class Student:
             except Exception as ex:
                 messagebox.showerror("Error", f" Due to : {str(ex)}", parent=self.root)
 
-
-
     def FetchCursorDataInEntry(self, event=""):
         focus_on_cursor = self.student_table.focus()
         get_content = self.student_table.item(focus_on_cursor)
@@ -656,7 +686,6 @@ class Student:
         self.var_address.set(get_data[11]),
         self.var_faculty.set(get_data[12]),
         self.var_nsuid.set(get_data[13]),
-
 
     # Updating funtions
     def update_data(self):
@@ -719,7 +748,6 @@ class Student:
             except Exception as es:
                 messagebox.showerror("Error", f"Reason: {str(es)}", parent=self.root)
 
-
     # Delete Student Details Funtion
     def delete_data(self):
         if self.var_serial.get() == "":
@@ -775,7 +803,6 @@ class Student:
         self.var_faculty.set(""),
         self.var_nsuid.set(""),
 
-
     # Generating Data Set
 
     def generate_data_set(self):
@@ -796,79 +823,90 @@ class Student:
                     database="face_recognition",
                 )
                 make_cursor = connection.cursor()
-                make_cursor.execute ("Select * from student")
+                make_cursor.execute("Select * from student")
                 result = make_cursor.fetchall()
                 id = 0
 
                 for x in result:
-                    id+=1
+                    id += 1
                 make_cursor.execute(
-                        "update student set Department=%s, Course=%s, Year=%s, Semester=%s, Name=%s, Section=%s, Gender=%s, DOB=%s, Email=%s, Phone=%s, Address=%s, Faculty=%s, NSU_ID=%s where Serial=%s",
-                        (
-                            self.var_dep.get(),
-                            self.var_course.get(),
-                            self.var_year.get(),
-                            self.var_semester.get(),
-                            self.var_name.get(),
-                            self.var_section.get(),
-                            self.var_gender.get(),
-                            self.var_dob.get(),
-                            self.var_email.get(),
-                            self.var_phone.get(),
-                            self.var_address.get(),
-                            self.var_faculty.get(),
-                            self.var_nsuid.get(),
-                            self.var_serial.get()==id+1
-                        ),
-                    )
+                    "update student set Department=%s, Course=%s, Year=%s, Semester=%s, Name=%s, Section=%s, Gender=%s, DOB=%s, Email=%s, Phone=%s, Address=%s, Faculty=%s, NSU_ID=%s where Serial=%s",
+                    (
+                        self.var_dep.get(),
+                        self.var_course.get(),
+                        self.var_year.get(),
+                        self.var_semester.get(),
+                        self.var_name.get(),
+                        self.var_section.get(),
+                        self.var_gender.get(),
+                        self.var_dob.get(),
+                        self.var_email.get(),
+                        self.var_phone.get(),
+                        self.var_address.get(),
+                        self.var_faculty.get(),
+                        self.var_nsuid.get(),
+                        self.var_serial.get() == id + 1,
+                    ),
+                )
 
                 connection.commit()
                 fetchdata.FetchStudentData(self)
                 self.reset_data()
                 connection.close()
 
-
                 # Loading data on Front Face from OpenCV
-                face_classifier = cv2.CascadeClassifier("haarcascade_frontalface_default.xml")
-                def crop_face (img):
-                    grayscale = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
-                    faces = face_classifier.detectMultiScale(grayscale, 1.3, 5) #Scaling dactor = 1.3, Minimum Neighbor = 5
+                face_classifier = cv2.CascadeClassifier(
+                    "haarcascade_frontalface_default.xml"
+                )
 
-                    for (x,y,w,h) in faces:
-                        crop_face = img [y:y+h, x:x+w]
+                def crop_face(img):
+                    grayscale = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
+                    faces = face_classifier.detectMultiScale(
+                        grayscale, 1.3, 5
+                    )  # Scaling dactor = 1.3, Minimum Neighbor = 5
+
+                    for (x, y, w, h) in faces:
+                        crop_face = img[y : y + h, x : x + w]
                         return crop_face
 
                 capture = cv2.VideoCapture(0, cv2.CAP_DSHOW)
                 img_id = 0
 
                 while True:
-                    ret, myframe=capture.read()
-                    if crop_face (myframe) is not None:
-                        img_id+=1
-                        face = cv2.resize(crop_face(myframe),(450, 450))
+                    ret, myframe = capture.read()
+                    if crop_face(myframe) is not None:
+                        img_id += 1
+                        face = cv2.resize(crop_face(myframe), (450, 450))
                         face = cv2.cvtColor(face, cv2.COLOR_BGR2GRAY)
-                        file_path = "data/user."+str(id)+"."+str(img_id)+".jpg"
+                        file_path = "data/user." + str(id) + "." + str(img_id) + ".jpg"
                         cv2.imwrite(file_path, face)
-                        cv2.putText(face, str(img_id),(50,50),cv2.FONT_HERSHEY_COMPLEX,2,(0,255,0),2)
+                        cv2.putText(
+                            face,
+                            str(img_id),
+                            (50, 50),
+                            cv2.FONT_HERSHEY_COMPLEX,
+                            2,
+                            (0, 255, 0),
+                            2,
+                        )
                         cv2.imshow("Cropped Face", face)
 
-                    if cv2.waitKey(1)==13 or int(img_id)==100:
+                    if cv2.waitKey(1) == 13 or int(img_id) == 100:
                         break
-                
+
                 capture.release()
-                messagebox.showinfo("Result", "Generating Data Sets Completed Successfully")
-            
+                messagebox.showinfo(
+                    "Result", "Generating Data Sets Completed Successfully"
+                )
+
             except Exception as es:
                 messagebox.showerror("Error", f"Reason: {str(es)}", parent=self.root)
 
-
-    
 
 if __name__ == "__main__":
     root = Tk()  # root is needed to call by toolkit (tk)
     obj = Student(root)
     root.mainloop()
-
 
 
 # This is a comment
