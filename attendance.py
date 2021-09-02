@@ -222,7 +222,7 @@ class Attendance:
 
         # button frames
         button_frame = Frame(insideLeftFrame, bd=2, relief=RIDGE, bg="white")
-        button_frame.place(x=0, y=330, width=715, height=35)
+        button_frame.place(x=0, y=400, width=715, height=35)
 
         # IMPORT BUTTON
         import_btn = Button(
