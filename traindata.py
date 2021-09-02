@@ -17,7 +17,7 @@ class Traindata:
         self.root.geometry("1530x790+0+0")
         self.root.title("Training Database")
         root.resizable(0, 0)
-        root.attributes('-alpha', 0.95)
+        root.attributes("-alpha", 0.95)
 
         # Background Image
         img_top = Image.open(r"images\colorBg.png")
@@ -27,19 +27,17 @@ class Traindata:
         BgImg = Label(self.root, image=self.PhoImgTop)
         BgImg.place(x=0, y=0, width=1530, height=790)
 
-
         # Date And Time
-        def currentTime ():
-            string = strftime('%d.%m.%Y ∙ %I:%M:%S %p')
+        def currentTime():
+            string = strftime("%d.%m.%Y ∙ %I:%M:%S %p")
             lbl.config(text=string)
             lbl.after(1000, currentTime)
 
-        lbl = Label (
-            BgImg,
-            font = ("Calibri Light", 30), background="#3F0D12", foreground="white")
+        lbl = Label(
+            BgImg, font=("Calibri Light", 30), background="#3F0D12", foreground="white"
+        )
         lbl.place(x=520, y=42, width=500, height=40)
-        currentTime ()
-
+        currentTime()
 
         titleLabel = Label(
             BgImg,
@@ -54,13 +52,17 @@ class Traindata:
 
         titleLabel.place(x=0, y=120, width=1530, height=50)
 
-
         # Train Data Button
         trainButton = Image.open(r"images\dataT.jpg")
         trainButton = trainButton.resize((270, 270), Image.ANTIALIAS)
         self.PhoImgTrainButton = ImageTk.PhotoImage(trainButton)
 
-        Btn = Button(self.root, image=self.PhoImgTrainButton, cursor="hand2", command=self.trainClassifier)
+        Btn = Button(
+            self.root,
+            image=self.PhoImgTrainButton,
+            cursor="hand2",
+            command=self.trainClassifier,
+        )
         Btn.place(x=632, y=300, width=270, height=270)
 
         Btn = Button(
@@ -72,44 +74,39 @@ class Traindata:
             bg="#3F0D12",
             fg="white",
         )
-        Btn.place(x=632, y=565, width=270, height=60)   
+        Btn.place(x=632, y=565, width=270, height=60)
 
-
-    
     def trainClassifier(self):
-        data_dir = ("data")
-        path = [os.path.join(data_dir,file) for file in os.listdir(data_dir)]
+        data_dir = "data"
+        path = [os.path.join(data_dir, file) for file in os.listdir(data_dir)]
 
         faces = []
         ids = []
 
         for image in path:
-            img = Image.open(image).convert('L') # Converting image to greyscale
+            img = Image.open(image).convert("L")  # Converting image to greyscale
 
-            imageNp = np.array(img, 'uint8')
-            id = int(os.path.split(image)[1].split('.')[1])
+            imageNp = np.array(img, "uint8")
+            id = int(os.path.split(image)[1].split(".")[1])
 
             faces.append(imageNp)
             ids.append(id)
             cv2.imshow("Training", imageNp)
             cv2.waitKey(1) == 13
-        
-        ids = np.array(ids)
 
+        ids = np.array(ids)
 
         # Training the classifier
         clf = cv2.face.LBPHFaceRecognizer_create()
         clf.train(faces, ids)
         clf.write("classifier.xml")
         cv2.destroyAllWindows()
-        messagebox.showinfo("Result", "Completed training the data set", parent=self.root)
-
-
+        messagebox.showinfo(
+            "Result", "Completed training the data set", parent=self.root
+        )
 
 
 if __name__ == "__main__":
     root = Tk()  # root is needed to call by toolkit (tk)
     obj = Traindata(root)
     root.mainloop()
-
-

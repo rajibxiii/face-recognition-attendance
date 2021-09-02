@@ -14,7 +14,6 @@ class Developer:
         self.root.title("About The Program")
         root.resizable(0, 0)
 
-
         # Background Image
         imgBg = Image.open(r"images\About.jpg")
         imgBg = imgBg.resize((1530, 790), Image.ANTIALIAS)
