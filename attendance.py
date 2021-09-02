@@ -90,7 +90,7 @@ class Attendance:
         left_frame_lable.place(x=5, y=0, width=720, height=80)
 
         insideLeftFrame = Frame(left_frame, bd=2, relief=RIDGE, bg="white")
-        insideLeftFrame.place(x=5, y=135, width=720, height=370)
+        insideLeftFrame.place(x=5, y=88, width=720, height=444)
 
         # Entry - labelland
 
