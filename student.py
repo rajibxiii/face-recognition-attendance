@@ -48,6 +48,7 @@ class Student:
             lbl.after(1000, currentTime)
 
         lbl = Label (
+            BgImg,
             font = ("Calibri Light", 30),
             background="#3F0D12",
             foreground="white")

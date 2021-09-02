@@ -35,8 +35,6 @@ class Attendance:
 
 
 
-
-
         imgBg = Image.open(r"images\colorBg.png")
         imgBg = imgBg.resize((1530, 790), Image.ANTIALIAS)
         self.PhoImgBg = ImageTk.PhotoImage(imgBg)  # set image
@@ -51,7 +49,9 @@ class Attendance:
             lbl.config(text=string)
             lbl.after(1000, currentTime)
 
-        lbl = Label (font = ("Calibri Light", 30), background="#3F0D12", foreground="white")
+        lbl = Label (
+            BgImg,
+            font = ("Calibri Light", 30), background="#3F0D12", foreground="white")
         lbl.place(x=520, y=42, width=500, height=40)
         currentTime ()
 

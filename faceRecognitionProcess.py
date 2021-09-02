@@ -34,7 +34,9 @@ class Face_Recognition:
             lbl.config(text=string)
             lbl.after(1000, currentTime)
 
-        lbl = Label (font = ("Calibri Light", 30), background="#3F0D12", foreground="white")
+        lbl = Label (
+            BgImg,
+            font = ("Calibri Light", 30), background="#3F0D12", foreground="white")
         lbl.place(x=520, y=42, width=500, height=40)
         currentTime ()
 
