@@ -11,13 +11,14 @@ from time import strftime
 from datetime import datetime
 from developer import Developer
 
+
 class FaceRecSys:
     def __init__(self, root):
         self.root = root
         self.root.geometry("1530x790+0+0")
         self.root.title("Face Recognition Student Attendance System")
         root.resizable(0, 0)
-        root.attributes('-alpha', 0.95)
+        root.attributes("-alpha", 0.95)
 
         # Background Image
         imgBg = Image.open(r"images\colorBg.png")
@@ -27,18 +28,18 @@ class FaceRecSys:
         BgImg = Label(self.root, image=self.PhoImgBg)  # shows in window
         BgImg.place(x=0, y=0, width=1530, height=790)  # place image
 
-
         # Date And Time
-        def currentTime ():
-            string = strftime('%d.%m.%Y ∙ %I:%M:%S %p')
+        def currentTime():
+            string = strftime("%d.%m.%Y ∙ %I:%M:%S %p")
             lbl.config(text=string)
             lbl.after(1000, currentTime)
 
-        lbl = Label (font = ("Calibri Light", 30), background="#3F0D12", foreground="white")
+        lbl = Label(
+            font=("Calibri Light", 30), background="#3F0D12", foreground="white"
+        )
         lbl.place(x=520, y=42, width=500, height=40)
 
-        currentTime ()
-
+        currentTime()
 
         titleLabel = Label(
             text="STUDENT ATTENDANCE SYSTEM",
@@ -69,9 +70,7 @@ class FaceRecSys:
             text="STUDENT DETAILS",
             command=self.student_details,
             cursor="hand2",
-            font=("Calibri",
-                12,
-                "bold"),
+            font=("Calibri", 12, "bold"),
             bg="#3F0D12",
             fg="white",
         )
@@ -83,7 +82,9 @@ class FaceRecSys:
         faceDetectButton = faceDetectButton.resize((130, 130), Image.ANTIALIAS)
         self.PhoImgFacDetBtn = ImageTk.PhotoImage(faceDetectButton)
 
-        Btn2 = Button(BgImg, image=self.PhoImgFacDetBtn, cursor="hand2",command=self.facedata)
+        Btn2 = Button(
+            BgImg, image=self.PhoImgFacDetBtn, cursor="hand2", command=self.facedata
+        )
         Btn2.place(x=550, y=270, width=130, height=130)
 
         Btn2 = Button(
@@ -91,19 +92,23 @@ class FaceRecSys:
             text="DETECT FACE",
             cursor="hand2",
             command=self.facedata,
-            font=("Calibri",12,"bold"),
+            font=("Calibri", 12, "bold"),
             bg="#3F0D12",
             fg="white",
         )
         Btn2.place(x=550, y=370, width=130, height=30)
-
 
         # Attendance Button
         attendanceButton = Image.open(r"images\attendance.jpg")
         attendanceButton = attendanceButton.resize((130, 130), Image.ANTIALIAS)
         self.PhoImgAttendBtn = ImageTk.PhotoImage(attendanceButton)
 
-        Btn3 = Button(BgImg, image=self.PhoImgAttendBtn, cursor="hand2",command=self.attendanceData,)
+        Btn3 = Button(
+            BgImg,
+            image=self.PhoImgAttendBtn,
+            cursor="hand2",
+            command=self.attendanceData,
+        )
         Btn3.place(x=850, y=270, width=130, height=130)
 
         Btn3 = Button(
@@ -111,7 +116,7 @@ class FaceRecSys:
             text="ATTENDANCE",
             command=self.attendanceData,
             cursor="hand2",
-            font=("Calibri", 12,"bold"),
+            font=("Calibri", 12, "bold"),
             bg="#3F0D12",
             fg="white",
         )
@@ -122,15 +127,21 @@ class FaceRecSys:
         helpDskButton = helpDskButton.resize((130, 130), Image.ANTIALIAS)
         self.PhoImgHelpdskBtn = ImageTk.PhotoImage(helpDskButton)
 
-        Btn4 = Button(BgImg, image=self.PhoImgHelpdskBtn, cursor="hand2", command = self.contactDev)
+        Btn4 = Button(
+            BgImg, image=self.PhoImgHelpdskBtn, cursor="hand2", command=self.contactDev
+        )
         Btn4.place(x=1150, y=270, width=130, height=130)
 
         Btn4 = Button(
             BgImg,
             text="CONTACT DEV",
-            command = self.contactDev,
+            command=self.contactDev,
             cursor="hand2",
-            font=("Calibri", 12,"bold",),
+            font=(
+                "Calibri",
+                12,
+                "bold",
+            ),
             bg="#3F0D12",
             fg="white",
         )
@@ -141,7 +152,12 @@ class FaceRecSys:
         trainFaceButton = trainFaceButton.resize((130, 130), Image.ANTIALIAS)
         self.PhoImgTrainFacBtn = ImageTk.PhotoImage(trainFaceButton)
 
-        Btn5 = Button(BgImg, image=self.PhoImgTrainFacBtn, cursor="hand2", command=self.train_dataset)
+        Btn5 = Button(
+            BgImg,
+            image=self.PhoImgTrainFacBtn,
+            cursor="hand2",
+            command=self.train_dataset,
+        )
         Btn5.place(x=400, y=510, width=130, height=130)
 
         Btn5 = Button(
@@ -149,7 +165,7 @@ class FaceRecSys:
             text="TRAIN DATA",
             cursor="hand2",
             command=self.train_dataset,
-            font=("Calibri",12,"bold"),
+            font=("Calibri", 12, "bold"),
             bg="#3F0D12",
             fg="white",
         )
@@ -160,7 +176,9 @@ class FaceRecSys:
         photosButton = photosButton.resize((130, 130), Image.ANTIALIAS)
         self.PhoImgPhoBtn = ImageTk.PhotoImage(photosButton)
 
-        Btn6 = Button(BgImg, image=self.PhoImgPhoBtn, cursor="hand2", command=self.open_img)
+        Btn6 = Button(
+            BgImg, image=self.PhoImgPhoBtn, cursor="hand2", command=self.open_img
+        )
         Btn6.place(x=700, y=510, width=130, height=130)
 
         Btn6 = Button(
@@ -168,7 +186,7 @@ class FaceRecSys:
             text="PHOTOS",
             cursor="hand2",
             command=self.open_img,
-            font=("Calibri",12,"bold"),
+            font=("Calibri", 12, "bold"),
             bg="#3F0D12",
             fg="white",
         )
@@ -179,7 +197,9 @@ class FaceRecSys:
         contactDeveloper = contactDeveloper.resize((130, 130), Image.ANTIALIAS)
         self.PhoImgContBtn = ImageTk.PhotoImage(contactDeveloper)
 
-        Btn7 = Button(BgImg, image=self.PhoImgContBtn, cursor="hand2", command=self.developer)
+        Btn7 = Button(
+            BgImg, image=self.PhoImgContBtn, cursor="hand2", command=self.developer
+        )
         Btn7.place(x=1000, y=510, width=130, height=130)
 
         Btn7 = Button(
@@ -187,15 +207,18 @@ class FaceRecSys:
             text="ABOUT",
             cursor="hand2",
             command=self.developer,
-            font=("Calibri",12,"bold",),
+            font=(
+                "Calibri",
+                12,
+                "bold",
+            ),
             bg="#3F0D12",
             fg="white",
         )
         Btn7.place(x=1000, y=610, width=130, height=30)
 
-
     # Function for opening images
-    def open_img (self):
+    def open_img(self):
         os.startfile("data")
 
     # Making Function for student details Button activate from main window
@@ -203,16 +226,13 @@ class FaceRecSys:
         self.student_details_window = Toplevel(self.root)
         self.app = Student(self.student_details_window)
 
-
     def train_dataset(self):
         self.train_dataset_window = Toplevel(self.root)
         self.app = Traindata(self.train_dataset_window)
 
-
     def facedata(self):
         self.faceRecognitionwindow = Toplevel(self.root)
         self.app = Face_Recognition(self.faceRecognitionwindow)
-
 
     def attendanceData(self):
         self.attendance_window = Toplevel(self.root)
@@ -221,7 +241,6 @@ class FaceRecSys:
     def developer(self):
         self.developer_window = Toplevel(self.root)
         self.app = Developer(self.developer_window)
-
 
     def contactDev(self):
         self.contactdev_window = Toplevel(self.root)
