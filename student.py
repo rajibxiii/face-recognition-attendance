@@ -514,75 +514,9 @@ class Student:
         right_frame_lable = Label(right_frame, image=self.PhoImgRight)
         right_frame_lable.place(x=5, y=0, width=710, height=80)
 
-        # Search System in right side Student detail
-        search_frame = LabelFrame(
-            right_frame,
-            bd=3,
-            bg="white",
-            relief=RIDGE,
-            text="SEARCH",
-            font=("Calibri", 12),
-        )
-        search_frame.place(x=5, y=80, width=710, height=70)
-
-        search_label = Label(
-            search_frame,
-            text="Search with: ",
-            font=("Calibri",15),
-            bg="#A71D31",
-            fg="white",
-        )
-        search_label.grid(row=0, column=0, padx=10, pady=5, sticky=W)
-
-        semester_label = Label(
-            current_course_frame,
-            text="Semester",
-            font=("Calibri",13),
-            bg="white",
-        )
-        semester_label.grid(row=1, column=2, padx=10, sticky=W)
-
-        search_combo_box = ttk.Combobox(
-            search_frame,
-            font=("Calibri",13),
-            state="readonly",
-            width=15,
-        )
-        search_combo_box["values"] = ("Select", "NSU ID", "Phone Number")
-        search_combo_box.current(0)
-        search_combo_box.grid(row=0, column=1, padx=2, pady=10, sticky=W)
-
-        search_entry_field = ttk.Entry(
-            search_frame,
-            width=15,
-            font=("Calibri",13),
-        )
-        search_entry_field.grid(row=0, column=2, padx=10, pady=5, sticky=W)
-
-        search_btn = Button(
-            search_frame,
-            text="Search",
-            width=13,
-            font=("Calibri", 12, "bold"),
-            bg="#3F0D12",
-            fg="white",
-        )
-        search_btn.grid(row=0, column=3, padx=4)
-
-        showAll_btn = Button(
-            search_frame,
-            text="Show All",
-            width=13,
-            font=("Calibri", 12, "bold"),
-            bg="#3F0D12",
-            fg="white",
-        )
-        showAll_btn.grid(row=0, column=4, padx=4)
-
-
         ######## Table Frame #########
         table_frame = Frame(right_frame, bd=2, relief=RIDGE, bg="white")
-        table_frame.place(x=5, y=155, width=710, height=383)
+        table_frame.place(x=5, y=80, width=710, height=453)
 
         scroll_x = ttk.Scrollbar(table_frame, orient=HORIZONTAL)
         scroll_y = ttk.Scrollbar(table_frame, orient=VERTICAL)
@@ -652,8 +586,6 @@ class Student:
         fetchdata.FetchStudentData(self)
 
         self.student_table.bind("<ButtonRelease>", self.FetchCursorDataInEntry)
-
-    # function for add student data
 
     def add_data(self):
         if (
