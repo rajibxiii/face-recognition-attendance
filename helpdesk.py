@@ -42,7 +42,7 @@ class Helpdesk:
 
         titleLabel = Label(
             BgImg,
-            text="TRAIN DATA SET",
+            text="CONTACT DEVELOPER",
             font=(
                 "Calibri Light",
                 30,
